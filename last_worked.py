@@ -29,7 +29,7 @@ def lister():
 {R+splitter+W}''')
 
 
-df_2 = pd.read_excel('test_real.xlsx', sheet_name='Sheet1')
+df_2 = pd.read_excel('test_data.xlsx', sheet_name='Sheet1')
 # df_3 = pd.read_excel('test_data.xlsx', sheet_name='Sheet2')
 # df_4 = pd.read_excel('test_data.xlsx', sheet_name='Sheet3')
 
@@ -44,13 +44,17 @@ if __name__ == '__main__':
 
         os.system('cls' if os.name == 'nt' else 'clear')
 
+        ban()
+
+        lister()
+
         userCh = int(input('Tech as integer : '))
 
         match userCh:
 
             case 2:
 
-                main_cell_source_index_2 = df_2[['cell_ref']].dropna()
+                main_cell_source_index_2 = df_2[['cell_index']].dropna()
                 main_cell_source_index_2 = np.asanyarray(main_cell_source_index_2).flatten()
                 main_cell_source_index_2 = list(np.nan_to_num(main_cell_source_index_2))
 
@@ -58,29 +62,45 @@ if __name__ == '__main__':
 
                     #---------------------------------- 2G KPIs
                     kpi_1 = []
+                    kpi_2 = []
+                    kpi_3 = []
 
                     for i in range(len(astro_2)):
 
                         if astro_2[i]['cell'] == main_cell_source_index_2[z]:
 
-                            kpi_1.append(astro_2[i]['tbf_establishment_success_rate(ul+dl)(%)(hu_cell)'])
+                            kpi_1.append(astro_2[i]['kpi_1'])
+                            kpi_2.append(astro_2[i]['kpi_2'])
+                            kpi_3.append(astro_2[i]['kpi_3'])
 
                         else:
 
-                            continue                
+                            continue
 
                     print(f'cell : {C+main_cell_source_index_2[z]+W}')
-                    print(Y+'tbf_establishment_success_rate(ul+dl)(%)(hu_cell)'+W, f'= {kpi_1}'+G,
-                        f'Median : {float(statistics.median(kpi_1))}'+W)
-                    
+                    print(Y+'kpi_1'+W, f'= {kpi_1}'+G,
+                        f'Median : {int(statistics.median(kpi_1))}'+W)
+                    print(Y+'kpi_2'+W, f'= {kpi_2}'+G,
+                        f'Median : {int(statistics.median(kpi_2))}'+W)
+                    print(Y+'kpi_3'+W, f'= {kpi_3}'+G,
+                        f'Median : {int(statistics.median(kpi_3))}'+W)
 
                 print(R+splitter+W)
                 userfdec = input(C+'2G calculation Done! continue? [y/n] : '+W)
 
                 userfdec = userfdec.lower()
 
-                
+                match userfdec:
 
-          
+                    case 'y':
 
+                        continue
+
+                    case 'n':
+
+                        os.system('cls' if os.name == 'nt' else 'clear')
+
+                        sys.exit()
+
+            
         
