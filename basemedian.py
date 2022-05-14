@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import statistics
 import os
 import sys
+import shutil
 from statistics import StatisticsError
 
 R = '\033[31m'
@@ -15,6 +16,10 @@ C = '\033[36m'
 W = '\033[0m'
 
 splitter = '='*50
+
+user = 'Mehdi Alebrahim'
+
+gitdir = fr'C:\Users\{user}\Desktop\L12'
 
 def ban():
 
@@ -280,6 +285,11 @@ if __name__ == '__main__':
 
             case 2:
 
+                # os.makedirs(fr'{gitdir}/RD2_BL')
+                outWorkbook = xlsxwriter.Workbook(f"RD2_BL.xlsx")
+
+                outSheet = outWorkbook.add_worksheet(name = 'Median_bl')
+
                 # ================= data
                 df_RD2 = pd.read_excel('RD2_data.xlsx', sheet_name='Sheet1')
                 astro_RD2 = df_RD2.to_dict('records')
@@ -288,6 +298,21 @@ if __name__ == '__main__':
                 main_cell_source_index_2 = df_RD2[['cell_ref']].dropna()
                 main_cell_source_index_2 = np.asanyarray(main_cell_source_index_2).flatten()
                 main_cell_source_index_2 = list(np.nan_to_num(main_cell_source_index_2))
+
+                kpi_list = [
+                    'tbf_establishment_success_rate(ul+dl)(%)(hu_cell)',
+                    'tbf_drop(ul+dl)(hu_cell)',
+                    'average_throughput_of_downlink_gprs_llc_per_user(kbps)',
+                    'average_throughput_of_downlink_egprs_llc_per_user(kbps)',
+                    'thr_dl_gprs_per_ts(cell_hu)',
+                    'thr_dl_egprs_per_ts(cell_hu)',
+                    'payload_total_ul(cell_hu)',
+                    'payload_total_dl(cell_hu)',
+                    'payload_total(cell_hu)',
+                    'edge_share_payload(cell_hu)',
+                    'tch_availability(hu_cell)',
+                    'trx'
+                ]
 
                 for z in range(len(main_cell_source_index_2)):
 
@@ -326,109 +351,172 @@ if __name__ == '__main__':
 
                             continue  
 
-                    for item in kpi_1:
+                    # for item in kpi_1:
 
-                        if str(item) == 'nan':
+                    #     if str(item) == 'nan':
 
-                            kpi_1.remove(item)
+                    #         kpi_1.remove(item)
 
-                    for item in kpi_2:
+                    # for item in kpi_2:
 
-                        if str(item) == 'nan':
+                    #     if str(item) == 'nan':
 
-                            kpi_2.remove(item)
+                    #         kpi_2.remove(item)
 
-                    for item in kpi_3:
+                    # for item in kpi_3:
 
-                        if str(item) == 'nan':
+                    #     if str(item) == 'nan':
 
-                            kpi_3.remove(item)
+                    #         kpi_3.remove(item)
 
-                    for item in kpi_4:
+                    # for item in kpi_4:
 
-                        if str(item) == 'nan':
+                    #     if str(item) == 'nan':
 
-                            kpi_4.remove(item)
+                    #         kpi_4.remove(item)
 
-                    for item in kpi_5:
+                    # for item in kpi_5:
 
-                        if str(item) == 'nan':
+                    #     if str(item) == 'nan':
 
-                            kpi_5.remove(item)
+                    #         kpi_5.remove(item)
 
-                    for item in kpi_6:
+                    # for item in kpi_6:
 
-                        if str(item) == 'nan':
+                    #     if str(item) == 'nan':
 
-                            kpi_6.remove(item)
+                    #         kpi_6.remove(item)
 
-                    for item in kpi_7:
+                    # for item in kpi_7:
 
-                        if str(item) == 'nan':
+                    #     if str(item) == 'nan':
 
-                            kpi_7.remove(item)
+                    #         kpi_7.remove(item)
 
-                    for item in kpi_8:
+                    # for item in kpi_8:
 
-                        if str(item) == 'nan':
+                    #     if str(item) == 'nan':
 
-                            kpi_8.remove(item)
+                    #         kpi_8.remove(item)
 
-                    for item in kpi_9:
+                    # for item in kpi_9:
 
-                        if str(item) == 'nan':
+                    #     if str(item) == 'nan':
 
-                            kpi_9.remove(item)
+                    #         kpi_9.remove(item)
 
-                    for item in kpi_10:
+                    # for item in kpi_10:
 
-                        if str(item) == 'nan':
+                    #     if str(item) == 'nan':
 
-                            kpi_10.remove(item)
+                    #         kpi_10.remove(item)
 
-                    for item in kpi_11:
+                    # for item in kpi_11:
 
-                        if str(item) == 'nan':
+                    #     if str(item) == 'nan':
 
-                            kpi_11.remove(item)
+                    #         kpi_11.remove(item)
 
-                    for item in kpi_12:
+                    # for item in kpi_12:
 
-                        if str(item) == 'nan':
+                    #     if str(item) == 'nan':
 
-                            kpi_12.remove(item)
-       
+                    #         kpi_12.remove(item)
 
-                    print(f'cell : {C+main_cell_source_index_2[z]+W}')
-                    print(Y+'tbf_establishment_success_rate(ul+dl)(%)(hu_cell)'+W, f'= {kpi_1}'+G,
-                        f'Median : {float(statistics.median(kpi_1))}'+W)
-                    print(Y+'tbf_drop(ul+dl)(hu_cell)'+W, f'= {kpi_2}'+G,
-                        f'Median : {float(statistics.median(kpi_2))}'+W)
-                    print(Y+'average_throughput_of_downlink_gprs_llc_per_user(kbps)'+W, f'= {kpi_3}'+G,
-                        f'Median : {float(statistics.median(kpi_3))}'+W)
-                    print(Y+'average_throughput_of_downlink_egprs_llc_per_user(kbps)'+W, f'= {kpi_4}'+G,
-                        f'Median : {float(statistics.median(kpi_4))}'+W)
-                    print(Y+'thr_dl_gprs_per_ts(cell_hu)'+W, f'= {kpi_5}'+G,
-                        f'Median : {float(statistics.median(kpi_5))}'+W)
-                    print(Y+'thr_dl_egprs_per_ts(cell_hu)'+W, f'= {kpi_6}'+G,
-                        f'Median : {float(statistics.median(kpi_6))}'+W)
-                    print(Y+'payload_total_ul(cell_hu)'+W, f'= {kpi_7}'+G,
-                        f'Median : {float(statistics.median(kpi_7))}'+W)
-                    print(Y+'payload_total_dl(cell_hu)'+W, f'= {kpi_8}'+G,
-                        f'Median : {float(statistics.median(kpi_8))}'+W)
-                    print(Y+'payload_total(cell_hu)'+W, f'= {kpi_9}'+G,
-                        f'Median : {float(statistics.median(kpi_9))}'+W)
-                    print(Y+'edge_share_payload(cell_hu)'+W, f'= {kpi_10}'+G,
-                        f'Median : {float(statistics.median(kpi_10))}'+W)
-                    print(Y+'tch_availability(hu_cell)'+W, f'= {kpi_11}'+G,
-                        f'Median : {float(statistics.median(kpi_11))}'+W)
-                    print(Y+'trx'+W, f'= {kpi_12}'+G,
-                        f'Median : {float(statistics.median(kpi_12))}'+W)
+
+                    # ================================== excel writing main
+                    row_1 = 0
+                    row_2 = 1
+                    column_2 = 0
+
+    
+
+                    for kpi in kpi_list:
+
+                        outSheet.write(row_2, column_2, kpi)
+
+                        row_2 += 1
+
+                    try:
+
+                        print(f'cell : {C+main_cell_source_index_2[z]+W}')
+                        outSheet.write(row_1, z + 1, main_cell_source_index_2[z])
+
+                        print(Y+'tbf_establishment_success_rate(ul+dl)(%)(hu_cell)'+W, f'= {kpi_1}'+G,
+                            f'Median : {float(statistics.median(kpi_1))}'+W)
+
+                        outSheet.write(1, z + 1, float(statistics.median(kpi_1)))
+
+                        print(Y+'tbf_drop(ul+dl)(hu_cell)'+W, f'= {kpi_2}'+G,
+                            f'Median : {float(statistics.median(kpi_2))}'+W)
+
+                        outSheet.write(2, z + 1, float(statistics.median(kpi_2)))
+
+                        print(Y+'average_throughput_of_downlink_gprs_llc_per_user(kbps)'+W, f'= {kpi_3}'+G,
+                            f'Median : {float(statistics.median(kpi_3))}'+W)
+
+                        outSheet.write(3, z + 1, float(statistics.median(kpi_3)))
+
+                        print(Y+'average_throughput_of_downlink_egprs_llc_per_user(kbps)'+W, f'= {kpi_4}'+G,
+                            f'Median : {float(statistics.median(kpi_4))}'+W)
+
+                        outSheet.write(4, z + 1, float(statistics.median(kpi_4)))
+
+                        print(Y+'thr_dl_gprs_per_ts(cell_hu)'+W, f'= {kpi_5}'+G,
+                            f'Median : {float(statistics.median(kpi_5))}'+W)
+
+                        outSheet.write(5, z + 1, float(statistics.median(kpi_5)))
+
+
+                        print(Y+'thr_dl_egprs_per_ts(cell_hu)'+W, f'= {kpi_6}'+G,
+                            f'Median : {float(statistics.median(kpi_6))}'+W)
+
+                        outSheet.write(6, z + 1, float(statistics.median(kpi_6)))
+
+
+                        print(Y+'payload_total_ul(cell_hu)'+W, f'= {kpi_7}'+G,
+                            f'Median : {float(statistics.median(kpi_7))}'+W)
+
+                        outSheet.write(7, z + 1, float(statistics.median(kpi_7)))
+
+
+                        print(Y+'payload_total_dl(cell_hu)'+W, f'= {kpi_8}'+G,
+                            f'Median : {float(statistics.median(kpi_8))}'+W)
+
+                        outSheet.write(8, z + 1, float(statistics.median(kpi_8)))
+
+
+                        print(Y+'payload_total(cell_hu)'+W, f'= {kpi_9}'+G,
+                            f'Median : {float(statistics.median(kpi_9))}'+W)
+
+                        outSheet.write(9, z + 1, float(statistics.median(kpi_9)))
+
+
+                        print(Y+'edge_share_payload(cell_hu)'+W, f'= {kpi_10}'+G,
+                            f'Median : {float(statistics.median(kpi_10))}'+W)
+
+                        outSheet.write(10, z + 1, float(statistics.median(kpi_10)))
+
+
+                        print(Y+'tch_availability(hu_cell)'+W, f'= {kpi_11}'+G,
+                            f'Median : {float(statistics.median(kpi_11))}'+W)
+
+                        outSheet.write(11, z + 1, float(statistics.median(kpi_11)))
+
+
+                        print(Y+'trx'+W, f'= {kpi_12}'+G,
+                            f'Median : {float(statistics.median(kpi_12))}'+W)
+                        
+                        outSheet.write(12, z + 1, float(statistics.median(kpi_12)))
                     
-                    
-                    
+                    except(TypeError):
 
+                        continue
+    
                 print(R+splitter+W)
+
+                outWorkbook.close()
+
                 userfdec = input(C+'RD2 calculation Done! continue? [y/n] : '+W)
 
                 userfdec = userfdec.lower()
