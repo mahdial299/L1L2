@@ -1033,11 +1033,11 @@ if __name__ == '__main__':
                 astro_RD4 = df_RD4.to_dict('records')
                 #=====================
 
-                main_cell_source_index_2 = df_RD2[['cell_ref']].dropna()
-                main_cell_source_index_2 = np.asanyarray(main_cell_source_index_2).flatten()
-                main_cell_source_index_2 = list(np.nan_to_num(main_cell_source_index_2))
+                main_cell_source_index_4 = df_RD2[['cell_ref']].dropna()
+                main_cell_source_index_4 = np.asanyarray(main_cell_source_index_4).flatten()
+                main_cell_source_index_4 = list(np.nan_to_num(main_cell_source_index_4))
 
-                for z in range(len(main_cell_source_index_2)):
+                for z in range(len(main_cell_source_index_4)):
 
                     #---------------------------------- 2G Data KPIs
                     kpi_1 = []
@@ -1052,23 +1052,64 @@ if __name__ == '__main__':
                     kpi_10 = []
                     kpi_11 = []
                     kpi_12 = []
+                    kpi_13 = []
+                    kpi_14 = []
+                    kpi_15 = []
+                    kpi_16 = []
+                    kpi_17 = []
+                    kpi_18 = []
+                    kpi_19 = []
+                    kpi_20 = []
+                    kpi_21 = []
+                    kpi_22 = []
+                    kpi_23 = []
+                    kpi_24 = []
+                    kpi_25 = []
+                    kpi_26 = []
+                    kpi_27 = []
+                    kpi_28 = []
+                    kpi_29 = []
+                    kpi_30 = []
+                    kpi_31 = []
+                    kpi_32 = []
 
-                    for i in range(len(astro_RD2)):
+                    for i in range(len(astro_RD4)):
 
-                        if astro_RD2[i]['cell'] == main_cell_source_index_2[z]:
+                        if astro_RD4[i]['cell'] == main_cell_source_index_4[z]:
 
-                            kpi_1.append(astro_RD2[i]['tbf_establishment_success_rate(ul+dl)(%)(hu_cell)'])
-                            kpi_2.append(astro_RD2[i]['tbf_drop(ul+dl)(hu_cell)'])
-                            kpi_3.append(astro_RD2[i]['average_throughput_of_downlink_gprs_llc_per_user(kbps)'])
-                            kpi_4.append(astro_RD2[i]['average_throughput_of_downlink_egprs_llc_per_user(kbps)'])
-                            kpi_5.append(astro_RD2[i]['thr_dl_gprs_per_ts(cell_hu)'])
-                            kpi_6.append(astro_RD2[i]['thr_dl_egprs_per_ts(cell_hu)'])
-                            kpi_7.append(astro_RD2[i]['payload_total_ul(cell_hu)'])
-                            kpi_8.append(astro_RD2[i]['payload_total_dl(cell_hu)'])
-                            kpi_9.append(astro_RD2[i]['payload_total(cell_hu)'])
-                            kpi_10.append(astro_RD2[i]['edge_share_payload(cell_hu)'])
-                            kpi_11.append(astro_RD2[i]['tch_availability(hu_cell)'])
-                            kpi_12.append(astro_RD2[i]['trx'])
+                            kpi_1.append(astro_RD4[i]['total_traffic_volume(gb)'])
+                            kpi_2.append(astro_RD4[i]['e-rab_setup_success_rate(hu_cell)'])
+                            kpi_3.append(astro_RD4[i]['e-rab_setup_success_rate'])
+                            kpi_4.append(astro_RD4[i]['ran_avail_rate'])
+                            kpi_5.append(astro_RD4[i]['interf_hoout_sr'])
+                            kpi_6.append(astro_RD4[i]['intraf_hoout_sr'])
+                            kpi_7.append(astro_RD4[i]['inter_rat_handover_out_success_rate(3gpltogsm)'])
+                            kpi_8.append(astro_RD4[i]['inter_rat_handover_out_successrate(3gpltowcdma)'])
+                            kpi_9.append(astro_RD4[i]['average_dl_latency_ms(huawei_lte_eucell)'])
+                            kpi_10.append(astro_RD4[i]['average_ul_packet_loss_%(huawei_lte_ucell)'])
+                            kpi_11.append(astro_RD4[i]['call_drop_rate'])
+                            kpi_12.append(astro_RD4[i]['average_downlink_user_throughput(mbit/s)'])
+                            kpi_13.append(astro_RD4[i]['average_uplink_user_throughput(mbit/s)'])
+                            kpi_14.append(astro_RD4[i]['csfb_rate'])
+                            kpi_15.append(astro_RD4[i]['cssr(all)'])
+                            kpi_16.append(astro_RD4[i]['downlink_traffic_volume(gb)'])
+                            kpi_17.append(astro_RD4[i]['ul_traffic_volume(gb)'])
+                            kpi_18.append(astro_RD4[i]['downlink_cell_throghput(kbit/s)'])
+                            kpi_19.append(astro_RD4[i]['uplink_cell_throghput(kbit/s)'])
+                            kpi_20.append(astro_RD4[i]['max_no_user'])
+                            kpi_21.append(astro_RD4[i]['number_of_available_downlink_prbs_cell'])
+                            kpi_22.append(astro_RD4[i]['average_cqi(huawei_lte_cell)'])
+                            kpi_23.append(astro_RD4[i]['intra_rat_handover_sr_intra+inter_frequency(huawei_lte_cell'])
+                            kpi_24.append(astro_RD4[i]['rrc_connection_setup_success_rate_service'])
+                            kpi_25.append(astro_RD4[i]['s1signal_e-rab_setup_sr(hu_cell)'])
+                            kpi_26.append(astro_RD4[i]['cell_unvail_duration_daily(huawei_cell_lte)'])
+                            kpi_27.append(astro_RD4[i]['rssi_pucch(huawei_lte_cell)'])
+                            kpi_28.append(astro_RD4[i]['rssi_pusch(huawei_lte_cell)'])
+                            kpi_29.append(astro_RD4[i]['cell_availability_rate_exclude_blocking(cell_hu)'])
+                            kpi_30.append(astro_RD4[i]['cell_availability_rate_include_blocking(cell_hu)'])
+                            kpi_31.append(astro_RD4[i]['cell_availability_rate_include_blocking'])
+                            kpi_32.append(astro_RD4[i]['cell_availability_rate_include_blocking(cell_hu_no_null)'])
+
 
                         else:
 
@@ -1145,38 +1186,189 @@ if __name__ == '__main__':
                         if str(item) == 'nan':
 
                             kpi_12.remove(item)
+
+                    for item in kpi_13:
+
+                        if str(item) == 'nan':
+
+                            kpi_13.remove(item)
+
+                    for item in kpi_14:
+
+                        if str(item) == 'nan':
+
+                            kpi_14.remove(item)
+
+                    for item in kpi_15:
+
+                        if str(item) == 'nan':
+
+                            kpi_15.remove(item)
+
+                    for item in kpi_16:
+
+                        if str(item) == 'nan':
+
+                            kpi_16.remove(item)
+
+                    for item in kpi_17:
+
+                        if str(item) == 'nan':
+
+                            kpi_17.remove(item)
+
+                    for item in kpi_18:
+
+                        if str(item) == 'nan':
+
+                            kpi_18.remove(item)
+
+                    for item in kpi_19:
+
+                        if str(item) == 'nan':
+
+                            kpi_19.remove(item)
+
+                    for item in kpi_20:
+
+                        if str(item) == 'nan':
+
+                            kpi_20.remove(item)
+
+                    for item in kpi_21:
+
+                        if str(item) == 'nan':
+
+                            kpi_21.remove(item)
+
+                    for item in kpi_22:
+
+                        if str(item) == 'nan':
+
+                            kpi_22.remove(item)
+
+                    for item in kpi_23:
+
+                        if str(item) == 'nan':
+
+                            kpi_23.remove(item)
+
+                    for item in kpi_24:
+
+                        if str(item) == 'nan':
+
+                            kpi_24.remove(item)
+
+                    for item in kpi_25:
+
+                        if str(item) == 'nan':
+
+                            kpi_25.remove(item)
+
+                    for item in kpi_26:
+
+                        if str(item) == 'nan':
+
+                            kpi_26.remove(item)
+
+                    for item in kpi_27:
+
+                        if str(item) == 'nan':
+
+                            kpi_27.remove(item)
+
+                    for item in kpi_28:
+
+                        if str(item) == 'nan':
+
+                            kpi_28.remove(item)
+
+                    for item in kpi_29:
+
+                        if str(item) == 'nan':
+
+                            kpi_29.remove(item)
+
+                    for item in kpi_30:
+
+                        if str(item) == 'nan':
+
+                            kpi_30.remove(item)
+
+                    for item in kpi_31:
+
+                        if str(item) == 'nan':
+
+                            kpi_31.remove(item)
+
+                    for item in kpi_32:
+
+                        if str(item) == 'nan':
+
+                            kpi_32.remove(item)
        
 
                     print(f'cell : {C+main_cell_source_index_2[z]+W}')
-                    print(Y+'tbf_establishment_success_rate(ul+dl)(%)(hu_cell)'+W, f'= {kpi_1}'+G,
-                        f'Median : {float(statistics.median(kpi_1))}'+W)
-                    print(Y+'tbf_drop(ul+dl)(hu_cell)'+W, f'= {kpi_2}'+G,
-                        f'Median : {float(statistics.median(kpi_2))}'+W)
-                    print(Y+'average_throughput_of_downlink_gprs_llc_per_user(kbps)'+W, f'= {kpi_3}'+G,
-                        f'Median : {float(statistics.median(kpi_3))}'+W)
-                    print(Y+'average_throughput_of_downlink_egprs_llc_per_user(kbps)'+W, f'= {kpi_4}'+G,
-                        f'Median : {float(statistics.median(kpi_4))}'+W)
-                    print(Y+'thr_dl_gprs_per_ts(cell_hu)'+W, f'= {kpi_5}'+G,
-                        f'Median : {float(statistics.median(kpi_5))}'+W)
-                    print(Y+'thr_dl_egprs_per_ts(cell_hu)'+W, f'= {kpi_6}'+G,
-                        f'Median : {float(statistics.median(kpi_6))}'+W)
-                    print(Y+'payload_total_ul(cell_hu)'+W, f'= {kpi_7}'+G,
+                    print(Y+'intraf_hoout_sr'+W, f'= {kpi_6}'+G,  f'Median : {float(statistics.median(kpi_6))}'+W)
+                    print(Y+'inter_rat_handover_out_success_rate(3gpltogsm)'+W, f'= {kpi_7}'+G,  
                         f'Median : {float(statistics.median(kpi_7))}'+W)
-                    print(Y+'payload_total_dl(cell_hu)'+W, f'= {kpi_8}'+G,
+                    print(Y+'inter_rat_handover_out_successrate(3gpltowcdma)'+W, f'= {kpi_8}'+G,  
                         f'Median : {float(statistics.median(kpi_8))}'+W)
-                    print(Y+'payload_total(cell_hu)'+W, f'= {kpi_9}'+G,
+                    print(Y+'average_dl_latency_ms(huawei_lte_eucell)'+W, f'= {kpi_9}'+G,  
                         f'Median : {float(statistics.median(kpi_9))}'+W)
-                    print(Y+'edge_share_payload(cell_hu)'+W, f'= {kpi_10}'+G,
+                    print(Y+'average_ul_packet_loss_%(huawei_lte_ucell)'+W, f'= {kpi_10}'+G,  
                         f'Median : {float(statistics.median(kpi_10))}'+W)
-                    print(Y+'tch_availability(hu_cell)'+W, f'= {kpi_11}'+G,
+                    print(Y+'call_drop_rate'+W, f'= {kpi_11}'+G,  
                         f'Median : {float(statistics.median(kpi_11))}'+W)
-                    print(Y+'trx'+W, f'= {kpi_12}'+G,
+                    print(Y+'average_downlink_user_throughput(mbit/s)'+W, f'= {kpi_12}'+G,  
                         f'Median : {float(statistics.median(kpi_12))}'+W)
+                    print(Y+'average_uplink_user_throughput(mbit/s)'+W, f'= {kpi_13}'+G,  
+                        f'Median : {float(statistics.median(kpi_13))}'+W)
+                    print(Y+'csfb_rate'+W, f'= {kpi_14}'+G,  
+                        f'Median : {float(statistics.median(kpi_14))}'+W)
+                    print(Y+'cssr(all)'+W, f'= {kpi_15}'+G,  
+                        f'Median : {float(statistics.median(kpi_15))}'+W)
+                    print(Y+'downlink_traffic_volume(gb)'+W, f'= {kpi_16}'+G,  
+                        f'Median : {float(statistics.median(kpi_16))}'+W)
+                    print(Y+'ul_traffic_volume(gb)'+W, f'= {kpi_17}'+G,  
+                        f'Median : {float(statistics.median(kpi_17))}'+W)
+                    print(Y+'downlink_cell_throghput(kbit/s)'+W, f'= {kpi_18}'+G,  
+                        f'Median : {float(statistics.median(kpi_18))}'+W)
+                    print(Y+'uplink_cell_throghput(kbit/s)'+W, f'= {kpi_19}'+G,  
+                        f'Median : {float(statistics.median(kpi_19))}'+W)
+                    print(Y+'max_no_user'+W, f'= {kpi_20}'+G,  
+                        f'Median : {float(statistics.median(kpi_20))}'+W)
+                    print(Y+'number_of_available_downlink_prbs_cell'+W, f'= {kpi_21}'+G,  
+                        f'Median : {float(statistics.median(kpi_21))}'+W)
+                    print(Y+'average_cqi(huawei_lte_cell)'+W, f'= {kpi_22}'+G,  
+                        f'Median : {float(statistics.median(kpi_22))}'+W)
+                    print(Y+'intra_rat_handover_sr_intra+inter_frequency(huawei_lte_cell'+W, f'= {kpi_23}'+G,  
+                        f'Median : {float(statistics.median(kpi_23))}'+W)
+                    print(Y+'rrc_connection_setup_success_rate_service'+W, f'= {kpi_24}'+G,  
+                        f'Median : {float(statistics.median(kpi_24))}'+W)
+                    print(Y+'s1signal_e-rab_setup_sr(hu_cell)'+W, f'= {kpi_25}'+G,  
+                        f'Median : {float(statistics.median(kpi_25))}'+W)
+                    print(Y+'cell_unvail_duration_daily(huawei_cell_lte)'+W, f'= {kpi_26}'+G,  
+                        f'Median : {float(statistics.median(kpi_26))}'+W)
+                    print(Y+'rssi_pucch(huawei_lte_cell)'+W, f'= {kpi_27}'+G,  
+                        f'Median : {float(statistics.median(kpi_27))}'+W)
+                    print(Y+'rssi_pusch(huawei_lte_cell)'+W, f'= {kpi_28}'+G,  
+                        f'Median : {float(statistics.median(kpi_28))}'+W)
+                    print(Y+'cell_availability_rate_exclude_blocking(cell_hu)'+W, f'= {kpi_29}'+G,  
+                        f'Median : {float(statistics.median(kpi_29))}'+W)
+                    print(Y+'cell_availability_rate_include_blocking(cell_hu)'+W, f'= {kpi_30}'+G,  
+                        f'Median : {float(statistics.median(kpi_30))}'+W)
+                    print(Y+'cell_availability_rate_include_blocking'+W, f'= {kpi_31}'+G,  
+                        f'Median : {float(statistics.median(kpi_31))}'+W)
+                    print(Y+'cell_availability_rate_include_blocking(cell_hu_no_null)'+W, f'= {kpi_32}'+G,  
+                        f'Median : {float(statistics.median(kpi_32))}'+W)
+
                     
                     
                     
 
                 print(R+splitter+W)
+
                 userfdec = input(C+'RD2 calculation Done! continue? [y/n] : '+W)
 
                 userfdec = userfdec.lower()
