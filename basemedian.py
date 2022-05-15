@@ -1218,7 +1218,7 @@ if __name__ == '__main__':
 
                     outSheet.write(18, z + 1, float(statistics.median(kpi_18)))
 
-                    print(Y+'uplink_cell_throghput(kbit/s+)'W, f'= {kpi_19}'+G,  
+                    print(Y+'uplink_cell_throghput(kbit/s+)'+W, f'= {kpi_19}'+G,  
                         f'Median : {float(statistics.median(kpi_19))}'+W)
 
                     outSheet.write(19, z + 1, float(statistics.median(kpi_19)))
