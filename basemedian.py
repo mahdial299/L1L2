@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt
 import statistics
 import os
 import sys
-import shutil
 from statistics import StatisticsError
 
 R = '\033[31m'
@@ -63,7 +62,7 @@ if __name__ == '__main__':
 
             case 1:
 
-                outWorkbook = xlsxwriter.Workbook(f"CC2_BL.xlsx")
+                outWorkbook = xlsxwriter.Workbook(f"CC2_Daily_BL.xlsx")
 
                 outSheet = outWorkbook.add_worksheet(name = 'Median_bl')
 
@@ -150,8 +149,9 @@ if __name__ == '__main__':
                             continue  
                     
                     row_1 = 0
-                    row_2 = 1
-                    column_2 = 0
+
+                    row_2 = 0
+                    column_2 = 1
 
     
 
@@ -159,125 +159,133 @@ if __name__ == '__main__':
 
                         outSheet.write(row_2, column_2, kpi)
 
-                        row_2 += 1
+                        column_2 += 1
+
+                    outSheet.write(row_2, row_1, 'cell')
+                    
+                    try:
        
 
-                    print(f'cell : {C+main_cell_source_index_2[z]+W}')
+                        print(f'cell : {C+main_cell_source_index_2[z]+W}')
 
-                    outSheet.write(row_1, z + 1, main_cell_source_index_2[z])
-
-
-                    print(Y+'tch_traffic'+W, f'= {kpi_1}'+G,
-                        f'Median : {float(statistics.median(kpi_1))}'+W)
-
-                    outSheet.write(1, z + 1, float(statistics.median(kpi_1)))
-
-                    print(Y+'available_tch'+W, f'= {kpi_2}'+G,
-                        f'Median : {float(statistics.median(kpi_2))}'+W)
-
-                    outSheet.write(2, z + 1, float(statistics.median(kpi_2)))
+                        outSheet.write(z + 1, row_1, main_cell_source_index_2[z])
 
 
-                    print(Y+'htch_traffic'+W, f'= {kpi_3}'+G,
-                        f'Median : {float(statistics.median(kpi_3))}'+W)
+                        print(Y+'tch_traffic'+W, f'= {kpi_1}'+G,
+                            f'Median : {float(statistics.median(kpi_1))}'+W)
 
-                    outSheet.write(3, z + 1, float(statistics.median(kpi_3)))
+                        outSheet.write(z + 1, 1, float(statistics.median(kpi_1)))
 
+                        print(Y+'available_tch'+W, f'= {kpi_2}'+G,
+                            f'Median : {float(statistics.median(kpi_2))}'+W)
 
-                    print(Y+'sdcch_mht'+W, f'= {kpi_4}'+G,
-                        f'Median : {float(statistics.median(kpi_4))}'+W)
-
-                    outSheet.write(4, z + 1, float(statistics.median(kpi_4)))
-
-
-                    print(Y+'tch_availability'+W, f'= {kpi_5}'+G,
-                        f'Median : {float(statistics.median(kpi_5))}'+W)
-
-                    outSheet.write(5, z + 1, float(statistics.median(kpi_5)))
+                        outSheet.write(z + 1, 2, float(statistics.median(kpi_2)))
 
 
-                    print(Y+'amrfr_usage'+W, f'= {kpi_6}'+G,
-                        f'Median : {float(statistics.median(kpi_6))}'+W)
+                        print(Y+'htch_traffic'+W, f'= {kpi_3}'+G,
+                            f'Median : {float(statistics.median(kpi_3))}'+W)
 
-                    outSheet.write(6, z + 1, float(statistics.median(kpi_6)))
-
-
-                    print(Y+'amrhr_usage'+W, f'= {kpi_7}'+G,
-                        f'Median : {float(statistics.median(kpi_7))}'+W)
-
-                    outSheet.write(7, z + 1, float(statistics.median(kpi_7)))
+                        outSheet.write(z + 1, 3, float(statistics.median(kpi_3)))
 
 
-                    print(Y+'cssr3'+W, f'= {kpi_8}'+G,
-                        f'Median : {float(statistics.median(kpi_8))}'+W)
+                        print(Y+'sdcch_mht'+W, f'= {kpi_4}'+G,
+                            f'Median : {float(statistics.median(kpi_4))}'+W)
 
-                    outSheet.write(8, z + 1, float(statistics.median(kpi_8)))
-
-
-                    print(Y+'sdcch_congestion_rate'+W, f'= {kpi_9}'+G,
-                        f'Median : {float(statistics.median(kpi_9))}'+W)
-
-                    outSheet.write(9, z + 1, float(statistics.median(kpi_9)))
+                        outSheet.write(z + 1, 4, float(statistics.median(kpi_4)))
 
 
-                    print(Y+'sdcch_drop_rate'+W, f'= {kpi_10}'+G,
-                        f'Median : {float(statistics.median(kpi_10))}'+W)
+                        print(Y+'tch_availability'+W, f'= {kpi_5}'+G,
+                            f'Median : {float(statistics.median(kpi_5))}'+W)
 
-                    outSheet.write(10, z + 1, float(statistics.median(kpi_10)))
-
-
-                    print(Y+'tch_assignment_fr'+W, f'= {kpi_11}'+G,
-                        f'Median : {float(statistics.median(kpi_11))}'+W)
-
-                    outSheet.write(11, z + 1, float(statistics.median(kpi_11)))
+                        outSheet.write(z + 1, 5, float(statistics.median(kpi_5)))
 
 
-                    print(Y+'tch_cong'+W, f'= {kpi_12}'+G,
-                        f'Median : {float(statistics.median(kpi_12))}'+W)
+                        print(Y+'amrfr_usage'+W, f'= {kpi_6}'+G,
+                            f'Median : {float(statistics.median(kpi_6))}'+W)
 
-                    outSheet.write(12, z + 1, float(statistics.median(kpi_12)))
-
-
-                    print(Y+'ihsr2'+W, f'= {kpi_13}'+G,
-                        f'Median : {float(statistics.median(kpi_13))}'+W)
-
-                    outSheet.write(13, z + 1, float(statistics.median(kpi_13)))
+                        outSheet.write(z + 1, 6, float(statistics.median(kpi_6)))
 
 
-                    print(Y+'ohsr2'+W, f'= {kpi_14}'+G,
-                        f'Median : {float(statistics.median(kpi_14))}'+W)
+                        print(Y+'amrhr_usage'+W, f'= {kpi_7}'+G,
+                            f'Median : {float(statistics.median(kpi_7))}'+W)
 
-                    outSheet.write(14, z + 1, float(statistics.median(kpi_14)))
-
-                    print(Y+'sdcch_access_success_rate2'+W, f'= {kpi_15}'+G,
-                        f'Median : {float(statistics.median(kpi_15))}'+W)
-
-                    outSheet.write(15, z + 1, float(statistics.median(kpi_15)))
+                        outSheet.write(z + 1, 7, float(statistics.median(kpi_7)))
 
 
-                    print(Y+'cdr3'+W, f'= {kpi_16}'+G,
-                        f'Median : {float(statistics.median(kpi_16))}'+W)
+                        print(Y+'cssr3'+W, f'= {kpi_8}'+G,
+                            f'Median : {float(statistics.median(kpi_8))}'+W)
 
-                    outSheet.write(16, z + 1, float(statistics.median(kpi_16)))
-
-
-                    print(Y+'rx_qualitty_dl_new'+W, f'= {kpi_17}'+G,
-                        f'Median : {float(statistics.median(kpi_17))}'+W)
-
-                    outSheet.write(17, z + 1, float(statistics.median(kpi_17)))
+                        outSheet.write(z + 1, 8, float(statistics.median(kpi_8)))
 
 
-                    print(Y+'rx_qualitty_ul_new'+W, f'= {kpi_18}'+G,
-                        f'Median : {float(statistics.median(kpi_18))}'+W)
+                        print(Y+'sdcch_congestion_rate'+W, f'= {kpi_9}'+G,
+                            f'Median : {float(statistics.median(kpi_9))}'+W)
 
-                    outSheet.write(18, z + 1, float(statistics.median(kpi_18)))
-                    
+                        outSheet.write(z + 1, 9 , float(statistics.median(kpi_9)))
+
+
+                        print(Y+'sdcch_drop_rate'+W, f'= {kpi_10}'+G,
+                            f'Median : {float(statistics.median(kpi_10))}'+W)
+
+                        outSheet.write(z + 1, 10 , float(statistics.median(kpi_10)))
+
+
+                        print(Y+'tch_assignment_fr'+W, f'= {kpi_11}'+G,
+                            f'Median : {float(statistics.median(kpi_11))}'+W)
+
+                        outSheet.write(z + 1, 11, float(statistics.median(kpi_11)))
+
+
+                        print(Y+'tch_cong'+W, f'= {kpi_12}'+G,
+                            f'Median : {float(statistics.median(kpi_12))}'+W)
+
+                        outSheet.write(z + 1, 12, float(statistics.median(kpi_12)))
+
+
+                        print(Y+'ihsr2'+W, f'= {kpi_13}'+G,
+                            f'Median : {float(statistics.median(kpi_13))}'+W)
+
+                        outSheet.write(z + 1, 13, float(statistics.median(kpi_13)))
+
+
+                        print(Y+'ohsr2'+W, f'= {kpi_14}'+G,
+                            f'Median : {float(statistics.median(kpi_14))}'+W)
+
+                        outSheet.write(z + 1, 14, float(statistics.median(kpi_14)))
+
+                        print(Y+'sdcch_access_success_rate2'+W, f'= {kpi_15}'+G,
+                            f'Median : {float(statistics.median(kpi_15))}'+W)
+
+                        outSheet.write(z + 1, 15, float(statistics.median(kpi_15)))
+
+
+                        print(Y+'cdr3'+W, f'= {kpi_16}'+G,
+                            f'Median : {float(statistics.median(kpi_16))}'+W)
+
+                        outSheet.write(z + 1,16, float(statistics.median(kpi_16)))
+
+
+                        print(Y+'rx_qualitty_dl_new'+W, f'= {kpi_17}'+G,
+                            f'Median : {float(statistics.median(kpi_17))}'+W)
+
+                        outSheet.write(z + 1, 17, float(statistics.median(kpi_17)))
+
+
+                        print(Y+'rx_qualitty_ul_new'+W, f'= {kpi_18}'+G,
+                            f'Median : {float(statistics.median(kpi_18))}'+W)
+
+                        outSheet.write(z + 1, 18, float(statistics.median(kpi_18)))
+                        
+                    except(TypeError):
+
+                        continue    
 
 
                 print(R+splitter+W)
-                userfdec = input(C+'CC2 calculation Done! continue? [y/n] : '+W)
 
                 outWorkbook.close()
+
+                userfdec = input(C+'CC2 calculation Done! continue? [y/n] : '+W)
 
                 userfdec = userfdec.lower()
 
@@ -362,8 +370,9 @@ if __name__ == '__main__':
                    
                     # ================================== excel writing main
                     row_1 = 0
-                    row_2 = 1
-                    column_2 = 0
+
+                    row_2 = 0
+                    column_2 = 1
 
     
 
@@ -371,79 +380,81 @@ if __name__ == '__main__':
 
                         outSheet.write(row_2, column_2, kpi)
 
-                        row_2 += 1
+                        column_2 += 1
+
+                    outSheet.write(row_2, row_1, 'cell')
 
                     try:
 
                         print(f'cell : {C+main_cell_source_index_2[z]+W}')
-                        outSheet.write(row_1, z + 1, main_cell_source_index_2[z])
+                        outSheet.write(z + 1, row_1, main_cell_source_index_2[z])
 
                         print(Y+'tbf_establishment_success_rate(ul+dl)(%)(hu_cell)'+W, f'= {kpi_1}'+G,
                             f'Median : {float(statistics.median(kpi_1))}'+W)
 
-                        outSheet.write(1, z + 1, float(statistics.median(kpi_1)))
+                        outSheet.write(z + 1, 1 , float(statistics.median(kpi_1)))
 
                         print(Y+'tbf_drop(ul+dl)(hu_cell)'+W, f'= {kpi_2}'+G,
                             f'Median : {float(statistics.median(kpi_2))}'+W)
 
-                        outSheet.write(2, z + 1, float(statistics.median(kpi_2)))
+                        outSheet.write(z + 1,2, float(statistics.median(kpi_2)))
 
                         print(Y+'average_throughput_of_downlink_gprs_llc_per_user(kbps)'+W, f'= {kpi_3}'+G,
                             f'Median : {float(statistics.median(kpi_3))}'+W)
 
-                        outSheet.write(3, z + 1, float(statistics.median(kpi_3)))
+                        outSheet.write(z + 1,3, float(statistics.median(kpi_3)))
 
                         print(Y+'average_throughput_of_downlink_egprs_llc_per_user(kbps)'+W, f'= {kpi_4}'+G,
                             f'Median : {float(statistics.median(kpi_4))}'+W)
 
-                        outSheet.write(4, z + 1, float(statistics.median(kpi_4)))
+                        outSheet.write(z + 1,4, float(statistics.median(kpi_4)))
 
                         print(Y+'thr_dl_gprs_per_ts(cell_hu)'+W, f'= {kpi_5}'+G,
                             f'Median : {float(statistics.median(kpi_5))}'+W)
 
-                        outSheet.write(5, z + 1, float(statistics.median(kpi_5)))
+                        outSheet.write(z + 1,5, float(statistics.median(kpi_5)))
 
 
                         print(Y+'thr_dl_egprs_per_ts(cell_hu)'+W, f'= {kpi_6}'+G,
                             f'Median : {float(statistics.median(kpi_6))}'+W)
 
-                        outSheet.write(6, z + 1, float(statistics.median(kpi_6)))
+                        outSheet.write(z + 1,6, float(statistics.median(kpi_6)))
 
 
                         print(Y+'payload_total_ul(cell_hu)'+W, f'= {kpi_7}'+G,
                             f'Median : {float(statistics.median(kpi_7))}'+W)
 
-                        outSheet.write(7, z + 1, float(statistics.median(kpi_7)))
+                        outSheet.write(z + 1,7, float(statistics.median(kpi_7)))
 
 
                         print(Y+'payload_total_dl(cell_hu)'+W, f'= {kpi_8}'+G,
                             f'Median : {float(statistics.median(kpi_8))}'+W)
 
-                        outSheet.write(8, z + 1, float(statistics.median(kpi_8)))
+                        outSheet.write(z + 1,8, float(statistics.median(kpi_8)))
 
 
                         print(Y+'payload_total(cell_hu)'+W, f'= {kpi_9}'+G,
                             f'Median : {float(statistics.median(kpi_9))}'+W)
 
-                        outSheet.write(9, z + 1, float(statistics.median(kpi_9)))
+                        outSheet.write(z + 1,9, float(statistics.median(kpi_9)))
 
 
                         print(Y+'edge_share_payload(cell_hu)'+W, f'= {kpi_10}'+G,
                             f'Median : {float(statistics.median(kpi_10))}'+W)
 
-                        outSheet.write(10, z + 1, float(statistics.median(kpi_10)))
+                        outSheet.write(z + 1,10, float(statistics.median(kpi_10)))
 
 
                         print(Y+'tch_availability(hu_cell)'+W, f'= {kpi_11}'+G,
                             f'Median : {float(statistics.median(kpi_11))}'+W)
 
-                        outSheet.write(11, z + 1, float(statistics.median(kpi_11)))
+                        outSheet.write(z + 1,11, float(statistics.median(kpi_11)))
 
 
                         print(Y+'trx'+W, f'= {kpi_12}'+G,
                             f'Median : {float(statistics.median(kpi_12))}'+W)
                         
-                        outSheet.write(12, z + 1, float(statistics.median(kpi_12)))
+                        outSheet.write(z + 1,12, float(statistics.median(kpi_12)))
                     
                     except(TypeError):
 
