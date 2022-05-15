@@ -28,13 +28,17 @@ def ban():
 
 def lister():
 
-    print(G+f'''1. 2G voice Calculation
+    print(G+f'''----------- Quarter calculation ----------
+
+1. 2G voice Calculation
 2. 2G data Calculation
 3. 3G voice Calculation
 4. 3G data Calculation
 5. 4G data Calculation
 
-6. Excel generation
+------------------- Add New Cell
+
+6. 
 
 {R+splitter+W}''')
 
@@ -1306,3 +1310,8 @@ if __name__ == '__main__':
                     case 'n':
 
                         sys.exit()
+
+
+            case 6:
+
+                pass
