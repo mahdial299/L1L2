@@ -59,6 +59,10 @@ if __name__ == '__main__':
 
             case 1:
 
+                outWorkbook = xlsxwriter.Workbook(f"CC2_BL.xlsx")
+
+                outSheet = outWorkbook.add_worksheet(name = 'Median_bl')
+
                 # ================= data
                 df_CC2 = pd.read_excel('CC2_data.xlsx', sheet_name='Sheet1')
                 astro_CC2 = df_CC2.to_dict('records')
@@ -67,6 +71,29 @@ if __name__ == '__main__':
                 main_cell_source_index_2 = df_CC2[['cell_ref']].dropna()
                 main_cell_source_index_2 = np.asanyarray(main_cell_source_index_2).flatten()
                 main_cell_source_index_2 = list(np.nan_to_num(main_cell_source_index_2))
+
+                kpi_list = [
+
+                    'tch_traffic',
+                    'available_tch',
+                    'htch_traffic',
+                    'sdcch_mht',
+                    'tch_availability',
+                    'amrfr_usage',
+                    'amrhr_usage',
+                    'cssr3',
+                    'sdcch_congestion_rate',
+                    'sdcch_drop_rate',
+                    'tch_assignment_fr',
+                    'tch_cong',
+                    'ihsr2',
+                    'ohsr2',
+                    'sdcch_access_success_rate2',
+                    'cdr3',
+                    'rx_qualitty_dl_new',
+                    'rx_qualitty_ul_new'
+
+                ]
 
                 for z in range(len(main_cell_source_index_2)):
 
@@ -117,159 +144,136 @@ if __name__ == '__main__':
                         else:
 
                             continue  
+                    
+                    row_1 = 0
+                    row_2 = 1
+                    column_2 = 0
 
-                    for item in kpi_1:
+    
 
-                        if str(item) == 'nan':
+                    for kpi in kpi_list:
 
-                            kpi_1.remove(item)
+                        outSheet.write(row_2, column_2, kpi)
 
-                    for item in kpi_2:
-
-                        if str(item) == 'nan':
-
-                            kpi_2.remove(item)
-
-                    for item in kpi_3:
-
-                        if str(item) == 'nan':
-
-                            kpi_3.remove(item)
-
-                    for item in kpi_4:
-
-                        if str(item) == 'nan':
-
-                            kpi_4.remove(item)
-
-                    for item in kpi_5:
-
-                        if str(item) == 'nan':
-
-                            kpi_5.remove(item)
-
-                    for item in kpi_6:
-
-                        if str(item) == 'nan':
-
-                            kpi_6.remove(item)
-
-                    for item in kpi_7:
-
-                        if str(item) == 'nan':
-
-                            kpi_7.remove(item)
-
-                    for item in kpi_8:
-
-                        if str(item) == 'nan':
-
-                            kpi_8.remove(item)
-
-                    for item in kpi_9:
-
-                        if str(item) == 'nan':
-
-                            kpi_9.remove(item)
-
-                    for item in kpi_10:
-
-                        if str(item) == 'nan':
-
-                            kpi_10.remove(item)
-
-                    for item in kpi_11:
-
-                        if str(item) == 'nan':
-
-                            kpi_11.remove(item)
-
-                    for item in kpi_12:
-
-                        if str(item) == 'nan':
-
-                            kpi_12.remove(item)
-
-                    for item in kpi_13:
-
-                        if str(item) == 'nan':
-
-                            kpi_13.remove(item)
-
-                    for item in kpi_14:
-
-                        if str(item) == 'nan':
-
-                            kpi_14.remove(item)
-
-                    for item in kpi_15:
-
-                        if str(item) == 'nan':
-
-                            kpi_15.remove(item)
-
-                    for item in kpi_16:
-
-                        if str(item) == 'nan':
-
-                            kpi_16.remove(item)
-
-                    for item in kpi_17:
-
-                        if str(item) == 'nan':
-
-                            kpi_17.remove(item)
-
-                    for item in kpi_18:
-
-                        if str(item) == 'nan':
-
-                            kpi_18.remove(item)
+                        row_2 += 1
        
 
                     print(f'cell : {C+main_cell_source_index_2[z]+W}')
+
+                    outSheet.write(row_1, z + 1, main_cell_source_index_2[z])
+
+
                     print(Y+'tch_traffic'+W, f'= {kpi_1}'+G,
                         f'Median : {float(statistics.median(kpi_1))}'+W)
+
+                    outSheet.write(1, z + 1, float(statistics.median(kpi_1)))
+
                     print(Y+'available_tch'+W, f'= {kpi_2}'+G,
                         f'Median : {float(statistics.median(kpi_2))}'+W)
+
+                    outSheet.write(2, z + 1, float(statistics.median(kpi_2)))
+
+
                     print(Y+'htch_traffic'+W, f'= {kpi_3}'+G,
                         f'Median : {float(statistics.median(kpi_3))}'+W)
+
+                    outSheet.write(3, z + 1, float(statistics.median(kpi_3)))
+
+
                     print(Y+'sdcch_mht'+W, f'= {kpi_4}'+G,
                         f'Median : {float(statistics.median(kpi_4))}'+W)
+
+                    outSheet.write(4, z + 1, float(statistics.median(kpi_4)))
+
+
                     print(Y+'tch_availability'+W, f'= {kpi_5}'+G,
                         f'Median : {float(statistics.median(kpi_5))}'+W)
+
+                    outSheet.write(5, z + 1, float(statistics.median(kpi_5)))
+
+
                     print(Y+'amrfr_usage'+W, f'= {kpi_6}'+G,
                         f'Median : {float(statistics.median(kpi_6))}'+W)
+
+                    outSheet.write(6, z + 1, float(statistics.median(kpi_6)))
+
+
                     print(Y+'amrhr_usage'+W, f'= {kpi_7}'+G,
                         f'Median : {float(statistics.median(kpi_7))}'+W)
+
+                    outSheet.write(7, z + 1, float(statistics.median(kpi_7)))
+
+
                     print(Y+'cssr3'+W, f'= {kpi_8}'+G,
                         f'Median : {float(statistics.median(kpi_8))}'+W)
+
+                    outSheet.write(8, z + 1, float(statistics.median(kpi_8)))
+
+
                     print(Y+'sdcch_congestion_rate'+W, f'= {kpi_9}'+G,
                         f'Median : {float(statistics.median(kpi_9))}'+W)
+
+                    outSheet.write(9, z + 1, float(statistics.median(kpi_9)))
+
+
                     print(Y+'sdcch_drop_rate'+W, f'= {kpi_10}'+G,
                         f'Median : {float(statistics.median(kpi_10))}'+W)
+
+                    outSheet.write(10, z + 1, float(statistics.median(kpi_10)))
+
+
                     print(Y+'tch_assignment_fr'+W, f'= {kpi_11}'+G,
                         f'Median : {float(statistics.median(kpi_11))}'+W)
+
+                    outSheet.write(11, z + 1, float(statistics.median(kpi_11)))
+
+
                     print(Y+'tch_cong'+W, f'= {kpi_12}'+G,
                         f'Median : {float(statistics.median(kpi_12))}'+W)
+
+                    outSheet.write(12, z + 1, float(statistics.median(kpi_12)))
+
+
                     print(Y+'ihsr2'+W, f'= {kpi_13}'+G,
                         f'Median : {float(statistics.median(kpi_13))}'+W)
+
+                    outSheet.write(13, z + 1, float(statistics.median(kpi_13)))
+
+
                     print(Y+'ohsr2'+W, f'= {kpi_14}'+G,
                         f'Median : {float(statistics.median(kpi_14))}'+W)
+
+                    outSheet.write(14, z + 1, float(statistics.median(kpi_14)))
+
                     print(Y+'sdcch_access_success_rate2'+W, f'= {kpi_15}'+G,
                         f'Median : {float(statistics.median(kpi_15))}'+W)
+
+                    outSheet.write(15, z + 1, float(statistics.median(kpi_15)))
+
+
                     print(Y+'cdr3'+W, f'= {kpi_16}'+G,
                         f'Median : {float(statistics.median(kpi_16))}'+W)
+
+                    outSheet.write(16, z + 1, float(statistics.median(kpi_16)))
+
+
                     print(Y+'rx_qualitty_dl_new'+W, f'= {kpi_17}'+G,
                         f'Median : {float(statistics.median(kpi_17))}'+W)
+
+                    outSheet.write(17, z + 1, float(statistics.median(kpi_17)))
+
+
                     print(Y+'rx_qualitty_ul_new'+W, f'= {kpi_18}'+G,
                         f'Median : {float(statistics.median(kpi_18))}'+W)
+
+                    outSheet.write(18, z + 1, float(statistics.median(kpi_18)))
                     
-                    
-                    
+
 
                 print(R+splitter+W)
                 userfdec = input(C+'CC2 calculation Done! continue? [y/n] : '+W)
+
+                outWorkbook.close()
 
                 userfdec = userfdec.lower()
 
@@ -351,79 +355,7 @@ if __name__ == '__main__':
 
                             continue  
 
-                    # for item in kpi_1:
-
-                    #     if str(item) == 'nan':
-
-                    #         kpi_1.remove(item)
-
-                    # for item in kpi_2:
-
-                    #     if str(item) == 'nan':
-
-                    #         kpi_2.remove(item)
-
-                    # for item in kpi_3:
-
-                    #     if str(item) == 'nan':
-
-                    #         kpi_3.remove(item)
-
-                    # for item in kpi_4:
-
-                    #     if str(item) == 'nan':
-
-                    #         kpi_4.remove(item)
-
-                    # for item in kpi_5:
-
-                    #     if str(item) == 'nan':
-
-                    #         kpi_5.remove(item)
-
-                    # for item in kpi_6:
-
-                    #     if str(item) == 'nan':
-
-                    #         kpi_6.remove(item)
-
-                    # for item in kpi_7:
-
-                    #     if str(item) == 'nan':
-
-                    #         kpi_7.remove(item)
-
-                    # for item in kpi_8:
-
-                    #     if str(item) == 'nan':
-
-                    #         kpi_8.remove(item)
-
-                    # for item in kpi_9:
-
-                    #     if str(item) == 'nan':
-
-                    #         kpi_9.remove(item)
-
-                    # for item in kpi_10:
-
-                    #     if str(item) == 'nan':
-
-                    #         kpi_10.remove(item)
-
-                    # for item in kpi_11:
-
-                    #     if str(item) == 'nan':
-
-                    #         kpi_11.remove(item)
-
-                    # for item in kpi_12:
-
-                    #     if str(item) == 'nan':
-
-                    #         kpi_12.remove(item)
-
-
+                   
                     # ================================== excel writing main
                     row_1 = 0
                     row_2 = 1
@@ -533,6 +465,10 @@ if __name__ == '__main__':
         
             case 3:
 
+                outWorkbook = xlsxwriter.Workbook(f"CC3_BL.xlsx")
+
+                outSheet = outWorkbook.add_worksheet(name = 'Median_bl')
+
                 #==================== data 
                 df_CC3 = pd.read_excel('CC3_data.xlsx', sheet_name='Sheet1')
                 astro_CC3 = df_CC3.to_dict('records')
@@ -542,6 +478,28 @@ if __name__ == '__main__':
                 main_cell_source_index_3 = np.asanyarray(main_cell_source_index_3).flatten()
                 main_cell_source_index_3 = list(np.nan_to_num(main_cell_source_index_3))
 
+
+                kpi_list = [
+                    
+                    'cs_erlang',
+                    'cs_rrc_connection_establishment_sr',
+                    'cs_rab_setup_success_ratio',
+                    'softer_handover_success_ratio(hu_cell)',
+                    'cs_rab_setup_congestion_rate(hu_cell)',
+                    'radio_network_availability_ratio(hu_cell)',
+                    'bler_amr(cell_huawei)',
+                    'cs_irat_ho_sr',
+                    'amr_call_drop_ratio_new(hu_cell)',
+                    'csps_rab_setup_success_ratio',
+                    'interfrequency_hardhandover_success_ratio_csservice',
+                    'cs_cssr',
+                    'rrc_setup_success_ratio(cell.service)',
+                    'soft_handover_succ_rate',
+                    'inter_carrier_ho_success_rate',
+                    'cs_rrc_setup_sr_ura_pch(hu_cell)',
+                    'cs_cssr_ura_pch(hu_cell)'
+
+                ]
                 for z in range(len(main_cell_source_index_3)):
 
                     #---------------------------------- 3G Voice KPIs
@@ -588,153 +546,120 @@ if __name__ == '__main__':
                         else:
 
                             continue  
-
-                    for item in kpi_1:
-
-                        if str(item) == 'nan':
-
-                            kpi_1.remove(item)
-
-                    for item in kpi_2:
-
-                        if str(item) == 'nan':
-
-                            kpi_2.remove(item)
-
-                    for item in kpi_3:
-
-                        if str(item) == 'nan':
-
-                            kpi_3.remove(item)
-
-                    for item in kpi_4:
-
-                        if str(item) == 'nan':
-
-                            kpi_4.remove(item)
-
-                    for item in kpi_5:
-
-                        if str(item) == 'nan':
-
-                            kpi_5.remove(item)
-
-                    for item in kpi_6:
-
-                        if str(item) == 'nan':
-
-                            kpi_6.remove(item)
-
-                    for item in kpi_7:
-
-                        if str(item) == 'nan':
-
-                            kpi_7.remove(item)
-
-                    for item in kpi_8:
-
-                        if str(item) == 'nan':
-
-                            kpi_8.remove(item)
-
-                    for item in kpi_9:
-
-                        if str(item) == 'nan':
-
-                            kpi_9.remove(item)
-
-                    for item in kpi_10:
-
-                        if str(item) == 'nan':
-
-                            kpi_10.remove(item)
-
-                    for item in kpi_11:
-
-                        if str(item) == 'nan':
-
-                            kpi_11.remove(item)
-
-                    for item in kpi_12:
-
-                        if str(item) == 'nan':
-
-                            kpi_12.remove(item)
-
-                    for item in kpi_13:
-
-                        if str(item) == 'nan':
-
-                            kpi_13.remove(item)
-
-                    for item in kpi_14:
-
-                        if str(item) == 'nan':
-
-                            kpi_14.remove(item)
-
-                    for item in kpi_15:
-
-                        if str(item) == 'nan':
-
-                            kpi_15.remove(item)
-
-                    for item in kpi_16:
-
-                        if str(item) == 'nan':
-
-                            kpi_16.remove(item)
-
-                    for item in kpi_17:
-
-                        if str(item) == 'nan':
-
-                            kpi_17.remove(item)
        
 
                     print(f'cell : {C+main_cell_source_index_3[z]+W}')
+                    outSheet.write(row_1, z + 1, main_cell_source_index_2[z])
+
+
                     print(Y+'cs_erlang'+W, f'= {kpi_1}'+G,
                         f'Median : {float(statistics.median(kpi_1))}'+W)
+
+                    outSheet.write(1, z + 1, float(statistics.median(kpi_1)))
+
+
                     print(Y+'cs_rrc_connection_establishment_sr'+W, f'= {kpi_2}'+G,
                         f'Median : {float(statistics.median(kpi_2))}'+W)
+
+                    outSheet.write(2, z + 1, float(statistics.median(kpi_2)))
+
+
                     print(Y+'cs_rab_setup_success_ratio'+W, f'= {kpi_3}'+G,
                         f'Median : {float(statistics.median(kpi_3))}'+W)
+
+                    outSheet.write(3, z + 1, float(statistics.median(kpi_3)))
+
+
                     print(Y+'softer_handover_success_ratio(hu_cell)'+W, f'= {kpi_4}'+G,
                         f'Median : {float(statistics.median(kpi_4))}'+W)
+
+                    outSheet.write(4, z + 1, float(statistics.median(kpi_4)))
+
+
                     print(Y+'cs_rab_setup_congestion_rate(hu_cell)'+W, f'= {kpi_5}'+G,
                         f'Median : {float(statistics.median(kpi_5))}'+W)
+
+                    outSheet.write(5, z + 1, float(statistics.median(kpi_5)))
+
+
                     print(Y+'radio_network_availability_ratio(hu_cell)'+W, f'= {kpi_6}'+G,
                         f'Median : {float(statistics.median(kpi_6))}'+W)
+
+                    outSheet.write(6, z + 1, float(statistics.median(kpi_6)))
+
+
                     print(Y+'bler_amr(cell_huawei)'+W, f'= {kpi_7}'+G,
                         f'Median : {float(statistics.median(kpi_7))}'+W)
+
+                    outSheet.write(7, z + 1, float(statistics.median(kpi_7)))
+
+
                     print(Y+'cs_irat_ho_sr'+W, f'= {kpi_8}'+G,
                         f'Median : {float(statistics.median(kpi_8))}'+W)
+
+                    outSheet.write(8, z + 1, float(statistics.median(kpi_8)))
+
+
                     print(Y+'amr_call_drop_ratio_new(hu_cell)'+W, f'= {kpi_9}'+G,
                         f'Median : {float(statistics.median(kpi_9))}'+W)
+
+                    outSheet.write(9, z + 1, float(statistics.median(kpi_9)))
+
+
                     print(Y+'csps_rab_setup_success_ratio'+W, f'= {kpi_10}'+G,
                         f'Median : {float(statistics.median(kpi_10))}'+W)
+
+                    outSheet.write(10, z + 1, float(statistics.median(kpi_10)))
+
+
                     print(Y+'interfrequency_hardhandover_success_ratio_csservice'+W, f'= {kpi_11}'+G,
                         f'Median : {float(statistics.median(kpi_11))}'+W)
+
+                    outSheet.write(11, z + 1, float(statistics.median(kpi_11)))
+
+
                     print(Y+'cs_cssr'+W, f'= {kpi_12}'+G,
                         f'Median : {float(statistics.median(kpi_12))}'+W)
+
+                    outSheet.write(12, z + 1, float(statistics.median(kpi_12)))
+
+
                     print(Y+'rrc_setup_success_ratio(cell.service)'+W, f'= {kpi_13}'+G,
                         f'Median : {float(statistics.median(kpi_13))}'+W)
+
+                    outSheet.write(13, z + 1, float(statistics.median(kpi_13)))
+
+
                     print(Y+'soft_handover_succ_rate'+W, f'= {kpi_14}'+G,
                         f'Median : {float(statistics.median(kpi_14))}'+W)
+
+                    outSheet.write(14, z + 1, float(statistics.median(kpi_14)))
+
+                    
                     print(Y+'inter_carrier_ho_success_rate'+W, f'= {kpi_15}'+G,
                         f'Median : {float(statistics.median(kpi_15))}'+W)
+
+                    outSheet.write(15, z + 1, float(statistics.median(kpi_15)))
+
+
                     print(Y+'cs_rrc_setup_sr_ura_pch(hu_cell)'+W, f'= {kpi_16}'+G,
                         f'Median : {float(statistics.median(kpi_16))}'+W)
+
+                    outSheet.write(16, z + 1, float(statistics.median(kpi_16)))
+
+
                     print(Y+'cs_cssr_ura_pch(hu_cell)'+W, f'= {kpi_17}'+G,
                         f'Median : {float(statistics.median(kpi_17))}'+W)
-                    
-                    
+
+                    outSheet.write(17, z + 1, float(statistics.median(kpi_17)))     
                     
 
                 print(R+splitter+W)
                 userfdec = input(C+'CC3 calculation Done! continue? [y/n] : '+W)
 
                 userfdec = userfdec.lower()
+
+                outWorkbook.close()
 
                 match userfdec:
 
@@ -747,7 +672,11 @@ if __name__ == '__main__':
                         sys.exit()
             
             case 4:
-                
+
+                outWorkbook = xlsxwriter.Workbook(f"RD3_BL.xlsx")
+
+                outSheet = outWorkbook.add_worksheet(name = 'Median_bl')
+
                 #==================== data 
                 df_RD3 = pd.read_excel('RD3_data.xlsx', sheet_name='Sheet1')
                 astro_RD3 = df_RD3.to_dict('records')
@@ -756,6 +685,43 @@ if __name__ == '__main__':
                 main_cell_source_index_3 = df_RD3[['cell_ref']].dropna()
                 main_cell_source_index_3 = np.asanyarray(main_cell_source_index_3).flatten()
                 main_cell_source_index_3 = list(np.nan_to_num(main_cell_source_index_3))
+
+                kpi_list = [
+
+                    'payload',
+                    'ps_cssr',
+                    'ps_call_drop_ratio',
+                    'average_hsdpa_user_throughput_dc+sc(mbit/s)(cell_huawei)',
+                    'hsupa_uplink_throughput_in_v16(cell_hu)',
+                    'cs+ps_rab_setup_success_ratio',
+                    'hsdpa_soft_handover_success_ratio',
+                    'hs_share_payload_%',
+                    'hsdpa_cdr(%)_(hu_cell)_new',
+                    'hsupa_cdr(%)_(hu_cell)_new',
+                    'ps_r99_call_drop_ratio_with_pch(hu_cell)',
+                    'nack_ratio(cell_huawei)',
+                    'hsdpa_scheduling_cell_throughput(cell_huawei)',
+                    'hsupa_cell_throughput(kbps)(hu_cell)',
+                    'radio_network_availability_ratio(hu_cell)',
+                    'ps_rab_setup_success_ratio(hu_cell)',
+                    'bler9',
+                    'cqi>20',
+                    'ps_rrc_connection_success_rate_repeatless(hu_cell)',
+                    'ps_r99_rab_setup_success_ratio(hu_cell)',
+                    'hsdpa_rab_setup_success_ratio(hu_cell)',
+                    'hsupa_rab_setup_success_ratio(hu_cell)',
+                    'vs.rab.abnormrel.ps_rnc',
+                    'ps_rab_setup_congestion_rate',
+                    'ps_rab_setup_success_ratio',
+                    'ps_rab_congestion_rate',
+                    'hsdpa_user_throughput',
+                    'hsupa_throughput_mace',
+                    'ps_cssr_ura_pch(hu_cell)',
+                    'pch2dch_statetrans_sr(hu_cell)',
+                    'mean_rtwp(cell_hu)',
+                    'cqi_new(hu_cell)'
+
+                ]
 
                 for z in range(len(main_cell_source_index_3)):
 
@@ -836,270 +802,181 @@ if __name__ == '__main__':
 
                             continue  
 
-                    for item in kpi_1:
-
-                        if str(item) == 'nan':
-
-                            kpi_1.remove(item)
-
-                    for item in kpi_2:
-
-                        if str(item) == 'nan':
-
-                            kpi_2.remove(item)
-
-                    for item in kpi_3:
-
-                        if str(item) == 'nan':
-
-                            kpi_3.remove(item)
-
-                    for item in kpi_4:
-
-                        if str(item) == 'nan':
-
-                            kpi_4.remove(item)
-
-                    for item in kpi_5:
-
-                        if str(item) == 'nan':
-
-                            kpi_5.remove(item)
-
-                    for item in kpi_6:
-
-                        if str(item) == 'nan':
-
-                            kpi_6.remove(item)
-
-                    for item in kpi_7:
-
-                        if str(item) == 'nan':
-
-                            kpi_7.remove(item)
-
-                    for item in kpi_8:
-
-                        if str(item) == 'nan':
-
-                            kpi_8.remove(item)
-
-                    for item in kpi_9:
-
-                        if str(item) == 'nan':
-
-                            kpi_9.remove(item)
-
-                    for item in kpi_10:
-
-                        if str(item) == 'nan':
-
-                            kpi_10.remove(item)
-
-                    for item in kpi_11:
-
-                        if str(item) == 'nan':
-
-                            kpi_11.remove(item)
-
-                    for item in kpi_12:
-
-                        if str(item) == 'nan':
-
-                            kpi_12.remove(item)
-
-                    for item in kpi_13:
-
-                        if str(item) == 'nan':
-
-                            kpi_13.remove(item)
-
-                    for item in kpi_14:
-
-                        if str(item) == 'nan':
-
-                            kpi_14.remove(item)
-
-                    for item in kpi_15:
-
-                        if str(item) == 'nan':
-
-                            kpi_15.remove(item)
-
-                    for item in kpi_16:
-
-                        if str(item) == 'nan':
-
-                            kpi_16.remove(item)
-
-                    for item in kpi_17:
-
-                        if str(item) == 'nan':
-
-                            kpi_17.remove(item)
-
-                    for item in kpi_18:
-
-                        if str(item) == 'nan':
-
-                            kpi_18.remove(item)
-
-                    for item in kpi_19:
-
-                        if str(item) == 'nan':
-
-                            kpi_19.remove(item)
-
-                    for item in kpi_20:
-
-                        if str(item) == 'nan':
-
-                            kpi_20.remove(item)
-
-                    for item in kpi_21:
-
-                        if str(item) == 'nan':
-
-                            kpi_21.remove(item)
-
-                    for item in kpi_22:
-
-                        if str(item) == 'nan':
-
-                            kpi_22.remove(item)
-
-                    for item in kpi_23:
-
-                        if str(item) == 'nan':
-
-                            kpi_23.remove(item)
-
-                    for item in kpi_24:
-
-                        if str(item) == 'nan':
-
-                            kpi_24.remove(item)
-
-                    for item in kpi_25:
-
-                        if str(item) == 'nan':
-
-                            kpi_25.remove(item)
-
-                    for item in kpi_26:
-
-                        if str(item) == 'nan':
-
-                            kpi_26.remove(item)
-
-                    for item in kpi_27:
-
-                        if str(item) == 'nan':
-
-                            kpi_27.remove(item)
-
-                    for item in kpi_28:
-
-                        if str(item) == 'nan':
-
-                            kpi_28.remove(item)
-
-                    for item in kpi_29:
-
-                        if str(item) == 'nan':
-
-                            kpi_29.remove(item)
-
-                    for item in kpi_30:
-
-                        if str(item) == 'nan':
-
-                            kpi_30.remove(item)
-
-                    for item in kpi_31:
-
-                        if str(item) == 'nan':
-
-                            kpi_31.remove(item)
-
-                    for item in kpi_32:
-
-                        if str(item) == 'nan':
-
-                            kpi_32.remove(item)
-       
 
                     print(f'cell : {C+main_cell_source_index_3[z]+W}')
+                    outSheet.write(row_1, z + 1, main_cell_source_index_2[z])
+
+
                     print(Y+'payload'+W, f'= {kpi_1}'+G,  
                         f'Median : {float(statistics.median(kpi_1))}'+W)
+
+                    outSheet.write(1, z + 1, float(statistics.median(kpi_1)))
+
+
                     print(Y+'ps_cssr'+W, f'= {kpi_2}'+G,  
                         f'Median : {float(statistics.median(kpi_2))}'+W)
+
+                    outSheet.write(2, z + 1, float(statistics.median(kpi_2)))
+
+
                     print(Y+'ps_call_drop_ratio'+W, f'= {kpi_3}'+G,  
                         f'Median : {float(statistics.median(kpi_3))}'+W)
+
+                    outSheet.write(3, z + 1, float(statistics.median(kpi_3)))
+
+
                     print(Y+'average_hsdpa_user_throughput_dc+sc(mbit/s)(cell_huawei)'+W, f'= {kpi_4}'+G,  
                         f'Median : {float(statistics.median(kpi_4))}'+W)
+
+                    outSheet.write(4, z + 1, float(statistics.median(kpi_4)))
+
+
                     print(Y+'hsupa_uplink_throughput_in_v16(cell_hu)'+W, f'= {kpi_5}'+G,  
                         f'Median : {float(statistics.median(kpi_5))}'+W)
+
+                    outSheet.write(5, z + 1, float(statistics.median(kpi_5)))
+
+
                     print(Y+'cs+ps_rab_setup_success_ratio'+W, f'= {kpi_6}'+G,  
                         f'Median : {float(statistics.median(kpi_6))}'+W)
+
+                    outSheet.write(6, z + 1, float(statistics.median(kpi_6)))
+
                     print(Y+'hsdpa_soft_handover_success_ratio'+W, f'= {kpi_7}'+G,  
                         f'Median : {float(statistics.median(kpi_7))}'+W)
+
+                    outSheet.write(7, z + 1, float(statistics.median(kpi_7)))
+
                     print(Y+'hs_share_payload_%'+W, f'= {kpi_8}'+G,  
                         f'Median : {float(statistics.median(kpi_8))}'+W)
+
+                    outSheet.write(8, z + 1, float(statistics.median(kpi_8)))
+
                     print(Y+'hsdpa_cdr(%)_(hu_cell)_new'+W, f'= {kpi_9}'+G,  
                         f'Median : {float(statistics.median(kpi_9))}'+W)
+
+                    outSheet.write(9, z + 1, float(statistics.median(kpi_9)))
+
                     print(Y+'hsupa_cdr(%)_(hu_cell)_new'+W, f'= {kpi_10}'+G,  
                         f'Median : {float(statistics.median(kpi_10))}'+W)
+
+                    outSheet.write(10, z + 1, float(statistics.median(kpi_10)))
+
                     print(Y+'ps_r99_call_drop_ratio_with_pch(hu_cell)'+W, f'= {kpi_11}'+G,  
                         f'Median : {float(statistics.median(kpi_11))}'+W)
+
+                    outSheet.write(11, z + 1, float(statistics.median(kpi_11)))
+
                     print(Y+'nack_ratio(cell_huawei)'+W, f'= {kpi_12}'+G,  
                         f'Median : {float(statistics.median(kpi_12))}'+W)
+
+                    outSheet.write(12, z + 1, float(statistics.median(kpi_12)))
+
                     print(Y+'hsdpa_scheduling_cell_throughput(cell_huawei)'+W, f'= {kpi_13}'+G,  
                         f'Median : {float(statistics.median(kpi_13))}'+W)
+
+                    outSheet.write(13, z + 1, float(statistics.median(kpi_13)))
+
                     print(Y+'hsupa_cell_throughput(kbps)(hu_cell)'+W, f'= {kpi_14}'+G,  
                         f'Median : {float(statistics.median(kpi_14))}'+W)
+
+                    outSheet.write(14, z + 1, float(statistics.median(kpi_14)))
+
                     print(Y+'radio_network_availability_ratio(hu_cell)'+W, f'= {kpi_15}'+G,  
                         f'Median : {float(statistics.median(kpi_15))}'+W)
+
+                    outSheet.write(15, z + 1, float(statistics.median(kpi_15)))
+
                     print(Y+'ps_rab_setup_success_ratio(hu_cell)'+W, f'= {kpi_16}'+G,  
                         f'Median : {float(statistics.median(kpi_16))}'+W)
+
+                    outSheet.write(16, z + 1, float(statistics.median(kpi_16)))
+
                     print(Y+'bler9'+W, f'= {kpi_17}'+G,  
                         f'Median : {float(statistics.median(kpi_17))}'+W)
+
+                    outSheet.write(17, z + 1, float(statistics.median(kpi_17)))
+
                     print(Y+'cqi>20'+W, f'= {kpi_18}'+G,  
                         f'Median : {float(statistics.median(kpi_18))}'+W)
+
+                    outSheet.write(18, z + 1, float(statistics.median(kpi_18)))
+
                     print(Y+'ps_rrc_connection_success_rate_repeatless(hu_cell)'+W, f'= {kpi_19}'+G,  
                         f'Median : {float(statistics.median(kpi_19))}'+W)
+
+                    outSheet.write(19, z + 1, float(statistics.median(kpi_19)))
+
                     print(Y+'ps_r99_rab_setup_success_ratio(hu_cell)'+W, f'= {kpi_20}'+G,  
                         f'Median : {float(statistics.median(kpi_20))}'+W)
+                    
+                    outSheet.write(20, z + 1, float(statistics.median(kpi_20)))
+
                     print(Y+'hsdpa_rab_setup_success_ratio(hu_cell)'+W, f'= {kpi_21}'+G,  
                         f'Median : {float(statistics.median(kpi_21))}'+W)
+
+                    outSheet.write(21, z + 1, float(statistics.median(kpi_21)))
+
                     print(Y+'hsupa_rab_setup_success_ratio(hu_cell)'+W, f'= {kpi_22}'+G,  
                         f'Median : {float(statistics.median(kpi_22))}'+W)
+
+                    outSheet.write(22, z + 1, float(statistics.median(kpi_22)))
+
                     print(Y+'vs.rab.abnormrel.ps_rnc'+W, f'= {kpi_23}'+G,  
                         f'Median : {float(statistics.median(kpi_23))}'+W)
+
+                    outSheet.write(23, z + 1, float(statistics.median(kpi_23)))
+
                     print(Y+'ps_rab_setup_congestion_rate'+W, f'= {kpi_24}'+G,  
                         f'Median : {float(statistics.median(kpi_24))}'+W)
+
+                    outSheet.write(24, z + 1, float(statistics.median(kpi_24)))
+
                     print(Y+'ps_rab_setup_success_ratio'+W, f'= {kpi_25}'+G,  
                         f'Median : {float(statistics.median(kpi_25))}'+W)
+
+                    outSheet.write(25, z + 1, float(statistics.median(kpi_25)))
+
                     print(Y+'ps_rab_congestion_rate'+W, f'= {kpi_26}'+G,  
                         f'Median : {float(statistics.median(kpi_26))}'+W)
+
+                    outSheet.write(26, z + 1, float(statistics.median(kpi_26)))
+
                     print(Y+'hsdpa_user_throughput'+W, f'= {kpi_27}'+G,  
                         f'Median : {float(statistics.median(kpi_27))}'+W)
+
+                    outSheet.write(27, z + 1, float(statistics.median(kpi_27)))
+
                     print(Y+'hsupa_throughput_mace'+W, f'= {kpi_28}'+G,  
                         f'Median : {float(statistics.median(kpi_28))}'+W)
+
+                    outSheet.write(28, z + 1, float(statistics.median(kpi_28)))
+
                     print(Y+'ps_cssr_ura_pch(hu_cell)'+W, f'= {kpi_29}'+G,  
                         f'Median : {float(statistics.median(kpi_29))}'+W)
+
+                    outSheet.write(29, z + 1, float(statistics.median(kpi_29)))
+
                     print(Y+'pch2dch_statetrans_sr(hu_cell)'+W, f'= {kpi_30}'+G,  
                         f'Median : {float(statistics.median(kpi_30))}'+W)
+
+                    outSheet.write(30, z + 1, float(statistics.median(kpi_30)))
+
                     print(Y+'mean_rtwp(cell_hu)'+W, f'= {kpi_31}'+G,  
                         f'Median : {float(statistics.median(kpi_31))}'+W)
+
+                    outSheet.write(31, z + 1, float(statistics.median(kpi_31)))
+
                     print(Y+'cqi_new(hu_cell)'+W, f'= {kpi_32}'+G,  
                         f'Median : {float(statistics.median(kpi_32))}'+W)
 
-                    
-                    
-                    
+                    outSheet.write(32, z + 1, float(statistics.median(kpi_32)))
+
 
                 print(R+splitter+W)
+
+                outWorkbook.close()
+
                 userfdec = input(C+'RD2 calculation Done! continue? [y/n] : '+W)
 
                 userfdec = userfdec.lower()
@@ -1115,6 +992,10 @@ if __name__ == '__main__':
                         sys.exit()
 
             case 5:
+
+                outWorkbook = xlsxwriter.Workbook(f"RD4_BL.xlsx")
+
+                outSheet = outWorkbook.add_worksheet(name = 'Median_bl')
                 
                 # ==================== data
                 df_RD4 = pd.read_excel('RD4_data.xlsx', sheet_name='Sheet1')
@@ -1124,6 +1005,43 @@ if __name__ == '__main__':
                 main_cell_source_index_4 = df_RD2[['cell_ref']].dropna()
                 main_cell_source_index_4 = np.asanyarray(main_cell_source_index_4).flatten()
                 main_cell_source_index_4 = list(np.nan_to_num(main_cell_source_index_4))
+
+                kpi_list = [
+
+                    'total_traffic_volume(gb)',
+                    'e-rab_setup_success_rate(hu_cell)',
+                    'e-rab_setup_success_rate',
+                    'ran_avail_rate',
+                    'interf_hoout_sr',
+                    'intraf_hoout_sr',
+                    'inter_rat_handover_out_success_rate(3gpltogsm)',
+                    'inter_rat_handover_out_successrate(3gpltowcdma)',
+                    'average_dl_latency_ms(huawei_lte_eucell)',
+                    'average_ul_packet_loss_%(huawei_lte_ucell)',
+                    'call_drop_rate',
+                    'average_downlink_user_throughput(mbit/s)',
+                    'average_uplink_user_throughput(mbit/s)',
+                    'csfb_rate',
+                    'cssr(all)',
+                    'downlink_traffic_volume(gb)',
+                    'ul_traffic_volume(gb)',
+                    'downlink_cell_throghput(kbit/s)',
+                    'uplink_cell_throghput(kbit/s)',
+                    'max_no_user',
+                    'number_of_available_downlink_prbs_cell',
+                    'average_cqi(huawei_lte_cell)',
+                    'intra_rat_handover_sr_intra+inter_frequency(huawei_lte_cell',
+                    'rrc_connection_setup_success_rate_service',
+                    's1signal_e-rab_setup_sr(hu_cell)',
+                    'cell_unvail_duration_daily(huawei_cell_lte)',
+                    'rssi_pucch(huawei_lte_cell)',
+                    'rssi_pusch(huawei_lte_cell)',
+                    'cell_availability_rate_exclude_blocking(cell_hu)',
+                    'cell_availability_rate_include_blocking(cell_hu)',
+                    'cell_availability_rate_include_blocking',
+                    'cell_availability_rate_include_blocking(cell_hu_no_null)'
+
+                ]
 
                 for z in range(len(main_cell_source_index_4)):
 
@@ -1203,259 +1121,177 @@ if __name__ == '__main__':
 
                             continue  
 
-                    for item in kpi_1:
-
-                        if str(item) == 'nan':
-
-                            kpi_1.remove(item)
-
-                    for item in kpi_2:
-
-                        if str(item) == 'nan':
-
-                            kpi_2.remove(item)
-
-                    for item in kpi_3:
-
-                        if str(item) == 'nan':
-
-                            kpi_3.remove(item)
-
-                    for item in kpi_4:
-
-                        if str(item) == 'nan':
-
-                            kpi_4.remove(item)
-
-                    for item in kpi_5:
-
-                        if str(item) == 'nan':
-
-                            kpi_5.remove(item)
-
-                    for item in kpi_6:
-
-                        if str(item) == 'nan':
-
-                            kpi_6.remove(item)
-
-                    for item in kpi_7:
-
-                        if str(item) == 'nan':
-
-                            kpi_7.remove(item)
-
-                    for item in kpi_8:
-
-                        if str(item) == 'nan':
-
-                            kpi_8.remove(item)
-
-                    for item in kpi_9:
-
-                        if str(item) == 'nan':
-
-                            kpi_9.remove(item)
-
-                    for item in kpi_10:
-
-                        if str(item) == 'nan':
-
-                            kpi_10.remove(item)
-
-                    for item in kpi_11:
-
-                        if str(item) == 'nan':
-
-                            kpi_11.remove(item)
-
-                    for item in kpi_12:
-
-                        if str(item) == 'nan':
-
-                            kpi_12.remove(item)
-
-                    for item in kpi_13:
-
-                        if str(item) == 'nan':
-
-                            kpi_13.remove(item)
-
-                    for item in kpi_14:
-
-                        if str(item) == 'nan':
-
-                            kpi_14.remove(item)
-
-                    for item in kpi_15:
-
-                        if str(item) == 'nan':
-
-                            kpi_15.remove(item)
-
-                    for item in kpi_16:
-
-                        if str(item) == 'nan':
-
-                            kpi_16.remove(item)
-
-                    for item in kpi_17:
-
-                        if str(item) == 'nan':
-
-                            kpi_17.remove(item)
-
-                    for item in kpi_18:
-
-                        if str(item) == 'nan':
-
-                            kpi_18.remove(item)
-
-                    for item in kpi_19:
-
-                        if str(item) == 'nan':
-
-                            kpi_19.remove(item)
-
-                    for item in kpi_20:
-
-                        if str(item) == 'nan':
-
-                            kpi_20.remove(item)
-
-                    for item in kpi_21:
-
-                        if str(item) == 'nan':
-
-                            kpi_21.remove(item)
-
-                    for item in kpi_22:
-
-                        if str(item) == 'nan':
-
-                            kpi_22.remove(item)
-
-                    for item in kpi_23:
-
-                        if str(item) == 'nan':
-
-                            kpi_23.remove(item)
-
-                    for item in kpi_24:
-
-                        if str(item) == 'nan':
-
-                            kpi_24.remove(item)
-
-                    for item in kpi_25:
-
-                        if str(item) == 'nan':
-
-                            kpi_25.remove(item)
-
-                    for item in kpi_26:
-
-                        if str(item) == 'nan':
-
-                            kpi_26.remove(item)
-
-                    for item in kpi_27:
-
-                        if str(item) == 'nan':
-
-                            kpi_27.remove(item)
-
-                    for item in kpi_28:
-
-                        if str(item) == 'nan':
-
-                            kpi_28.remove(item)
-
-                    for item in kpi_29:
-
-                        if str(item) == 'nan':
-
-                            kpi_29.remove(item)
-
-                    for item in kpi_30:
-
-                        if str(item) == 'nan':
-
-                            kpi_30.remove(item)
-
-                    for item in kpi_31:
-
-                        if str(item) == 'nan':
-
-                            kpi_31.remove(item)
-
-                    for item in kpi_32:
-
-                        if str(item) == 'nan':
-
-                            kpi_32.remove(item)
-       
+                    
 
                     print(f'cell : {C+main_cell_source_index_2[z]+W}')
-                    print(Y+'intraf_hoout_sr'+W, f'= {kpi_6}'+G,  f'Median : {float(statistics.median(kpi_6))}'+W)
+                    outSheet.write(row_1, z + 1, main_cell_source_index_2[z])
+
+                   
+                    print(Y+'total_traffic_volume(gb)'+W, f'= {kpi_1}'+G,  
+                        f'Median : {float(statistics.median(kpi_1))}'+W)
+
+                    outSheet.write(1, z + 1, float(statistics.median(kpi_1)))
+
+
+                    print(Y+'e-rab_setup_success_rate(hu_cell)'+W, f'= {kpi_2}'+G,  
+                        f'Median : {float(statistics.median(kpi_2))}'+W)
+
+                    outSheet.write(2, z + 1, float(statistics.median(kpi_2)))
+
+                    print(Y+'e-rab_setup_success_rate'+W, f'= {kpi_3}'+G,  
+                        f'Median : {float(statistics.median(kpi_3))}'+W)
+
+                    outSheet.write(3, z + 1, float(statistics.median(kpi_3)))
+
+                    print(Y+'ran_avail_rate'+W, f'= {kpi_4}'+G,  
+                        f'Median : {float(statistics.median(kpi_4))}'+W)
+
+                    outSheet.write(4, z + 1, float(statistics.median(kpi_4)))
+
+                    print(Y+'interf_hoout_sr'+W, f'= {kpi_5}'+G,  
+                        f'Median : {float(statistics.median(kpi_5))}'+W)
+
+                    outSheet.write(5, z + 1, float(statistics.median(kpi_5)))
+
+                    print(Y+'intraf_hoout_sr'+W, f'= {kpi_6}'+G,  
+                        f'Median : {float(statistics.median(kpi_6))}'+W)
+
+                    outSheet.write(6, z + 1, float(statistics.median(kpi_6)))
+
                     print(Y+'inter_rat_handover_out_success_rate(3gpltogsm)'+W, f'= {kpi_7}'+G,  
                         f'Median : {float(statistics.median(kpi_7))}'+W)
+
+                    outSheet.write(7, z + 1, float(statistics.median(kpi_7)))
+
                     print(Y+'inter_rat_handover_out_successrate(3gpltowcdma)'+W, f'= {kpi_8}'+G,  
                         f'Median : {float(statistics.median(kpi_8))}'+W)
+
+                    outSheet.write(8, z + 1, float(statistics.median(kpi_8)))
+
                     print(Y+'average_dl_latency_ms(huawei_lte_eucell)'+W, f'= {kpi_9}'+G,  
                         f'Median : {float(statistics.median(kpi_9))}'+W)
+
+                    outSheet.write(9, z + 1, float(statistics.median(kpi_9)))
+
                     print(Y+'average_ul_packet_loss_%(huawei_lte_ucell)'+W, f'= {kpi_10}'+G,  
                         f'Median : {float(statistics.median(kpi_10))}'+W)
+
+                    outSheet.write(10, z + 1, float(statistics.median(kpi_10)))
+
                     print(Y+'call_drop_rate'+W, f'= {kpi_11}'+G,  
                         f'Median : {float(statistics.median(kpi_11))}'+W)
+
+                    outSheet.write(11, z + 1, float(statistics.median(kpi_11)))
+
                     print(Y+'average_downlink_user_throughput(mbit/s)'+W, f'= {kpi_12}'+G,  
                         f'Median : {float(statistics.median(kpi_12))}'+W)
+
+                    outSheet.write(12, z + 1, float(statistics.median(kpi_12)))
+
                     print(Y+'average_uplink_user_throughput(mbit/s)'+W, f'= {kpi_13}'+G,  
                         f'Median : {float(statistics.median(kpi_13))}'+W)
+
+                    outSheet.write(13, z + 1, float(statistics.median(kpi_13)))
+
                     print(Y+'csfb_rate'+W, f'= {kpi_14}'+G,  
                         f'Median : {float(statistics.median(kpi_14))}'+W)
+
+                    outSheet.write(14, z + 1, float(statistics.median(kpi_14)))
+
                     print(Y+'cssr(all)'+W, f'= {kpi_15}'+G,  
                         f'Median : {float(statistics.median(kpi_15))}'+W)
+
+                    outSheet.write(15, z + 1, float(statistics.median(kpi_15)))
+
                     print(Y+'downlink_traffic_volume(gb)'+W, f'= {kpi_16}'+G,  
                         f'Median : {float(statistics.median(kpi_16))}'+W)
+
+                    outSheet.write(16, z + 1, float(statistics.median(kpi_16)))
+
                     print(Y+'ul_traffic_volume(gb)'+W, f'= {kpi_17}'+G,  
                         f'Median : {float(statistics.median(kpi_17))}'+W)
+
+                    outSheet.write(17, z + 1, float(statistics.median(kpi_17)))
+
                     print(Y+'downlink_cell_throghput(kbit/s)'+W, f'= {kpi_18}'+G,  
                         f'Median : {float(statistics.median(kpi_18))}'+W)
-                    print(Y+'uplink_cell_throghput(kbit/s)'+W, f'= {kpi_19}'+G,  
+
+                    outSheet.write(18, z + 1, float(statistics.median(kpi_18)))
+
+                    print(Y+'uplink_cell_throghput(kbit/s+)'W, f'= {kpi_19}'+G,  
                         f'Median : {float(statistics.median(kpi_19))}'+W)
+
+                    outSheet.write(19, z + 1, float(statistics.median(kpi_19)))
+
                     print(Y+'max_no_user'+W, f'= {kpi_20}'+G,  
                         f'Median : {float(statistics.median(kpi_20))}'+W)
+                    
+                    outSheet.write(20, z + 1, float(statistics.median(kpi_20)))
+
                     print(Y+'number_of_available_downlink_prbs_cell'+W, f'= {kpi_21}'+G,  
                         f'Median : {float(statistics.median(kpi_21))}'+W)
+
+                    outSheet.write(21, z + 1, float(statistics.median(kpi_21)))
+
                     print(Y+'average_cqi(huawei_lte_cell)'+W, f'= {kpi_22}'+G,  
                         f'Median : {float(statistics.median(kpi_22))}'+W)
+
+                    outSheet.write(22, z + 1, float(statistics.median(kpi_22)))
+
                     print(Y+'intra_rat_handover_sr_intra+inter_frequency(huawei_lte_cell'+W, f'= {kpi_23}'+G,  
                         f'Median : {float(statistics.median(kpi_23))}'+W)
+
+                    outSheet.write(23, z + 1, float(statistics.median(kpi_23)))
+
                     print(Y+'rrc_connection_setup_success_rate_service'+W, f'= {kpi_24}'+G,  
                         f'Median : {float(statistics.median(kpi_24))}'+W)
+
+                    outSheet.write(24, z + 1, float(statistics.median(kpi_24)))
+
                     print(Y+'s1signal_e-rab_setup_sr(hu_cell)'+W, f'= {kpi_25}'+G,  
                         f'Median : {float(statistics.median(kpi_25))}'+W)
+
+                    outSheet.write(25, z + 1, float(statistics.median(kpi_25)))
+
                     print(Y+'cell_unvail_duration_daily(huawei_cell_lte)'+W, f'= {kpi_26}'+G,  
                         f'Median : {float(statistics.median(kpi_26))}'+W)
+
+                    outSheet.write(26, z + 1, float(statistics.median(kpi_26)))
+
                     print(Y+'rssi_pucch(huawei_lte_cell)'+W, f'= {kpi_27}'+G,  
                         f'Median : {float(statistics.median(kpi_27))}'+W)
+
+                    outSheet.write(27, z + 1, float(statistics.median(kpi_27)))
+
                     print(Y+'rssi_pusch(huawei_lte_cell)'+W, f'= {kpi_28}'+G,  
                         f'Median : {float(statistics.median(kpi_28))}'+W)
+
+                    outSheet.write(28, z + 1, float(statistics.median(kpi_28)))
+
                     print(Y+'cell_availability_rate_exclude_blocking(cell_hu)'+W, f'= {kpi_29}'+G,  
                         f'Median : {float(statistics.median(kpi_29))}'+W)
+
+                    outSheet.write(29, z + 1, float(statistics.median(kpi_29)))
+
                     print(Y+'cell_availability_rate_include_blocking(cell_hu)'+W, f'= {kpi_30}'+G,  
                         f'Median : {float(statistics.median(kpi_30))}'+W)
+
+                    outSheet.write(30, z + 1, float(statistics.median(kpi_30)))
+
                     print(Y+'cell_availability_rate_include_blocking'+W, f'= {kpi_31}'+G,  
                         f'Median : {float(statistics.median(kpi_31))}'+W)
+
+                    outSheet.write(31, z + 1, float(statistics.median(kpi_31)))
+
                     print(Y+'cell_availability_rate_include_blocking(cell_hu_no_null)'+W, f'= {kpi_32}'+G,  
                         f'Median : {float(statistics.median(kpi_32))}'+W)
 
-                    
-                    
-                    
-
+                    outSheet.write(32, z + 1, float(statistics.median(kpi_32)))
+  
+             
                 print(R+splitter+W)
+
+                outWorkbook.close()
 
                 userfdec = input(C+'RD2 calculation Done! continue? [y/n] : '+W)
 
