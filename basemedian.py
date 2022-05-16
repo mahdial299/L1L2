@@ -614,7 +614,7 @@ if __name__ == '__main__':
 
                         print(f'cell : {C+main_cell_source_index_3[z]+W}')
                         outSheet.write(
-                            z + 1, row_1, main_cell_source_index_2[z])
+                            z + 1, row_1, main_cell_source_index_3[z])
 
                         print(Y+'cs_erlang'+W, f'= {kpi_1}'+G,
                               f'Median : {float(statistics.median(kpi_1))}'+W)
