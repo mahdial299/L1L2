@@ -743,7 +743,7 @@ if __name__ == '__main__':
 
             case 4:
 
-                outWorkbook = xlsxwriter.Workbook(f"RD3_BL.xlsx")
+                outWorkbook = xlsxwriter.Workbook(f"RD3_Daily_BL.xlsx")
 
                 outSheet = outWorkbook.add_worksheet(name='Median_bl')
 
@@ -896,175 +896,194 @@ if __name__ == '__main__':
 
                             continue
 
-                    print(f'cell : {C+main_cell_source_index_3[z]+W}')
-                    outSheet.write(row_1, z + 1, main_cell_source_index_2[z])
+                    row_1 = 0
 
-                    print(Y+'payload'+W, f'= {kpi_1}'+G,
-                          f'Median : {float(statistics.median(kpi_1))}'+W)
+                    row_2 = 0
+                    column_2 = 1
 
-                    outSheet.write(1, z + 1, float(statistics.median(kpi_1)))
+                    for kpi in kpi_list:
 
-                    print(Y+'ps_cssr'+W, f'= {kpi_2}'+G,
-                          f'Median : {float(statistics.median(kpi_2))}'+W)
+                        outSheet.write(row_2, column_2, kpi)
 
-                    outSheet.write(2, z + 1, float(statistics.median(kpi_2)))
+                        column_2 += 1
 
-                    print(Y+'ps_call_drop_ratio'+W, f'= {kpi_3}'+G,
-                          f'Median : {float(statistics.median(kpi_3))}'+W)
+                    outSheet.write(row_2, row_1, 'cell')
 
-                    outSheet.write(3, z + 1, float(statistics.median(kpi_3)))
+                    try:
 
-                    print(Y+'average_hsdpa_user_throughput_dc+sc(mbit/s)(cell_huawei)'+W, f'= {kpi_4}'+G,
-                          f'Median : {float(statistics.median(kpi_4))}'+W)
+                        print(f'cell : {C+main_cell_source_index_3[z]+W}')
+                        outSheet.write(row_1, z + 1, main_cell_source_index_2[z])
 
-                    outSheet.write(4, z + 1, float(statistics.median(kpi_4)))
+                        print(Y+'payload'+W, f'= {kpi_1}'+G,
+                            f'Median : {float(statistics.median(kpi_1))}'+W)
 
-                    print(Y+'hsupa_uplink_throughput_in_v16(cell_hu)'+W, f'= {kpi_5}'+G,
-                          f'Median : {float(statistics.median(kpi_5))}'+W)
+                        outSheet.write(1, z + 1, float(statistics.median(kpi_1)))
 
-                    outSheet.write(5, z + 1, float(statistics.median(kpi_5)))
+                        print(Y+'ps_cssr'+W, f'= {kpi_2}'+G,
+                            f'Median : {float(statistics.median(kpi_2))}'+W)
 
-                    print(Y+'cs+ps_rab_setup_success_ratio'+W, f'= {kpi_6}'+G,
-                          f'Median : {float(statistics.median(kpi_6))}'+W)
+                        outSheet.write(2, z + 1, float(statistics.median(kpi_2)))
 
-                    outSheet.write(6, z + 1, float(statistics.median(kpi_6)))
+                        print(Y+'ps_call_drop_ratio'+W, f'= {kpi_3}'+G,
+                            f'Median : {float(statistics.median(kpi_3))}'+W)
 
-                    print(Y+'hsdpa_soft_handover_success_ratio'+W, f'= {kpi_7}'+G,
-                          f'Median : {float(statistics.median(kpi_7))}'+W)
+                        outSheet.write(3, z + 1, float(statistics.median(kpi_3)))
 
-                    outSheet.write(7, z + 1, float(statistics.median(kpi_7)))
+                        print(Y+'average_hsdpa_user_throughput_dc+sc(mbit/s)(cell_huawei)'+W, f'= {kpi_4}'+G,
+                            f'Median : {float(statistics.median(kpi_4))}'+W)
 
-                    print(Y+'hs_share_payload_%'+W, f'= {kpi_8}'+G,
-                          f'Median : {float(statistics.median(kpi_8))}'+W)
+                        outSheet.write(4, z + 1, float(statistics.median(kpi_4)))
 
-                    outSheet.write(8, z + 1, float(statistics.median(kpi_8)))
+                        print(Y+'hsupa_uplink_throughput_in_v16(cell_hu)'+W, f'= {kpi_5}'+G,
+                            f'Median : {float(statistics.median(kpi_5))}'+W)
 
-                    print(Y+'hsdpa_cdr(%)_(hu_cell)_new'+W, f'= {kpi_9}'+G,
-                          f'Median : {float(statistics.median(kpi_9))}'+W)
+                        outSheet.write(5, z + 1, float(statistics.median(kpi_5)))
 
-                    outSheet.write(9, z + 1, float(statistics.median(kpi_9)))
+                        print(Y+'cs+ps_rab_setup_success_ratio'+W, f'= {kpi_6}'+G,
+                            f'Median : {float(statistics.median(kpi_6))}'+W)
 
-                    print(Y+'hsupa_cdr(%)_(hu_cell)_new'+W, f'= {kpi_10}'+G,
-                          f'Median : {float(statistics.median(kpi_10))}'+W)
+                        outSheet.write(6, z + 1, float(statistics.median(kpi_6)))
 
-                    outSheet.write(10, z + 1, float(statistics.median(kpi_10)))
+                        print(Y+'hsdpa_soft_handover_success_ratio'+W, f'= {kpi_7}'+G,
+                            f'Median : {float(statistics.median(kpi_7))}'+W)
 
-                    print(Y+'ps_r99_call_drop_ratio_with_pch(hu_cell)'+W, f'= {kpi_11}'+G,
-                          f'Median : {float(statistics.median(kpi_11))}'+W)
+                        outSheet.write(7, z + 1, float(statistics.median(kpi_7)))
 
-                    outSheet.write(11, z + 1, float(statistics.median(kpi_11)))
+                        print(Y+'hs_share_payload_%'+W, f'= {kpi_8}'+G,
+                            f'Median : {float(statistics.median(kpi_8))}'+W)
 
-                    print(Y+'nack_ratio(cell_huawei)'+W, f'= {kpi_12}'+G,
-                          f'Median : {float(statistics.median(kpi_12))}'+W)
+                        outSheet.write(8, z + 1, float(statistics.median(kpi_8)))
 
-                    outSheet.write(12, z + 1, float(statistics.median(kpi_12)))
+                        print(Y+'hsdpa_cdr(%)_(hu_cell)_new'+W, f'= {kpi_9}'+G,
+                            f'Median : {float(statistics.median(kpi_9))}'+W)
 
-                    print(Y+'hsdpa_scheduling_cell_throughput(cell_huawei)'+W, f'= {kpi_13}'+G,
-                          f'Median : {float(statistics.median(kpi_13))}'+W)
+                        outSheet.write(9, z + 1, float(statistics.median(kpi_9)))
 
-                    outSheet.write(13, z + 1, float(statistics.median(kpi_13)))
+                        print(Y+'hsupa_cdr(%)_(hu_cell)_new'+W, f'= {kpi_10}'+G,
+                            f'Median : {float(statistics.median(kpi_10))}'+W)
 
-                    print(Y+'hsupa_cell_throughput(kbps)(hu_cell)'+W, f'= {kpi_14}'+G,
-                          f'Median : {float(statistics.median(kpi_14))}'+W)
+                        outSheet.write(10, z + 1, float(statistics.median(kpi_10)))
 
-                    outSheet.write(14, z + 1, float(statistics.median(kpi_14)))
+                        print(Y+'ps_r99_call_drop_ratio_with_pch(hu_cell)'+W, f'= {kpi_11}'+G,
+                            f'Median : {float(statistics.median(kpi_11))}'+W)
 
-                    print(Y+'radio_network_availability_ratio(hu_cell)'+W, f'= {kpi_15}'+G,
-                          f'Median : {float(statistics.median(kpi_15))}'+W)
+                        outSheet.write(11, z + 1, float(statistics.median(kpi_11)))
 
-                    outSheet.write(15, z + 1, float(statistics.median(kpi_15)))
+                        print(Y+'nack_ratio(cell_huawei)'+W, f'= {kpi_12}'+G,
+                            f'Median : {float(statistics.median(kpi_12))}'+W)
 
-                    print(Y+'ps_rab_setup_success_ratio(hu_cell)'+W, f'= {kpi_16}'+G,
-                          f'Median : {float(statistics.median(kpi_16))}'+W)
+                        outSheet.write(12, z + 1, float(statistics.median(kpi_12)))
 
-                    outSheet.write(16, z + 1, float(statistics.median(kpi_16)))
+                        print(Y+'hsdpa_scheduling_cell_throughput(cell_huawei)'+W, f'= {kpi_13}'+G,
+                            f'Median : {float(statistics.median(kpi_13))}'+W)
 
-                    print(Y+'bler9'+W, f'= {kpi_17}'+G,
-                          f'Median : {float(statistics.median(kpi_17))}'+W)
+                        outSheet.write(13, z + 1, float(statistics.median(kpi_13)))
 
-                    outSheet.write(17, z + 1, float(statistics.median(kpi_17)))
+                        print(Y+'hsupa_cell_throughput(kbps)(hu_cell)'+W, f'= {kpi_14}'+G,
+                            f'Median : {float(statistics.median(kpi_14))}'+W)
 
-                    print(Y+'cqi>20'+W, f'= {kpi_18}'+G,
-                          f'Median : {float(statistics.median(kpi_18))}'+W)
+                        outSheet.write(14, z + 1, float(statistics.median(kpi_14)))
 
-                    outSheet.write(18, z + 1, float(statistics.median(kpi_18)))
+                        print(Y+'radio_network_availability_ratio(hu_cell)'+W, f'= {kpi_15}'+G,
+                            f'Median : {float(statistics.median(kpi_15))}'+W)
 
-                    print(Y+'ps_rrc_connection_success_rate_repeatless(hu_cell)'+W, f'= {kpi_19}'+G,
-                          f'Median : {float(statistics.median(kpi_19))}'+W)
+                        outSheet.write(15, z + 1, float(statistics.median(kpi_15)))
 
-                    outSheet.write(19, z + 1, float(statistics.median(kpi_19)))
+                        print(Y+'ps_rab_setup_success_ratio(hu_cell)'+W, f'= {kpi_16}'+G,
+                            f'Median : {float(statistics.median(kpi_16))}'+W)
 
-                    print(Y+'ps_r99_rab_setup_success_ratio(hu_cell)'+W, f'= {kpi_20}'+G,
-                          f'Median : {float(statistics.median(kpi_20))}'+W)
+                        outSheet.write(16, z + 1, float(statistics.median(kpi_16)))
 
-                    outSheet.write(20, z + 1, float(statistics.median(kpi_20)))
+                        print(Y+'bler9'+W, f'= {kpi_17}'+G,
+                            f'Median : {float(statistics.median(kpi_17))}'+W)
 
-                    print(Y+'hsdpa_rab_setup_success_ratio(hu_cell)'+W, f'= {kpi_21}'+G,
-                          f'Median : {float(statistics.median(kpi_21))}'+W)
+                        outSheet.write(17, z + 1, float(statistics.median(kpi_17)))
 
-                    outSheet.write(21, z + 1, float(statistics.median(kpi_21)))
+                        print(Y+'cqi>20'+W, f'= {kpi_18}'+G,
+                            f'Median : {float(statistics.median(kpi_18))}'+W)
 
-                    print(Y+'hsupa_rab_setup_success_ratio(hu_cell)'+W, f'= {kpi_22}'+G,
-                          f'Median : {float(statistics.median(kpi_22))}'+W)
+                        outSheet.write(18, z + 1, float(statistics.median(kpi_18)))
 
-                    outSheet.write(22, z + 1, float(statistics.median(kpi_22)))
+                        print(Y+'ps_rrc_connection_success_rate_repeatless(hu_cell)'+W, f'= {kpi_19}'+G,
+                            f'Median : {float(statistics.median(kpi_19))}'+W)
 
-                    print(Y+'vs.rab.abnormrel.ps_rnc'+W, f'= {kpi_23}'+G,
-                          f'Median : {float(statistics.median(kpi_23))}'+W)
+                        outSheet.write(19, z + 1, float(statistics.median(kpi_19)))
 
-                    outSheet.write(23, z + 1, float(statistics.median(kpi_23)))
+                        print(Y+'ps_r99_rab_setup_success_ratio(hu_cell)'+W, f'= {kpi_20}'+G,
+                            f'Median : {float(statistics.median(kpi_20))}'+W)
 
-                    print(Y+'ps_rab_setup_congestion_rate'+W, f'= {kpi_24}'+G,
-                          f'Median : {float(statistics.median(kpi_24))}'+W)
+                        outSheet.write(20, z + 1, float(statistics.median(kpi_20)))
 
-                    outSheet.write(24, z + 1, float(statistics.median(kpi_24)))
+                        print(Y+'hsdpa_rab_setup_success_ratio(hu_cell)'+W, f'= {kpi_21}'+G,
+                            f'Median : {float(statistics.median(kpi_21))}'+W)
 
-                    print(Y+'ps_rab_setup_success_ratio'+W, f'= {kpi_25}'+G,
-                          f'Median : {float(statistics.median(kpi_25))}'+W)
+                        outSheet.write(21, z + 1, float(statistics.median(kpi_21)))
 
-                    outSheet.write(25, z + 1, float(statistics.median(kpi_25)))
+                        print(Y+'hsupa_rab_setup_success_ratio(hu_cell)'+W, f'= {kpi_22}'+G,
+                            f'Median : {float(statistics.median(kpi_22))}'+W)
 
-                    print(Y+'ps_rab_congestion_rate'+W, f'= {kpi_26}'+G,
-                          f'Median : {float(statistics.median(kpi_26))}'+W)
+                        outSheet.write(22, z + 1, float(statistics.median(kpi_22)))
 
-                    outSheet.write(26, z + 1, float(statistics.median(kpi_26)))
+                        print(Y+'vs.rab.abnormrel.ps_rnc'+W, f'= {kpi_23}'+G,
+                            f'Median : {float(statistics.median(kpi_23))}'+W)
 
-                    print(Y+'hsdpa_user_throughput'+W, f'= {kpi_27}'+G,
-                          f'Median : {float(statistics.median(kpi_27))}'+W)
+                        outSheet.write(23, z + 1, float(statistics.median(kpi_23)))
 
-                    outSheet.write(27, z + 1, float(statistics.median(kpi_27)))
+                        print(Y+'ps_rab_setup_congestion_rate'+W, f'= {kpi_24}'+G,
+                            f'Median : {float(statistics.median(kpi_24))}'+W)
 
-                    print(Y+'hsupa_throughput_mace'+W, f'= {kpi_28}'+G,
-                          f'Median : {float(statistics.median(kpi_28))}'+W)
+                        outSheet.write(24, z + 1, float(statistics.median(kpi_24)))
 
-                    outSheet.write(28, z + 1, float(statistics.median(kpi_28)))
+                        print(Y+'ps_rab_setup_success_ratio'+W, f'= {kpi_25}'+G,
+                            f'Median : {float(statistics.median(kpi_25))}'+W)
 
-                    print(Y+'ps_cssr_ura_pch(hu_cell)'+W, f'= {kpi_29}'+G,
-                          f'Median : {float(statistics.median(kpi_29))}'+W)
+                        outSheet.write(25, z + 1, float(statistics.median(kpi_25)))
 
-                    outSheet.write(29, z + 1, float(statistics.median(kpi_29)))
+                        print(Y+'ps_rab_congestion_rate'+W, f'= {kpi_26}'+G,
+                            f'Median : {float(statistics.median(kpi_26))}'+W)
 
-                    print(Y+'pch2dch_statetrans_sr(hu_cell)'+W, f'= {kpi_30}'+G,
-                          f'Median : {float(statistics.median(kpi_30))}'+W)
+                        outSheet.write(26, z + 1, float(statistics.median(kpi_26)))
 
-                    outSheet.write(30, z + 1, float(statistics.median(kpi_30)))
+                        print(Y+'hsdpa_user_throughput'+W, f'= {kpi_27}'+G,
+                            f'Median : {float(statistics.median(kpi_27))}'+W)
 
-                    print(Y+'mean_rtwp(cell_hu)'+W, f'= {kpi_31}'+G,
-                          f'Median : {float(statistics.median(kpi_31))}'+W)
+                        outSheet.write(27, z + 1, float(statistics.median(kpi_27)))
 
-                    outSheet.write(31, z + 1, float(statistics.median(kpi_31)))
+                        print(Y+'hsupa_throughput_mace'+W, f'= {kpi_28}'+G,
+                            f'Median : {float(statistics.median(kpi_28))}'+W)
 
-                    print(Y+'cqi_new(hu_cell)'+W, f'= {kpi_32}'+G,
-                          f'Median : {float(statistics.median(kpi_32))}'+W)
+                        outSheet.write(28, z + 1, float(statistics.median(kpi_28)))
 
-                    outSheet.write(32, z + 1, float(statistics.median(kpi_32)))
+                        print(Y+'ps_cssr_ura_pch(hu_cell)'+W, f'= {kpi_29}'+G,
+                            f'Median : {float(statistics.median(kpi_29))}'+W)
+
+                        outSheet.write(29, z + 1, float(statistics.median(kpi_29)))
+
+                        print(Y+'pch2dch_statetrans_sr(hu_cell)'+W, f'= {kpi_30}'+G,
+                            f'Median : {float(statistics.median(kpi_30))}'+W)
+
+                        outSheet.write(30, z + 1, float(statistics.median(kpi_30)))
+
+                        print(Y+'mean_rtwp(cell_hu)'+W, f'= {kpi_31}'+G,
+                            f'Median : {float(statistics.median(kpi_31))}'+W)
+
+                        outSheet.write(31, z + 1, float(statistics.median(kpi_31)))
+
+                        print(Y+'cqi_new(hu_cell)'+W, f'= {kpi_32}'+G,
+                            f'Median : {float(statistics.median(kpi_32))}'+W)
+
+                        outSheet.write(32, z + 1, float(statistics.median(kpi_32)))
+
+                    except(TypeError):
+
+                        continue
 
                 print(R+splitter+W)
 
                 outWorkbook.close()
 
                 userfdec = input(
-                    C+'RD2 calculation Done! continue? [y/n] : '+W)
+                    C+'RD3 calculation Done! continue? [y/n] : '+W)
 
                 userfdec = userfdec.lower()
 
@@ -1080,7 +1099,7 @@ if __name__ == '__main__':
 
             case 5:
 
-                outWorkbook = xlsxwriter.Workbook(f"RD4_BL.xlsx")
+                outWorkbook = xlsxwriter.Workbook(f"RD4_Daily_BL.xlsx")
 
                 outSheet = outWorkbook.add_worksheet(name='Median_bl')
 
