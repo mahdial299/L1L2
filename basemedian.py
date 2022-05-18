@@ -1141,7 +1141,7 @@ if __name__ == '__main__':
                 astro_RD4 = df_RD4.to_dict('records')
                 # =====================
 
-                main_cell_source_index_4 = df_RD2[['cell_ref']].dropna()
+                main_cell_source_index_4 = df_RD4[['cell_ref']].dropna()
                 main_cell_source_index_4 = np.asanyarray(
                     main_cell_source_index_4).flatten()
                 main_cell_source_index_4 = list(
@@ -1285,169 +1285,188 @@ if __name__ == '__main__':
                         else:
 
                             continue
+                    
+                    row_1 = 0
 
-                    print(f'cell : {C+main_cell_source_index_4[z]+W}')
-                    outSheet.write(z + 1, row_1 , main_cell_source_index_4[z])
+                    row_2 = 0
+                    column_2 = 1
 
-                    print(Y+'total_traffic_volume(gb)'+W, f'= {kpi_1}'+G,
-                          f'Median : {float(statistics.median(kpi_1))}'+W)
+                    for kpi in kpi_list:
 
-                    outSheet.write(z + 1, 1 , float(statistics.median(kpi_1)))
+                        outSheet.write(row_2, column_2, kpi)
 
-                    print(Y+'e-rab_setup_success_rate(hu_cell)'+W, f'= {kpi_2}'+G,
-                          f'Median : {float(statistics.median(kpi_2))}'+W)
+                        column_2 += 1
 
-                    outSheet.write(z + 1, 2 , float(statistics.median(kpi_2)))
+                    try:
 
-                    print(Y+'e-rab_setup_success_rate'+W, f'= {kpi_3}'+G,
-                          f'Median : {float(statistics.median(kpi_3))}'+W)
+                        outSheet.write(row_2, row_1, 'cell')
+                        print(f'cell : {C+main_cell_source_index_4[z]+W}')
+                        outSheet.write(z + 1, row_1 , main_cell_source_index_4[z])
 
-                    outSheet.write(z + 1, 3 , float(statistics.median(kpi_3)))
+                        print(Y+'total_traffic_volume(gb)'+W, f'= {kpi_1}'+G,
+                            f'Median : {float(statistics.median(kpi_1))}'+W)
 
-                    print(Y+'ran_avail_rate'+W, f'= {kpi_4}'+G,
-                          f'Median : {float(statistics.median(kpi_4))}'+W)
+                        outSheet.write(z + 1, 1 , float(statistics.median(kpi_1)))
 
-                    outSheet.write(z + 1, 4 , float(statistics.median(kpi_4)))
+                        print(Y+'e-rab_setup_success_rate(hu_cell)'+W, f'= {kpi_2}'+G,
+                            f'Median : {float(statistics.median(kpi_2))}'+W)
 
-                    print(Y+'interf_hoout_sr'+W, f'= {kpi_5}'+G,
-                          f'Median : {float(statistics.median(kpi_5))}'+W)
+                        outSheet.write(z + 1, 2 , float(statistics.median(kpi_2)))
 
-                    outSheet.write(z + 1, 5 , float(statistics.median(kpi_5)))
+                        print(Y+'e-rab_setup_success_rate'+W, f'= {kpi_3}'+G,
+                            f'Median : {float(statistics.median(kpi_3))}'+W)
 
-                    print(Y+'intraf_hoout_sr'+W, f'= {kpi_6}'+G,
-                          f'Median : {float(statistics.median(kpi_6))}'+W)
+                        outSheet.write(z + 1, 3 , float(statistics.median(kpi_3)))
 
-                    outSheet.write(z + 1, 6 , float(statistics.median(kpi_6)))
+                        print(Y+'ran_avail_rate'+W, f'= {kpi_4}'+G,
+                            f'Median : {float(statistics.median(kpi_4))}'+W)
 
-                    print(Y+'inter_rat_handover_out_success_rate(3gpltogsm)'+W, f'= {kpi_7}'+G,
-                          f'Median : {float(statistics.median(kpi_7))}'+W)
+                        outSheet.write(z + 1, 4 , float(statistics.median(kpi_4)))
 
-                    outSheet.write(z + 1, 7 , float(statistics.median(kpi_7)))
+                        print(Y+'interf_hoout_sr'+W, f'= {kpi_5}'+G,
+                            f'Median : {float(statistics.median(kpi_5))}'+W)
 
-                    print(Y+'inter_rat_handover_out_successrate(3gpltowcdma)'+W, f'= {kpi_8}'+G,
-                          f'Median : {float(statistics.median(kpi_8))}'+W)
+                        outSheet.write(z + 1, 5 , float(statistics.median(kpi_5)))
 
-                    outSheet.write(z + 1, 8 , float(statistics.median(kpi_8)))
+                        print(Y+'intraf_hoout_sr'+W, f'= {kpi_6}'+G,
+                            f'Median : {float(statistics.median(kpi_6))}'+W)
 
-                    print(Y+'average_dl_latency_ms(huawei_lte_eucell)'+W, f'= {kpi_9}'+G,
-                          f'Median : {float(statistics.median(kpi_9))}'+W)
+                        outSheet.write(z + 1, 6 , float(statistics.median(kpi_6)))
 
-                    outSheet.write(z + 1, 9 , float(statistics.median(kpi_9)))
+                        print(Y+'inter_rat_handover_out_success_rate(3gpltogsm)'+W, f'= {kpi_7}'+G,
+                            f'Median : {float(statistics.median(kpi_7))}'+W)
 
-                    print(Y+'average_ul_packet_loss_%(huawei_lte_ucell)'+W, f'= {kpi_10}'+G,
-                          f'Median : {float(statistics.median(kpi_10))}'+W)
+                        outSheet.write(z + 1, 7 , float(statistics.median(kpi_7)))
 
-                    outSheet.write(z + 1, 10 , float(statistics.median(kpi_10)))
+                        print(Y+'inter_rat_handover_out_successrate(3gpltowcdma)'+W, f'= {kpi_8}'+G,
+                            f'Median : {float(statistics.median(kpi_8))}'+W)
 
-                    print(Y+'call_drop_rate'+W, f'= {kpi_11}'+G,
-                          f'Median : {float(statistics.median(kpi_11))}'+W)
+                        outSheet.write(z + 1, 8 , float(statistics.median(kpi_8)))
 
-                    outSheet.write(z + 1, 11 , float(statistics.median(kpi_11)))
+                        print(Y+'average_dl_latency_ms(huawei_lte_eucell)'+W, f'= {kpi_9}'+G,
+                            f'Median : {float(statistics.median(kpi_9))}'+W)
 
-                    print(Y+'average_downlink_user_throughput(mbit/s)'+W, f'= {kpi_12}'+G,
-                          f'Median : {float(statistics.median(kpi_12))}'+W)
+                        outSheet.write(z + 1, 9 , float(statistics.median(kpi_9)))
 
-                    outSheet.write(z + 1, 12 , float(statistics.median(kpi_12)))
+                        print(Y+'average_ul_packet_loss_%(huawei_lte_ucell)'+W, f'= {kpi_10}'+G,
+                            f'Median : {float(statistics.median(kpi_10))}'+W)
 
-                    print(Y+'average_uplink_user_throughput(mbit/s)'+W, f'= {kpi_13}'+G,
-                          f'Median : {float(statistics.median(kpi_13))}'+W)
+                        outSheet.write(z + 1, 10 , float(statistics.median(kpi_10)))
 
-                    outSheet.write(z + 1, 13 , float(statistics.median(kpi_13)))
+                        print(Y+'call_drop_rate'+W, f'= {kpi_11}'+G,
+                            f'Median : {float(statistics.median(kpi_11))}'+W)
 
-                    print(Y+'csfb_rate'+W, f'= {kpi_14}'+G,
-                          f'Median : {float(statistics.median(kpi_14))}'+W)
+                        outSheet.write(z + 1, 11 , float(statistics.median(kpi_11)))
 
-                    outSheet.write(z + 1, 14 , float(statistics.median(kpi_14)))
+                        print(Y+'average_downlink_user_throughput(mbit/s)'+W, f'= {kpi_12}'+G,
+                            f'Median : {float(statistics.median(kpi_12))}'+W)
 
-                    print(Y+'cssr(all)'+W, f'= {kpi_15}'+G,
-                          f'Median : {float(statistics.median(kpi_15))}'+W)
+                        outSheet.write(z + 1, 12 , float(statistics.median(kpi_12)))
 
-                    outSheet.write(z + 1, 15 , float(statistics.median(kpi_15)))
+                        print(Y+'average_uplink_user_throughput(mbit/s)'+W, f'= {kpi_13}'+G,
+                            f'Median : {float(statistics.median(kpi_13))}'+W)
 
-                    print(Y+'downlink_traffic_volume(gb)'+W, f'= {kpi_16}'+G,
-                          f'Median : {float(statistics.median(kpi_16))}'+W)
+                        outSheet.write(z + 1, 13 , float(statistics.median(kpi_13)))
 
-                    outSheet.write(z + 1, 16 , float(statistics.median(kpi_16)))
+                        print(Y+'csfb_rate'+W, f'= {kpi_14}'+G,
+                            f'Median : {float(statistics.median(kpi_14))}'+W)
 
-                    print(Y+'ul_traffic_volume(gb)'+W, f'= {kpi_17}'+G,
-                          f'Median : {float(statistics.median(kpi_17))}'+W)
+                        outSheet.write(z + 1, 14 , float(statistics.median(kpi_14)))
 
-                    outSheet.write(z + 1, 17 , float(statistics.median(kpi_17)))
+                        print(Y+'cssr(all)'+W, f'= {kpi_15}'+G,
+                            f'Median : {float(statistics.median(kpi_15))}'+W)
 
-                    print(Y+'downlink_cell_throghput(kbit/s)'+W, f'= {kpi_18}'+G,
-                          f'Median : {float(statistics.median(kpi_18))}'+W)
+                        outSheet.write(z + 1, 15 , float(statistics.median(kpi_15)))
 
-                    outSheet.write(z + 1, 18 , float(statistics.median(kpi_18)))
+                        print(Y+'downlink_traffic_volume(gb)'+W, f'= {kpi_16}'+G,
+                            f'Median : {float(statistics.median(kpi_16))}'+W)
 
-                    print(Y+'uplink_cell_throghput(kbit/s+)'+W, f'= {kpi_19}'+G,
-                          f'Median : {float(statistics.median(kpi_19))}'+W)
+                        outSheet.write(z + 1, 16 , float(statistics.median(kpi_16)))
 
-                    outSheet.write(z + 1, 19 , float(statistics.median(kpi_19)))
+                        print(Y+'ul_traffic_volume(gb)'+W, f'= {kpi_17}'+G,
+                            f'Median : {float(statistics.median(kpi_17))}'+W)
 
-                    print(Y+'max_no_user'+W, f'= {kpi_20}'+G,
-                          f'Median : {float(statistics.median(kpi_20))}'+W)
+                        outSheet.write(z + 1, 17 , float(statistics.median(kpi_17)))
 
-                    outSheet.write(z + 1, 20 , float(statistics.median(kpi_20)))
+                        print(Y+'downlink_cell_throghput(kbit/s)'+W, f'= {kpi_18}'+G,
+                            f'Median : {float(statistics.median(kpi_18))}'+W)
 
-                    print(Y+'number_of_available_downlink_prbs_cell'+W, f'= {kpi_21}'+G,
-                          f'Median : {float(statistics.median(kpi_21))}'+W)
+                        outSheet.write(z + 1, 18 , float(statistics.median(kpi_18)))
 
-                    outSheet.write(z + 1, 21 , float(statistics.median(kpi_21)))
+                        print(Y+'uplink_cell_throghput(kbit/s+)'+W, f'= {kpi_19}'+G,
+                            f'Median : {float(statistics.median(kpi_19))}'+W)
 
-                    print(Y+'average_cqi(huawei_lte_cell)'+W, f'= {kpi_22}'+G,
-                          f'Median : {float(statistics.median(kpi_22))}'+W)
+                        outSheet.write(z + 1, 19 , float(statistics.median(kpi_19)))
 
-                    outSheet.write(z + 1, 22, float(statistics.median(kpi_22)))
+                        print(Y+'max_no_user'+W, f'= {kpi_20}'+G,
+                            f'Median : {float(statistics.median(kpi_20))}'+W)
 
-                    print(Y+'intra_rat_handover_sr_intra+inter_frequency(huawei_lte_cell'+W, f'= {kpi_23}'+G,
-                          f'Median : {float(statistics.median(kpi_23))}'+W)
+                        outSheet.write(z + 1, 20 , float(statistics.median(kpi_20)))
 
-                    outSheet.write(z + 1, 23, float(statistics.median(kpi_23)))
+                        print(Y+'number_of_available_downlink_prbs_cell'+W, f'= {kpi_21}'+G,
+                            f'Median : {float(statistics.median(kpi_21))}'+W)
 
-                    print(Y+'rrc_connection_setup_success_rate_service'+W, f'= {kpi_24}'+G,
-                          f'Median : {float(statistics.median(kpi_24))}'+W)
+                        outSheet.write(z + 1, 21 , float(statistics.median(kpi_21)))
 
-                    outSheet.write(z + 1, 24, float(statistics.median(kpi_24)))
+                        print(Y+'average_cqi(huawei_lte_cell)'+W, f'= {kpi_22}'+G,
+                            f'Median : {float(statistics.median(kpi_22))}'+W)
 
-                    print(Y+'s1signal_e-rab_setup_sr(hu_cell)'+W, f'= {kpi_25}'+G,
-                          f'Median : {float(statistics.median(kpi_25))}'+W)
+                        outSheet.write(z + 1, 22, float(statistics.median(kpi_22)))
 
-                    outSheet.write(z + 1, 25, float(statistics.median(kpi_25)))
+                        print(Y+'intra_rat_handover_sr_intra+inter_frequency(huawei_lte_cell'+W, f'= {kpi_23}'+G,
+                            f'Median : {float(statistics.median(kpi_23))}'+W)
 
-                    print(Y+'cell_unvail_duration_daily(huawei_cell_lte)'+W, f'= {kpi_26}'+G,
-                          f'Median : {float(statistics.median(kpi_26))}'+W)
+                        outSheet.write(z + 1, 23, float(statistics.median(kpi_23)))
 
-                    outSheet.write(z + 1, 26, float(statistics.median(kpi_26)))
+                        print(Y+'rrc_connection_setup_success_rate_service'+W, f'= {kpi_24}'+G,
+                            f'Median : {float(statistics.median(kpi_24))}'+W)
 
-                    print(Y+'rssi_pucch(huawei_lte_cell)'+W, f'= {kpi_27}'+G,
-                          f'Median : {float(statistics.median(kpi_27))}'+W)
+                        outSheet.write(z + 1, 24, float(statistics.median(kpi_24)))
 
-                    outSheet.write(z + 1, 27, float(statistics.median(kpi_27)))
+                        print(Y+'s1signal_e-rab_setup_sr(hu_cell)'+W, f'= {kpi_25}'+G,
+                            f'Median : {float(statistics.median(kpi_25))}'+W)
 
-                    print(Y+'rssi_pusch(huawei_lte_cell)'+W, f'= {kpi_28}'+G,
-                          f'Median : {float(statistics.median(kpi_28))}'+W)
+                        outSheet.write(z + 1, 25, float(statistics.median(kpi_25)))
 
-                    outSheet.write(z + 1, 28, float(statistics.median(kpi_28)))
+                        print(Y+'cell_unvail_duration_daily(huawei_cell_lte)'+W, f'= {kpi_26}'+G,
+                            f'Median : {float(statistics.median(kpi_26))}'+W)
 
-                    print(Y+'cell_availability_rate_exclude_blocking(cell_hu)'+W, f'= {kpi_29}'+G,
-                          f'Median : {float(statistics.median(kpi_29))}'+W)
+                        outSheet.write(z + 1, 26, float(statistics.median(kpi_26)))
 
-                    outSheet.write(z + 1, 29, float(statistics.median(kpi_29)))
+                        print(Y+'rssi_pucch(huawei_lte_cell)'+W, f'= {kpi_27}'+G,
+                            f'Median : {float(statistics.median(kpi_27))}'+W)
 
-                    print(Y+'cell_availability_rate_include_blocking(cell_hu)'+W, f'= {kpi_30}'+G,
-                          f'Median : {float(statistics.median(kpi_30))}'+W)
+                        outSheet.write(z + 1, 27, float(statistics.median(kpi_27)))
 
-                    outSheet.write(z + 1, 30, float(statistics.median(kpi_30)))
+                        print(Y+'rssi_pusch(huawei_lte_cell)'+W, f'= {kpi_28}'+G,
+                            f'Median : {float(statistics.median(kpi_28))}'+W)
 
-                    print(Y+'cell_availability_rate_include_blocking'+W, f'= {kpi_31}'+G,
-                          f'Median : {float(statistics.median(kpi_31))}'+W)
+                        outSheet.write(z + 1, 28, float(statistics.median(kpi_28)))
 
-                    outSheet.write(z + 1, 31, float(statistics.median(kpi_31)))
+                        print(Y+'cell_availability_rate_exclude_blocking(cell_hu)'+W, f'= {kpi_29}'+G,
+                            f'Median : {float(statistics.median(kpi_29))}'+W)
 
-                    print(Y+'cell_availability_rate_include_blocking(cell_hu_no_null)'+W, f'= {kpi_32}'+G,
-                          f'Median : {float(statistics.median(kpi_32))}'+W)
+                        outSheet.write(z + 1, 29, float(statistics.median(kpi_29)))
 
-                    outSheet.write(z + 1, 32, float(statistics.median(kpi_32)))
+                        print(Y+'cell_availability_rate_include_blocking(cell_hu)'+W, f'= {kpi_30}'+G,
+                            f'Median : {float(statistics.median(kpi_30))}'+W)
+
+                        outSheet.write(z + 1, 30, float(statistics.median(kpi_30)))
+
+                        print(Y+'cell_availability_rate_include_blocking'+W, f'= {kpi_31}'+G,
+                            f'Median : {float(statistics.median(kpi_31))}'+W)
+
+                        outSheet.write(z + 1, 31, float(statistics.median(kpi_31)))
+
+                        print(Y+'cell_availability_rate_include_blocking(cell_hu_no_null)'+W, f'= {kpi_32}'+G,
+                            f'Median : {float(statistics.median(kpi_32))}'+W)
+
+                        outSheet.write(z + 1, 32, float(statistics.median(kpi_32)))
+                        
+                    except(TypeError):
+
+                        continue
+
 
                 print(R+splitter+W)
 
