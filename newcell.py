@@ -56,6 +56,7 @@ if __name__ == "__main__":
 
             case 'CC2':
 
+                # for z in range len()
                 pass
 
             case 'CC3':
