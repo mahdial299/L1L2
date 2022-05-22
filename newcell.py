@@ -50,7 +50,31 @@ if __name__ == "__main__":
 
         lister()
 
-        userCh = int(input('Enter tech as integer : '))
+        userCh = input('Enter tech as integer : ')
+
+        match userCh:
+
+            case 'CC2':
+
+                pass
+
+            case 'CC3':
+
+                pass
+
+            case 'RD2':
+
+                pass
+
+            case 'RD3':
+
+                pass
+
+            case 'RD4':
+
+                pass
+
+
 
 
     
