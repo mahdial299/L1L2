@@ -1491,4 +1491,6 @@ if __name__ == '__main__':
 
             case 6:
 
-                pass
+                os.chdir(gitdir)
+
+                os.system(fr'python newcell.py')
