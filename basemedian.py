@@ -1139,9 +1139,9 @@ if __name__ == '__main__':
                 # ==================== data
                 df_RD4 = pd.read_excel('RD4_data.xlsx', sheet_name='Sheet1')
                 astro_RD4 = df_RD4.to_dict('records')
-                # =====================
+                # ====================
 
-                main_cell_source_index_4 = df_RD4[['cell_ref']].dropna()
+                main_cell_source_index_4 = df_RD3[['cell_ref']].dropna()
                 main_cell_source_index_4 = np.asanyarray(
                     main_cell_source_index_4).flatten()
                 main_cell_source_index_4 = list(
@@ -1297,11 +1297,13 @@ if __name__ == '__main__':
 
                         column_2 += 1
 
+                    outSheet.write(row_2, row_1, 'cell')
+
                     try:
 
-                        outSheet.write(row_2, row_1, 'cell')
                         print(f'cell : {C+main_cell_source_index_4[z]+W}')
-                        outSheet.write(z + 1, row_1 , main_cell_source_index_4[z])
+                        outSheet.write(
+                            z + 1, row_1, main_cell_source_index_4[z])
 
                         print(Y+'total_traffic_volume(gb)'+W, f'= {kpi_1}'+G,
                             f'Median : {float(statistics.median(kpi_1))}'+W)
