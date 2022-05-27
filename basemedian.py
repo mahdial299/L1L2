@@ -1141,7 +1141,7 @@ if __name__ == '__main__':
                 astro_RD4 = df_RD4.to_dict('records')
                 # ====================
 
-                main_cell_source_index_4 = df_RD3[['cell_ref']].dropna()
+                main_cell_source_index_4 = df_RD4[['cell_ref']].dropna()
                 main_cell_source_index_4 = np.asanyarray(
                     main_cell_source_index_4).flatten()
                 main_cell_source_index_4 = list(
