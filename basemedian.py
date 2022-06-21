@@ -281,19 +281,35 @@ if __name__ == '__main__':
                         outSheet.write(
                             z + 1, 18, float(statistics.median(kpi_18)))
 
-                        print(Y+'Label'+W, f'= {kpi_18}'+G,
-                              f'Average : {float(sum(kpi_18) / len(kpi_18))}'+W)    # average method
+                        print(Y+'Label'+W, f'= {kpi_1}'+G,
+                              f'Average : {float(sum(kpi_1) / len(kpi_1))}'+W)    # average method
                         
-                        # if float(sum(kpi_18) / len(kpi_18)):
+                        if float(sum(kpi_1) / len(kpi_1)) > 400:
 
-                            # pass
+                            outSheet.write(                     
+                            z + 1, 19, 'L1')   
 
-                        # else:
+                        elif 250 < float(sum(kpi_1) / len(kpi_1)) <= 400:
 
-                            # pass
+                            outSheet.write(                     
+                            z + 1, 19, 'L2')   
+                        
+                        elif 120 < float(sum(kpi_1) / len(kpi_1)) <= 250:
 
-                        # outSheet.write(                      # this shit go up to the condition line (289 && 293)
-                        #     z + 1, 19, float(sum(kpi_18) / len(kpi_18)))    # the function(float...) condition must replace with label (L1/L2)
+                            outSheet.write(                     
+                            z + 1, 19, 'L3')   
+
+                        elif 50 < float(sum(kpi_1) / len(kpi_1)) <= 120:
+
+                            outSheet.write(                     
+                            z + 1, 19, 'L4')   
+
+                        elif float(sum(kpi_1) / len(kpi_1)) <= 50:
+
+                            outSheet.write(                     
+                            z + 1, 19, 'L5')   
+
+                        
 
                     except(TypeError):
 
@@ -337,6 +353,7 @@ if __name__ == '__main__':
                     np.nan_to_num(main_cell_source_index_2))
 
                 kpi_list = [
+
                     'tbf_establishment_success_rate(ul+dl)(%)(hu_cell)',
                     'tbf_drop(ul+dl)(hu_cell)',
                     'average_throughput_of_downlink_gprs_llc_per_user(kbps)',
@@ -348,7 +365,9 @@ if __name__ == '__main__':
                     'payload_total(cell_hu)',
                     'edge_share_payload(cell_hu)',
                     'tch_availability(hu_cell)',
-                    'trx'
+                    'trx',
+                    'Label'
+
                 ]
 
                 for z in range(len(main_cell_source_index_2)):
@@ -491,6 +510,36 @@ if __name__ == '__main__':
                         outSheet.write(
                             z + 1, 12, float(statistics.median(kpi_12)))
 
+
+                        print(Y+'Label'+W, f'= {kpi_9}'+G,
+                              f'Average : {float(sum(kpi_9) / len(kpi_9))}'+W)    # average method
+                        
+                        if float(sum(kpi_9) / len(kpi_9)) > 1:
+
+                            outSheet.write(                     
+                            z + 1, 13, 'L1')   
+
+                        elif 0.7 < float(sum(kpi_9) / len(kpi_9)) <= 1:
+
+                            outSheet.write(                     
+                            z + 1, 13, 'L2')   
+                        
+                        elif 0.4 < float(sum(kpi_9) / len(kpi_9)) <= 0.7:
+
+                            outSheet.write(                     
+                            z + 1, 13, 'L3')   
+
+                        elif 0.2 < float(sum(kpi_9) / len(kpi_9)) <= 0.4:         
+
+                            outSheet.write(                     
+                            z + 1, 13, 'L4')   
+
+                        elif float(sum(kpi_9) / len(kpi_9)) <= 0.2:
+
+                            outSheet.write(                     
+                            z + 1, 13, 'L5')
+
+
                     except(TypeError):
 
                         continue
@@ -549,7 +598,8 @@ if __name__ == '__main__':
                     'soft_handover_succ_rate',
                     'inter_carrier_ho_success_rate',
                     'cs_rrc_setup_sr_ura_pch(hu_cell)',
-                    'cs_cssr_ura_pch(hu_cell)'
+                    'cs_cssr_ura_pch(hu_cell)',
+                    'Label'
 
                 ]
                 for z in range(len(main_cell_source_index_3)):
@@ -733,6 +783,36 @@ if __name__ == '__main__':
                         outSheet.write(
                             z + 1, 17, float(statistics.median(kpi_17)))
 
+
+
+                        print(Y+'Label'+W, f'= {kpi_1}'+G,
+                              f'Average : {float(sum(kpi_1) / len(kpi_1))}'+W)    # average method
+                        
+                        if float(sum(kpi_1) / len(kpi_1)) > 150:
+
+                            outSheet.write(                     
+                            z + 1, 18, 'L1')   
+
+                        elif 120 < float(sum(kpi_1) / len(kpi_1)) <= 150:
+
+                            outSheet.write(                     
+                            z + 1, 18, 'L2')   
+                        
+                        elif 90 < float(sum(kpi_1) / len(kpi_1)) <= 120:
+
+                            outSheet.write(                     
+                            z + 1, 18, 'L3')   
+
+                        elif 50 < float(sum(kpi_1) / len(kpi_1)) <= 90:         
+
+                            outSheet.write(                     
+                            z + 1, 18, 'L4')   
+
+                        elif float(sum(kpi_1) / len(kpi_1)) <= 50:
+
+                            outSheet.write(                     
+                            z + 1, 18, 'L5')
+
                     except(TypeError):
 
                         continue
@@ -806,7 +886,8 @@ if __name__ == '__main__':
                     'ps_cssr_ura_pch(hu_cell)',
                     'pch2dch_statetrans_sr(hu_cell)',
                     'mean_rtwp(cell_hu)',
-                    'cqi_new(hu_cell)'
+                    'cqi_new(hu_cell)',
+                    'Label'
 
                 ]
 
@@ -1122,6 +1203,36 @@ if __name__ == '__main__':
                         outSheet.write(
                             z + 1, 32, float(statistics.median(kpi_32)))
 
+
+
+                        print(Y+'Label'+W, f'= {kpi_1}'+G,
+                              f'Average : {float(sum(kpi_1) / len(kpi_1))}'+W)    # average method
+                        
+                        if float(sum(kpi_1) / len(kpi_1)) > 28:
+
+                            outSheet.write(                     
+                            z + 1, 33, 'L1')   
+
+                        elif 23 < float(sum(kpi_1) / len(kpi_1)) <= 28:
+
+                            outSheet.write(                     
+                            z + 1, 33, 'L2')   
+                        
+                        elif 18 < float(sum(kpi_1) / len(kpi_1)) <= 23:
+
+                            outSheet.write(                     
+                            z + 1, 33, 'L3')   
+
+                        elif 13 < float(sum(kpi_1) / len(kpi_1)) <= 18:         
+
+                            outSheet.write(                     
+                            z + 1, 33, 'L4')   
+
+                        elif float(sum(kpi_1) / len(kpi_1)) <= 13:
+
+                            outSheet.write(                     
+                            z + 1, 33, 'L5')
+
                     except(TypeError):
 
                         continue
@@ -1195,7 +1306,8 @@ if __name__ == '__main__':
                     'cell_availability_rate_exclude_blocking(cell_hu)',
                     'cell_availability_rate_include_blocking(cell_hu)',
                     'cell_availability_rate_include_blocking',
-                    'cell_availability_rate_include_blocking(cell_hu_no_null)'
+                    'cell_availability_rate_include_blocking(cell_hu_no_null)',
+                    'Label'
 
                 ]
 
@@ -1479,6 +1591,36 @@ if __name__ == '__main__':
                             f'Median : {float(statistics.median(kpi_32))}'+W)
 
                         outSheet.write(z + 1, 32, float(statistics.median(kpi_32)))
+
+
+
+                        print(Y+'Label'+W, f'= {kpi_1}'+G,
+                              f'Average : {float(sum(kpi_1) / len(kpi_1))}'+W)    # average method
+                        
+                        if float(sum(kpi_1) / len(kpi_1)) > 160:
+
+                            outSheet.write(                     
+                            z + 1, 33, 'L1')   
+
+                        elif 120 < float(sum(kpi_1) / len(kpi_1)) <= 160:
+
+                            outSheet.write(                     
+                            z + 1, 33, 'L2')   
+                        
+                        elif 80 < float(sum(kpi_1) / len(kpi_1)) <= 120:
+
+                            outSheet.write(                     
+                            z + 1, 33, 'L3')   
+
+                        elif 40 < float(sum(kpi_1) / len(kpi_1)) <= 80:         
+
+                            outSheet.write(                     
+                            z + 1, 33, 'L4')   
+
+                        elif float(sum(kpi_1) / len(kpi_1)) <= 40:
+
+                            outSheet.write(                     
+                            z + 1, 33, 'L5')
                         
                     except(TypeError):
 
