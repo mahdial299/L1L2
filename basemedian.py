@@ -98,7 +98,8 @@ if __name__ == '__main__':
                     'sdcch_access_success_rate2',
                     'cdr3',
                     'rx_qualitty_dl_new',
-                    'rx_qualitty_ul_new'
+                    'rx_qualitty_ul_new',
+                    'Label'
 
                 ]
 
@@ -279,6 +280,20 @@ if __name__ == '__main__':
 
                         outSheet.write(
                             z + 1, 18, float(statistics.median(kpi_18)))
+
+                        print(Y+'Label'+W, f'= {kpi_18}'+G,
+                              f'Average : {float(sum(kpi_18) / len(kpi_18))}'+W)    # average method
+                        
+                        # if float(sum(kpi_18) / len(kpi_18)):
+
+                            # pass
+
+                        # else:
+
+                            # pass
+
+                        # outSheet.write(                      # this shit go up to the condition line (289 && 293)
+                        #     z + 1, 19, float(sum(kpi_18) / len(kpi_18)))    # the function(float...) condition must replace with label (L1/L2)
 
                     except(TypeError):
 
