@@ -69,7 +69,7 @@ if __name__ == '__main__':
                 outSheet = outWorkbook.add_worksheet(name='Median_bl')
 
                 # ================= data
-                df_CC2 = pd.read_excel('CC2_data.xlsx', sheet_name='Sheet1')
+                df_CC2 = pd.read_excel('CC2_Daily_data.xlsx', sheet_name='Sheet0')
                 astro_CC2 = df_CC2.to_dict('records')
                 # ========================
 
@@ -337,12 +337,12 @@ if __name__ == '__main__':
             case 2:
 
                 # os.makedirs(fr'{gitdir}/RD2_BL')
-                outWorkbook = xlsxwriter.Workbook(f"RD2_BL.xlsx")
+                outWorkbook = xlsxwriter.Workbook(f"RD2_Daily_BL.xlsx")
 
                 outSheet = outWorkbook.add_worksheet(name='Median_bl')
 
                 # ================= data
-                df_RD2 = pd.read_excel('RD2_data.xlsx', sheet_name='Sheet1')
+                df_RD2 = pd.read_excel('RD2_Daily_data.xlsx', sheet_name='Sheet0')
                 astro_RD2 = df_RD2.to_dict('records')
                 # ========================
 
@@ -570,7 +570,7 @@ if __name__ == '__main__':
                 outSheet = outWorkbook.add_worksheet(name='Median_bl')
 
                 # ==================== data
-                df_CC3 = pd.read_excel('CC3_data.xlsx', sheet_name='Sheet1')
+                df_CC3 = pd.read_excel('CC3_Daily_data.xlsx', sheet_name='Sheet0')
                 astro_CC3 = df_CC3.to_dict('records')
                 # ====================
 
@@ -843,7 +843,7 @@ if __name__ == '__main__':
                 outSheet = outWorkbook.add_worksheet(name='Median_bl')
 
                 # ==================== data
-                df_RD3 = pd.read_excel('RD3_data.xlsx', sheet_name='Sheet1')
+                df_RD3 = pd.read_excel('RD3_Daily_data.xlsx', sheet_name='Sheet0')
                 astro_RD3 = df_RD3.to_dict('records')
                 # ====================
 
@@ -1263,7 +1263,7 @@ if __name__ == '__main__':
                 outSheet = outWorkbook.add_worksheet(name='Median_bl')
 
                 # ==================== data
-                df_RD4 = pd.read_excel('RD4_data.xlsx', sheet_name='Sheet1')
+                df_RD4 = pd.read_excel('RD4_Daily_data.xlsx', sheet_name='Sheet0')
                 astro_RD4 = df_RD4.to_dict('records')
                 # ====================
 
