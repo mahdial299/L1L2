@@ -58,7 +58,7 @@ if __name__ == '__main__':
 
         lister()
 
-        userCh = int(input('Tech as integer : '))
+        userCh = int(input('Select tech : '))
 
         match userCh:
 
@@ -583,23 +583,14 @@ if __name__ == '__main__':
                 kpi_list = [
 
                     'cs_erlang',
-                    'cs_rrc_connection_establishment_sr',
+                    'Level',
                     'cs_rab_setup_success_ratio',
                     'softer_handover_success_ratio(hu_cell)',
-                    'cs_rab_setup_congestion_rate(hu_cell)',
-                    'radio_network_availability_ratio(hu_cell)',
-                    'bler_amr(cell_huawei)',
                     'cs_irat_ho_sr',
                     'amr_call_drop_ratio_new(hu_cell)',
-                    'csps_rab_setup_success_ratio',
                     'interfrequency_hardhandover_success_ratio_csservice',
-                    'cs_cssr',
-                    'rrc_setup_success_ratio(cell.service)',
-                    'soft_handover_succ_rate',
-                    'inter_carrier_ho_success_rate',
-                    'cs_rrc_setup_sr_ura_pch(hu_cell)',
-                    'cs_cssr_ura_pch(hu_cell)',
-                    'Label'
+                    'cs_rrc_connection_establishment_sr'
+                    
 
                 ]
                 for z in range(len(main_cell_source_index_3)):
@@ -612,16 +603,8 @@ if __name__ == '__main__':
                     kpi_5 = []
                     kpi_6 = []
                     kpi_7 = []
-                    kpi_8 = []
-                    kpi_9 = []
-                    kpi_10 = []
-                    kpi_11 = []
-                    kpi_12 = []
-                    kpi_13 = []
-                    kpi_14 = []
-                    kpi_15 = []
-                    kpi_16 = []
-                    kpi_17 = []
+                  
+             
 
                     for i in range(len(astro_CC3)):
 
@@ -629,34 +612,18 @@ if __name__ == '__main__':
 
                             kpi_1.append(astro_CC3[i]['cs_erlang'])
                             kpi_2.append(
-                                astro_CC3[i]['cs_rrc_connection_establishment_sr'])
-                            kpi_3.append(
                                 astro_CC3[i]['cs_rab_setup_success_ratio'])
-                            kpi_4.append(
+                            kpi_3.append(
                                 astro_CC3[i]['softer_handover_success_ratio(hu_cell)'])
+                            kpi_4.append(
+                                astro_CC3[i]['cs_irat_ho_sr'])
                             kpi_5.append(
-                                astro_CC3[i]['cs_rab_setup_congestion_rate(hu_cell)'])
-                            kpi_6.append(
-                                astro_CC3[i]['radio_network_availability_ratio(hu_cell)'])
-                            kpi_7.append(astro_CC3[i]['bler_amr(cell_huawei)'])
-                            kpi_8.append(astro_CC3[i]['cs_irat_ho_sr'])
-                            kpi_9.append(
                                 astro_CC3[i]['amr_call_drop_ratio_new(hu_cell)'])
-                            kpi_10.append(
-                                astro_CC3[i]['csps_rab_setup_success_ratio'])
-                            kpi_11.append(
+                            kpi_6.append(
                                 astro_CC3[i]['interfrequency_hardhandover_success_ratio_csservice'])
-                            kpi_12.append(astro_CC3[i]['cs_cssr'])
-                            kpi_13.append(
-                                astro_CC3[i]['rrc_setup_success_ratio(cell.service)'])
-                            kpi_14.append(
-                                astro_CC3[i]['soft_handover_succ_rate'])
-                            kpi_15.append(
-                                astro_CC3[i]['inter_carrier_ho_success_rate'])
-                            kpi_16.append(
-                                astro_CC3[i]['cs_rrc_setup_sr_ura_pch(hu_cell)'])
-                            kpi_17.append(
-                                astro_CC3[i]['cs_cssr_ura_pch(hu_cell)'])
+                            kpi_7.append(
+                                astro_CC3[i]['cs_rrc_connection_establishment_sr'])
+                            
 
                         else:
 
@@ -677,145 +644,93 @@ if __name__ == '__main__':
 
                     try:
 
-                        print(f'cell : {C+main_cell_source_index_3[z]+W}')
+                        print(f'{z} cell : {C+main_cell_source_index_3[z]+W}')
                         outSheet.write(
                             z + 1, row_1, main_cell_source_index_3[z])
 
                         print(Y+'cs_erlang'+W, f'= {kpi_1}'+G,
-                              f'Median : {float(statistics.median(kpi_1))}'+W)
+                              f'Avearage : {float(np.nanmean(kpi_1))}'+W)
 
                         outSheet.write(
-                            z + 1, 1, float(statistics.median(kpi_1)))
+                            z + 1, 1, float(np.nanmean(kpi_1)))
 
-                        print(Y+'cs_rrc_connection_establishment_sr'+W, f'= {kpi_2}'+G,
-                              f'Median : {float(statistics.median(kpi_2))}'+W)
+                        if float(np.nanmean(kpi_1)) > 150:
 
-                        outSheet.write(
-                            z + 1, 2, float(statistics.median(kpi_2)))
+                            outSheet.write(                     
+                            z + 1, 2, 'L1')   
 
-                        print(Y+'cs_rab_setup_success_ratio'+W, f'= {kpi_3}'+G,
-                              f'Median : {float(statistics.median(kpi_3))}'+W)
+                        elif 120 < float(np.nanmean(kpi_1)) <= 150:
 
-                        outSheet.write(
-                            z + 1, 3, float(statistics.median(kpi_3)))
-
-                        print(Y+'softer_handover_success_ratio(hu_cell)'+W, f'= {kpi_4}'+G,
-                              f'Median : {float(statistics.median(kpi_4))}'+W)
-
-                        outSheet.write(
-                            z + 1, 4, float(statistics.median(kpi_4)))
-
-                        print(Y+'cs_rab_setup_congestion_rate(hu_cell)'+W, f'= {kpi_5}'+G,
-                              f'Median : {float(statistics.median(kpi_5))}'+W)
-
-                        outSheet.write(
-                            z + 1, 5, float(statistics.median(kpi_5)))
-
-                        print(Y+'radio_network_availability_ratio(hu_cell)'+W, f'= {kpi_6}'+G,
-                              f'Median : {float(statistics.median(kpi_6))}'+W)
-
-                        outSheet.write(
-                            z + 1, 6, float(statistics.median(kpi_6)))
-
-                        print(Y+'bler_amr(cell_huawei)'+W, f'= {kpi_7}'+G,
-                              f'Median : {float(statistics.median(kpi_7))}'+W)
-
-                        outSheet.write(
-                            z + 1, 7, float(statistics.median(kpi_7)))
-
-                        print(Y+'cs_irat_ho_sr'+W, f'= {kpi_8}'+G,
-                              f'Median : {float(statistics.median(kpi_8))}'+W)
-
-                        outSheet.write(
-                            z + 1, 8, float(statistics.median(kpi_8)))
-
-                        print(Y+'amr_call_drop_ratio_new(hu_cell)'+W, f'= {kpi_9}'+G,
-                              f'Median : {float(statistics.median(kpi_9))}'+W)
-
-                        outSheet.write(
-                            z + 1, 9, float(statistics.median(kpi_9)))
-
-                        print(Y+'csps_rab_setup_success_ratio'+W, f'= {kpi_10}'+G,
-                              f'Median : {float(statistics.median(kpi_10))}'+W)
-
-                        outSheet.write(
-                            z + 1, 10, float(statistics.median(kpi_10)))
-
-                        print(Y+'interfrequency_hardhandover_success_ratio_csservice'+W, f'= {kpi_11}'+G,
-                              f'Median : {float(statistics.median(kpi_11))}'+W)
-
-                        outSheet.write(
-                            z + 1, 11, float(statistics.median(kpi_11)))
-
-                        print(Y+'cs_cssr'+W, f'= {kpi_12}'+G,
-                              f'Median : {float(statistics.median(kpi_12))}'+W)
-
-                        outSheet.write(
-                            z + 1, 12, float(statistics.median(kpi_12)))
-
-                        print(Y+'rrc_setup_success_ratio(cell.service)'+W, f'= {kpi_13}'+G,
-                              f'Median : {float(statistics.median(kpi_13))}'+W)
-
-                        outSheet.write(
-                            z + 1, 13, float(statistics.median(kpi_13)))
-
-                        print(Y+'soft_handover_succ_rate'+W, f'= {kpi_14}'+G,
-                              f'Median : {float(statistics.median(kpi_14))}'+W)
-
-                        outSheet.write(
-                            z + 1, 14, float(statistics.median(kpi_14)))
-
-                        print(Y+'inter_carrier_ho_success_rate'+W, f'= {kpi_15}'+G,
-                              f'Median : {float(statistics.median(kpi_15))}'+W)
-
-                        outSheet.write(
-                            z + 1, 15, float(statistics.median(kpi_15)))
-
-                        print(Y+'cs_rrc_setup_sr_ura_pch(hu_cell)'+W, f'= {kpi_16}'+G,
-                              f'Median : {float(statistics.median(kpi_16))}'+W)
-
-                        outSheet.write(
-                            z + 1, 16, float(statistics.median(kpi_16)))
-
-                        print(Y+'cs_cssr_ura_pch(hu_cell)'+W, f'= {kpi_17}'+G,
-                              f'Median : {float(statistics.median(kpi_17))}'+W)
-
-                        outSheet.write(
-                            z + 1, 17, float(statistics.median(kpi_17)))
-
-
-
-                        print(Y+'Label'+W, f'= {kpi_1}'+G,
-                              f'Average : {float(sum(kpi_1) / len(kpi_1))}'+W)    # average method
+                            outSheet.write(                     
+                            z + 1, 2, 'L2')   
                         
-                        if float(sum(kpi_1) / len(kpi_1)) > 150:
+                        elif 90 < float(np.nanmean(kpi_1)) <= 120:
 
                             outSheet.write(                     
-                            z + 1, 18, 'L1')   
+                            z + 1, 2, 'L3')   
 
-                        elif 120 < float(sum(kpi_1) / len(kpi_1)) <= 150:
+                        elif 50 < float(np.nanmean(kpi_1)) <= 90:         
 
                             outSheet.write(                     
-                            z + 1, 18, 'L2')   
+                            z + 1, 2, 'L4')   
+
+                        elif float(np.nanmean(kpi_1)) <= 50:
+
+                            outSheet.write(                     
+                            z + 1, 2, 'L5')
+
+                        print(Y+'cs_rab_setup_success_ratio'+W, f'= {kpi_2}'+G,
+                              f'Median : {float(np.nanmedian(kpi_2))}'+W)
+
+                        outSheet.write(
+                            z + 1, 3, float(np.nanmedian(kpi_2)))
+
+                        print(Y+'softer_handover_success_ratio(hu_cell)'+W, f'= {kpi_3}'+G,
+                              f'Median : {float(np.nanmedian(kpi_3))}'+W)
+
+                        outSheet.write(
+                            z + 1, 4, float(np.nanmedian(kpi_3)))
+
+                        print(Y+'cs_irat_ho_sr)'+W, f'= {kpi_4}'+G,
+                              f'Median : {float(np.nanmedian(kpi_4))}'+W)
+
+                        outSheet.write(
+                            z + 1, 5, float(np.nanmedian(kpi_4)))
+
+                        print(Y+'amr_call_drop_ratio_new(hu_cell)'+W, f'= {kpi_5}'+G,
+                              f'Median : {float(np.nanmedian(kpi_5))}'+W)
+
+                        outSheet.write(
+                            z + 1, 6, float(np.nanmedian(kpi_5)))
+
+                        print(Y+'interfrequency_hardhandover_success_ratio_csservice'+W, f'= {kpi_6}'+G,
+                              f'Median : {float(np.nanmedian(kpi_6))}'+W)
+
+                        outSheet.write(
+                            z + 1, 7, float(np.nanmedian(kpi_6)))
+
+                        print(Y+'cs_rrc_connection_establishment_sr'+W, f'= {kpi_7}'+G,
+                              f'Median : {float(np.nanmedian(kpi_7))}'+W)
+
+                        outSheet.write(
+                            z + 1, 8, float(np.nanmedian(kpi_7)))
+
+
+                        # print(Y+'Level'+W, f'= {kpi_1}'+G,
+                        #     f'Average : {float(np.nanmean(kpi_1))}'+W)    # average method
+                    
+                        # outSheet.write(
+                        #     z + 1, 8, float(np.nanmean(kpi_1)))
                         
-                        elif 90 < float(sum(kpi_1) / len(kpi_1)) <= 120:
+                        
 
-                            outSheet.write(                     
-                            z + 1, 18, 'L3')   
 
-                        elif 50 < float(sum(kpi_1) / len(kpi_1)) <= 90:         
-
-                            outSheet.write(                     
-                            z + 1, 18, 'L4')   
-
-                        elif float(sum(kpi_1) / len(kpi_1)) <= 50:
-
-                            outSheet.write(                     
-                            z + 1, 18, 'L5')
 
                     except(TypeError):
 
                         continue
+
+                    
 
                 print(R+splitter+W)
 
