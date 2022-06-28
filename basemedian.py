@@ -934,40 +934,25 @@ if __name__ == '__main__':
 
                 kpi_list = [
 
+                    
                     'total_traffic_volume(gb)',
                     'Level',
                     'e-rab_setup_success_rate(hu_cell)',
                     'e-rab_setup_success_rate',
-                    'ran_avail_rate',
                     'interf_hoout_sr',
                     'intraf_hoout_sr',
-                    'inter_rat_handover_out_success_rate(3gpltogsm)',
-                    'inter_rat_handover_out_successrate(3gpltowcdma)',
-                    'average_dl_latency_ms(huawei_lte_eucell)',
                     'average_ul_packet_loss_%(huawei_lte_ucell)',
                     'call_drop_rate',
                     'average_downlink_user_throughput(mbit/s)',
                     'average_uplink_user_throughput(mbit/s)',
                     'csfb_rate',
                     'cssr(all)',
-                    'downlink_traffic_volume(gb)',
-                    'ul_traffic_volume(gb)',
                     'downlink_cell_throghput(kbit/s)',
                     'uplink_cell_throghput(kbit/s)',
-                    'max_no_user',
-                    'number_of_available_downlink_prbs_cell',
-                    'average_cqi(huawei_lte_cell)',
                     'intra_rat_handover_sr_intra+inter_frequency(huawei_lte_cell',
                     'rrc_connection_setup_success_rate_service',
-                    's1signal_e-rab_setup_sr(hu_cell)',
-                    'cell_unvail_duration_daily(huawei_cell_lte)',
-                    'rssi_pucch(huawei_lte_cell)',
-                    'rssi_pusch(huawei_lte_cell)',
-                    'cell_availability_rate_exclude_blocking(cell_hu)',
-                    'cell_availability_rate_include_blocking(cell_hu)',
-                    'cell_availability_rate_include_blocking',
-                    'cell_availability_rate_include_blocking(cell_hu_no_null)'
-                    
+                    's1signal_e-rab_setup_sr(hu_cell)'
+      
 
                 ]
 
@@ -989,6 +974,7 @@ if __name__ == '__main__':
                     kpi_13 = []
                     kpi_14 = []
                     kpi_15 = []
+                    kpi_16 = []
               
 
                     for i in range(len(astro_RD4)):
@@ -998,27 +984,28 @@ if __name__ == '__main__':
                             kpi_1.append(
                                 astro_RD4[i]['total_traffic_volume(gb)'])
                             kpi_2.append(
-                                astro_RD4[i][''])
+                                astro_RD4[i]['e-rab_setup_success_rate(hu_cell)'])
                             kpi_3.append(
-                                astro_RD4[i][''])
-                            kpi_4.append(astro_RD4[i][''])
-                            kpi_5.append(astro_RD4[i][''])
-                            kpi_6.append(astro_RD4[i][''])
+                                astro_RD4[i]['e-rab_setup_success_rate'])
+                            kpi_4.append(astro_RD4[i]['interf_hoout_sr'])
+                            kpi_5.append(astro_RD4[i]['intraf_hoout_sr'])
+                            kpi_6.append(astro_RD4[i]['average_ul_packet_loss_%(huawei_lte_ucell)'])
                             kpi_7.append(
-                                astro_RD4[i][''])
+                                astro_RD4[i]['call_drop_rate'])
                             kpi_8.append(
-                                astro_RD4[i][''])
+                                astro_RD4[i]['average_downlink_user_throughput(mbit/s)'])
                             kpi_9.append(
-                                astro_RD4[i][''])
+                                astro_RD4[i]['average_uplink_user_throughput(mbit/s)'])
                             kpi_10.append(
-                                astro_RD4[i][''])
-                            kpi_11.append(astro_RD4[i][''])
+                                astro_RD4[i]['csfb_rate'])
+                            kpi_11.append(astro_RD4[i]['cssr(all)'])
                             kpi_12.append(
-                                astro_RD4[i][''])
+                                astro_RD4[i]['downlink_cell_throghput(kbit/s)'])
                             kpi_13.append(
-                                astro_RD4[i][''])
-                            kpi_14.append(astro_RD4[i][''])
-                            kpi_15.append(astro_RD4[i][''])
+                                astro_RD4[i]['uplink_cell_throghput(kbit/s)'])
+                            kpi_14.append(astro_RD4[i]['intra_rat_handover_sr_intra+inter_frequency(huawei_lte_cell'])
+                            kpi_15.append(astro_RD4[i]['rrc_connection_setup_success_rate_service'])
+                            kpi_16.append(astro_RD4[i]['s1signal_e-rab_setup_sr(hu_cell)'])
                          
 
                         else:
@@ -1040,121 +1027,118 @@ if __name__ == '__main__':
 
                     try:
 
-                        print(f'cell : {C+main_cell_source_index_4[z]+W}')
+                        print(f'{z} cell : {C+main_cell_source_index_4[z]+W}')
                         outSheet.write(
                             z + 1, row_1, main_cell_source_index_4[z])
 
                         print(Y+'total_traffic_volume(gb)'+W, f'= {kpi_1}'+G,
-                            f'Average : {float(statistics.median(kpi_1))}'+W)    # edit from here 
+                            f'Average : {float(np.nanmean(kpi_1))}'+W)    # edit from here 
 
-                        outSheet.write(z + 1, 1 , float(statistics.median(kpi_1)))
-
-
+                        outSheet.write(z + 1, 1 , float(np.nanmean(kpi_1)))
 
 
-
-
-                        print(Y+'e-rab_setup_success_rate(hu_cell)'+W, f'= {kpi_2}'+G,
-                            f'Median : {float(statistics.median(kpi_2))}'+W)
-
-                        outSheet.write(z + 1, 3 , float(statistics.median(kpi_2)))
-
-                        print(Y+'e-rab_setup_success_rate'+W, f'= {kpi_3}'+G,
-                            f'Median : {float(statistics.median(kpi_3))}'+W)
-
-                        outSheet.write(z + 1, 4 , float(statistics.median(kpi_3)))
-
-                        print(Y+'ran_avail_rate'+W, f'= {kpi_4}'+G,
-                            f'Median : {float(statistics.median(kpi_4))}'+W)
-
-                        outSheet.write(z + 1, 5 , float(statistics.median(kpi_4)))
-
-                        print(Y+'interf_hoout_sr'+W, f'= {kpi_5}'+G,
-                            f'Median : {float(statistics.median(kpi_5))}'+W)
-
-                        outSheet.write(z + 1, 6 , float(statistics.median(kpi_5)))
-
-                        print(Y+'intraf_hoout_sr'+W, f'= {kpi_6}'+G,
-                            f'Median : {float(statistics.median(kpi_6))}'+W)
-
-                        outSheet.write(z + 1, 7 , float(statistics.median(kpi_6)))
-
-                        print(Y+'inter_rat_handover_out_success_rate(3gpltogsm)'+W, f'= {kpi_7}'+G,
-                            f'Median : {float(statistics.median(kpi_7))}'+W)
-
-                        outSheet.write(z + 1, 8 , float(statistics.median(kpi_7)))
-
-                        print(Y+'inter_rat_handover_out_successrate(3gpltowcdma)'+W, f'= {kpi_8}'+G,
-                            f'Median : {float(statistics.median(kpi_8))}'+W)
-
-                        outSheet.write(z + 1, 9 , float(statistics.median(kpi_8)))
-
-                        print(Y+'average_dl_latency_ms(huawei_lte_eucell)'+W, f'= {kpi_9}'+G,
-                            f'Median : {float(statistics.median(kpi_9))}'+W)
-
-                        outSheet.write(z + 1, 10 , float(statistics.median(kpi_9)))
-
-                        print(Y+'average_ul_packet_loss_%(huawei_lte_ucell)'+W, f'= {kpi_10}'+G,
-                            f'Median : {float(statistics.median(kpi_10))}'+W)
-
-                        outSheet.write(z + 1, 11 , float(statistics.median(kpi_10)))
-
-                        print(Y+'call_drop_rate'+W, f'= {kpi_11}'+G,
-                            f'Median : {float(statistics.median(kpi_11))}'+W)
-
-                        outSheet.write(z + 1, 12 , float(statistics.median(kpi_11)))
-
-                        print(Y+'average_downlink_user_throughput(mbit/s)'+W, f'= {kpi_12}'+G,
-                            f'Median : {float(statistics.median(kpi_12))}'+W)
-
-                        outSheet.write(z + 1, 13 , float(statistics.median(kpi_12)))
-
-                        print(Y+'average_uplink_user_throughput(mbit/s)'+W, f'= {kpi_13}'+G,
-                            f'Median : {float(statistics.median(kpi_13))}'+W)
-
-                        outSheet.write(z + 1, 14 , float(statistics.median(kpi_13)))
-
-                        print(Y+'csfb_rate'+W, f'= {kpi_14}'+G,
-                            f'Median : {float(statistics.median(kpi_14))}'+W)
-
-                        outSheet.write(z + 1, 15 , float(statistics.median(kpi_14)))
-
-                        print(Y+'cssr(all)'+W, f'= {kpi_15}'+G,
-                            f'Median : {float(statistics.median(kpi_15))}'+W)
-
-                        outSheet.write(z + 1, 16 , float(statistics.median(kpi_15)))
-
-                       
-
-
-
-                        print(Y+'Label'+W, f'= {kpi_1}'+G,
-                              f'Average : {float(sum(kpi_1) / len(kpi_1))}'+W)    # average method
-                        
-                        if float(sum(kpi_1) / len(kpi_1)) > 160:
+                        if float(np.nanmean(kpi_1)) > 160:
 
                             outSheet.write(                     
                             z + 1, 33, 'L1')   
 
-                        elif 120 < float(sum(kpi_1) / len(kpi_1)) <= 160:
+                        elif 120 < float(np.nanmean(kpi_1)) <= 160:
 
                             outSheet.write(                     
                             z + 1, 33, 'L2')   
                         
-                        elif 80 < float(sum(kpi_1) / len(kpi_1)) <= 120:
+                        elif 80 < float(np.nanmean(kpi_1)) <= 120:
 
                             outSheet.write(                     
                             z + 1, 33, 'L3')   
 
-                        elif 40 < float(sum(kpi_1) / len(kpi_1)) <= 80:         
+                        elif 40 < float(np.nanmean(kpi_1)) <= 80:         
 
                             outSheet.write(                     
                             z + 1, 33, 'L4')   
 
-                        elif float(sum(kpi_1) / len(kpi_1)) <= 40:
+                        elif float(np.nanmean(kpi_1)) <= 40:
 
                             outSheet.write(                     
                             z + 1, 33, 'L5')
+
+
+                        print(Y+'e-rab_setup_success_rate(hu_cell)'+W, f'= {kpi_2}'+G,
+                            f'Median : {float(np.nanmedian(kpi_2))}'+W)
+
+                        outSheet.write(z + 1, 3 , float(np.nanmedian(kpi_2)))
+
+                        print(Y+'e-rab_setup_success_rate'+W, f'= {kpi_3}'+G,
+                            f'Median : {float(np.nanmedian(kpi_3))}'+W)
+
+                        outSheet.write(z + 1, 4 , float(np.nanmedian(kpi_3)))
+
+                        print(Y+'interf_hoout_sr'+W, f'= {kpi_4}'+G,
+                            f'Median : {float(np.nanmedian(kpi_4))}'+W)
+
+                        outSheet.write(z + 1, 5 , float(np.nanmedian(kpi_4)))
+
+                        print(Y+'intraf_hoout_sr'+W, f'= {kpi_5}'+G,
+                            f'Median : {float(np.nanmedian(kpi_5))}'+W)
+
+                        outSheet.write(z + 1, 6 , float(np.nanmedian(kpi_5)))
+
+                        print(Y+'average_ul_packet_loss_%(huawei_lte_ucell)'+W, f'= {kpi_6}'+G,
+                            f'Median : {float(np.nanmedian(kpi_6))}'+W)
+
+                        outSheet.write(z + 1, 7 , float(np.nanmedian(kpi_6)))
+
+                        print(Y+'call_drop_rate'+W, f'= {kpi_7}'+G,
+                            f'Median : {float(np.nanmedian(kpi_7))}'+W)
+
+                        outSheet.write(z + 1, 8 , float(np.nanmedian(kpi_7)))
+
+                        print(Y+'average_downlink_user_throughput(mbit/s)'+W, f'= {kpi_8}'+G,
+                            f'Median : {float(np.nanmedian(kpi_8))}'+W)
+
+                        outSheet.write(z + 1, 9 , float(np.nanmedian(kpi_8)))
+
+                        print(Y+'average_uplink_user_throughput(mbit/s)'+W, f'= {kpi_9}'+G,
+                            f'Median : {float(np.nanmedian(kpi_9))}'+W)
+
+                        outSheet.write(z + 1, 10 , float(np.nanmedian(kpi_9)))
+
+                        print(Y+'csfb_rate'+W, f'= {kpi_10}'+G,
+                            f'Median : {float(np.nanmedian(kpi_10))}'+W)
+
+                        outSheet.write(z + 1, 11 , float(np.nanmedian(kpi_10)))
+
+                        print(Y+'cssr(all)'+W, f'= {kpi_11}'+G,
+                            f'Median : {float(np.nanmedian(kpi_11))}'+W)
+
+                        outSheet.write(z + 1, 12 , float(np.nanmedian(kpi_11)))
+
+                        print(Y+'downlink_cell_throghput(kbit/s)'+W, f'= {kpi_12}'+G,
+                            f'Median : {float(np.nanmedian(kpi_12))}'+W)
+
+                        outSheet.write(z + 1, 13 , float(np.nanmedian(kpi_12)))
+
+                        print(Y+'uplink_cell_throghput(kbit/s)'+W, f'= {kpi_13}'+G,
+                            f'Median : {float(np.nanmedian(kpi_13))}'+W)
+
+                        outSheet.write(z + 1, 14 , float(np.nanmedian(kpi_13)))
+
+                        print(Y+'intra_rat_handover_sr_intra+inter_frequency(huawei_lte_cell'+W, f'= {kpi_14}'+G,
+                            f'Median : {float(np.nanmedian(kpi_14))}'+W)
+
+                        outSheet.write(z + 1, 15 , float(np.nanmedian(kpi_14)))
+
+                        print(Y+'rrc_connection_setup_success_rate_service'+W, f'= {kpi_15}'+G,
+                            f'Median : {float(np.nanmedian(kpi_15))}'+W)
+
+                        outSheet.write(z + 1, 16 , float(np.nanmedian(kpi_15)))
+
+                        print(Y+'s1signal_e-rab_setup_sr(hu_cell)'+W, f'= {kpi_16}'+G,
+                            f'Median : {float(np.nanmedian(kpi_16))}'+W)
+
+                        outSheet.write(z + 1, 17 , float(np.nanmedian(kpi_16)))
+                        
+                        
                         
                     except(TypeError):
 
