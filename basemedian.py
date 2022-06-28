@@ -30,6 +30,7 @@ def ban():
 def lister():
 
     print(G+f'''----------- Quarter calculation ----------
+=========================== Daily ==========================
 
 1. 2G voice Calculation
 2. 2G data Calculation
@@ -37,9 +38,19 @@ def lister():
 4. 3G data Calculation
 5. 4G data Calculation
 
+============================ BH ============================
+
+1. 2G voice Calculation
+2. 2G data Calculation
+3. 3G voice Calculation
+4. 3G data Calculation
+5. 4G data Calculation
+
+
 ------------------- Add New Cell
 
 6. 
+7.
 
 {R+splitter+W}''')
 
@@ -82,7 +93,7 @@ if __name__ == '__main__':
                 kpi_list = [
 
                     'tch_traffic',
-                    'Label',
+                    'Level',
                     'amrhr_usage',
                     'cssr3',
                     'sdcch_congestion_rate',
@@ -300,7 +311,7 @@ if __name__ == '__main__':
                 kpi_list = [
 
                     'payload_total(cell_hu)',
-                    'Label',
+                    'Level',
                     'tbf_establishment_success_rate(ul+dl)(%)(hu_cell)',
                     'tbf_drop(ul+dl)(hu_cell)',
                     'average_throughput_of_downlink_gprs_llc_per_user(kbps)',
@@ -668,7 +679,7 @@ if __name__ == '__main__':
                 kpi_list = [
                     
                     'payload',
-                    'Label',
+                    'Level',
                     'ps_cssr',
                     'ps_call_drop_ratio',
                     'average_hsdpa_user_throughput_dc+sc(mbit/s)(cell_huawei)',
@@ -924,7 +935,7 @@ if __name__ == '__main__':
                 kpi_list = [
 
                     'total_traffic_volume(gb)',
-                    'Label',
+                    'Level',
                     'e-rab_setup_success_rate(hu_cell)',
                     'e-rab_setup_success_rate',
                     'ran_avail_rate',
