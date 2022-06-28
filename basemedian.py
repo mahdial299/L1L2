@@ -3,10 +3,8 @@ import xlsxwriter
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import statistics
 import os
 import sys
-from statistics import StatisticsError
 
 R = '\033[31m'
 G = '\033[32m'
@@ -29,7 +27,7 @@ def ban():
 
 def lister():
 
-    print(G+f'''----------- Quarter calculation ----------
+    print(G+f'''--------------- Quarter calculation ------------
 =========================== Daily ==========================
 
 1. 2G voice Calculation
@@ -47,16 +45,12 @@ def lister():
 5. 4G data Calculation
 
 
-------------------- Add New Cell
+----------------------- Add New Cell
 
 6. 
 7.
 
 {R+splitter+W}''')
-
-# ======================================= all data
-
-# ==============================================
 
 
 if __name__ == '__main__':
@@ -169,7 +163,7 @@ if __name__ == '__main__':
                             z + 1, row_1, main_cell_source_index_2[z])
 
                         print(Y+'tch_traffic'+W, f'= {kpi_1}'+G,
-                              f'Avrage : {float(np.nanmean(kpi_1))}'+W)
+                              f'Average : {float(np.nanmean(kpi_1))}'+W)
 
                         outSheet.write(
                             z + 1, 1, float(np.nanmean(kpi_1)))
@@ -565,7 +559,7 @@ if __name__ == '__main__':
                             z + 1, row_1, main_cell_source_index_3[z])
 
                         print(Y+'cs_erlang'+W, f'= {kpi_1}'+G,
-                              f'Avearage : {float(np.nanmean(kpi_1))}'+W)
+                              f'Average : {float(np.nanmean(kpi_1))}'+W)
 
                         outSheet.write(
                             z + 1, 1, float(np.nanmean(kpi_1)))
@@ -1040,27 +1034,27 @@ if __name__ == '__main__':
                         if float(np.nanmean(kpi_1)) > 160:
 
                             outSheet.write(                     
-                            z + 1, 33, 'L1')   
+                            z + 1, 2, 'L1')   
 
                         elif 120 < float(np.nanmean(kpi_1)) <= 160:
 
                             outSheet.write(                     
-                            z + 1, 33, 'L2')   
+                            z + 1, 2, 'L2')   
                         
                         elif 80 < float(np.nanmean(kpi_1)) <= 120:
 
                             outSheet.write(                     
-                            z + 1, 33, 'L3')   
+                            z + 1, 2, 'L3')   
 
                         elif 40 < float(np.nanmean(kpi_1)) <= 80:         
 
                             outSheet.write(                     
-                            z + 1, 33, 'L4')   
+                            z + 1, 2, 'L4')   
 
                         elif float(np.nanmean(kpi_1)) <= 40:
 
                             outSheet.write(                     
-                            z + 1, 33, 'L5')
+                            z + 1, 2, 'L5')
 
 
                         print(Y+'e-rab_setup_success_rate(hu_cell)'+W, f'= {kpi_2}'+G,
