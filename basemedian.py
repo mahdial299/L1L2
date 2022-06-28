@@ -71,223 +71,293 @@ if __name__ == '__main__':
 
             case 1:
 
-                                
-                with warnings.catch_warnings():
-                    warnings.simplefilter("ignore", category=RuntimeWarning)
+                            
+        
 
-                    outWorkbook = xlsxwriter.Workbook(f"CC2_Daily_BL.xlsx")
+                outWorkbook = xlsxwriter.Workbook(f"CC2_Daily_BL.xlsx")
 
-                    outSheet = outWorkbook.add_worksheet(name='Median_bl')
+                outSheet = outWorkbook.add_worksheet(name='Median_bl')
 
-                    # ================= data
-                    df_CC2 = pd.read_excel('CC2_Daily_data.xlsx', sheet_name='Sheet0')
-                    astro_CC2 = df_CC2.to_dict('records')
-                    # ========================
+                # ================= data
+                df_CC2 = pd.read_excel('CC2_Daily_data.xlsx', sheet_name='Sheet0')
+                astro_CC2 = df_CC2.to_dict('records')
+                # ========================
 
-                    main_cell_source_index_2 = df_CC2[['cell_ref']].dropna()
-                    main_cell_source_index_2 = np.asanyarray(
-                        main_cell_source_index_2).flatten()
-                    main_cell_source_index_2 = list(
-                        np.nan_to_num(main_cell_source_index_2))
+                main_cell_source_index_2 = df_CC2[['cell_ref']].dropna()
+                main_cell_source_index_2 = np.asanyarray(
+                    main_cell_source_index_2).flatten()
+                main_cell_source_index_2 = list(
+                    np.nan_to_num(main_cell_source_index_2))
 
-                    kpi_list = [
+                kpi_list = [
 
-                        'Calculation Period',
-                        'Region',
-                        'Province',
-                        'BSC',
-                        'Cell',
-                        'CS-Traffic',
-                        'CSSR',
-                        'AMRHR_Usage',
-                        'SDCCH_Cong_Rate',
-                        'SDCCH_Drop_Rate',
-                        'TCH_Assignment_FR',
-                        'IHSR',
-                        'OHSR',
-                        'SDCCH_Access_Success_Rate',
-                        'CDR',
-                        'RX_Qualitty_DL',
-                        'RX_Qualitty_UL',
-                        'Level'
+                    'Calculation Period',
+                    'Region',
+                    'Province',
+                    'BSC',
+                    'Cell',
+                    'CS-Traffic',
+                    'CSSR',
+                    'AMRHR_Usage',
+                    'SDCCH_Cong_Rate',
+                    'SDCCH_Drop_Rate',
+                    'TCH_Assignment_FR',
+                    'IHSR',
+                    'OHSR',
+                    'SDCCH_Access_Success_Rate',
+                    'CDR',
+                    'RX_Qualitty_DL',
+                    'RX_Qualitty_UL',
+                    'Level'
+
+                    
+
+                ]
+
+                for z in range(len(main_cell_source_index_2)):
+
+                    # ---------------------------------- 2G voice KPIs
+                    kpi_1 = []
+                    kpi_2 = []
+                    kpi_3 = []
+                    kpi_4 = []
+                    kpi_5 = []
+                    kpi_6 = []
+                    kpi_7 = []
+                    kpi_8 = []
+                    kpi_9 = []
+                    kpi_10 = []
+                    kpi_11 = []
+                    kpi_12 = []
+
+
+                    for i in range(len(astro_CC2)):
+
+
+
+                        if astro_CC2[i]['cell'] == main_cell_source_index_2[z]:
+
+                            kpi_1.append(astro_CC2[i]['tch_traffic'])
+                            kpi_2.append(astro_CC2[i]['cssr3'])
+                            kpi_3.append(astro_CC2[i]['amrhr_usage'])
+                            kpi_4.append(astro_CC2[i]['sdcch_congestion_rate'])
+                            kpi_5.append(astro_CC2[i]['sdcch_drop_rate'])
+                            kpi_6.append(astro_CC2[i]['tch_assignment_fr'])
+                            kpi_7.append(astro_CC2[i]['ihsr2'])
+                            kpi_8.append(astro_CC2[i]['ohsr2'])
+                            kpi_9.append(astro_CC2[i]['sdcch_access_success_rate2'])
+                            kpi_10.append(astro_CC2[i]['cdr3'])
+                            kpi_11.append(astro_CC2[i]['rx_qualitty_dl_new'])
+                            kpi_12.append(astro_CC2[i]['rx_qualitty_ul_new'])
+                
+
+                        else:
+
+                            continue
+
+                    row_1 = 0
+
+                    row_2 = 0
+                    column_2 = 0
+
+                    for kpi in kpi_list:
+
+                        outSheet.write(row_2, column_2, kpi)
+
+                        column_2 += 1
+
+
+                    try:                   
 
                         
 
-                    ]
+                        print(f'{z} cell : {C+main_cell_source_index_2[z]+W}')
 
-                    for z in range(len(main_cell_source_index_2)):
+                        outSheet.write(
+                            z + 1, 4, main_cell_source_index_2[z])
 
-                        # ---------------------------------- 2G voice KPIs
-                        kpi_1 = []
-                        kpi_2 = []
-                        kpi_3 = []
-                        kpi_4 = []
-                        kpi_5 = []
-                        kpi_6 = []
-                        kpi_7 = []
-                        kpi_8 = []
-                        kpi_9 = []
-                        kpi_10 = []
-                        kpi_11 = []
-                        kpi_12 = []
+                        print(Y+'tch_traffic'+W, f'= {kpi_1}'+G,
+                            f'Average : {float(np.nanmean(kpi_1))}'+W)
 
-
-                        for i in range(len(astro_CC2)):
+                        outSheet.write(
+                            z + 1, 5, float(np.nanmean(kpi_1)))
 
 
 
-                            if astro_CC2[i]['cell'] == main_cell_source_index_2[z]:
 
-                                kpi_1.append(astro_CC2[i]['tch_traffic'])
-                                kpi_2.append(astro_CC2[i]['cssr3'])
-                                kpi_3.append(astro_CC2[i]['amrhr_usage'])
-                                kpi_4.append(astro_CC2[i]['sdcch_congestion_rate'])
-                                kpi_5.append(astro_CC2[i]['sdcch_drop_rate'])
-                                kpi_6.append(astro_CC2[i]['tch_assignment_fr'])
-                                kpi_7.append(astro_CC2[i]['ihsr2'])
-                                kpi_8.append(astro_CC2[i]['ohsr2'])
-                                kpi_9.append(astro_CC2[i]['sdcch_access_success_rate2'])
-                                kpi_10.append(astro_CC2[i]['cdr3'])
-                                kpi_11.append(astro_CC2[i]['rx_qualitty_dl_new'])
-                                kpi_12.append(astro_CC2[i]['rx_qualitty_ul_new'])
-                    
+                        if float(np.nanmean(kpi_1)) > 400:
 
-                            else:
+                            outSheet.write(                     
+                            z + 1, 17, 'L1')   
 
-                                continue
+                        elif 250 < float(np.nanmean(kpi_1)) <= 400:
 
-                        row_1 = 0
+                            outSheet.write(                     
+                            z + 1, 17, 'L2')   
+                        
+                        elif 120 < float(np.nanmean(kpi_1)) <= 250:
 
-                        row_2 = 0
-                        column_2 = 0
+                            outSheet.write(                     
+                            z + 1, 17, 'L3')   
 
-                        for kpi in kpi_list:
+                        elif 50 < float(np.nanmean(kpi_1)) <= 120:         
 
-                            outSheet.write(row_2, column_2, kpi)
+                            outSheet.write(                     
+                            z + 1, 17, 'L4')   
 
-                            column_2 += 1
+                        elif float(np.nanmean(kpi_1)) <= 50:
+
+                            outSheet.write(                     
+                            z + 1, 17, 'L5')
 
 
-                        try:                   
 
-                            
 
-                            print(f'{z} cell : {C+main_cell_source_index_2[z]+W}')
+                        print(Y+'cssr3'+W, f'= {kpi_2}'+G,
+                            f'Median : {float(np.nanmedian(kpi_2))}'+W)
 
+                        if np.isnan(float(np.nanmedian(kpi_2))) == True:
                             outSheet.write(
-                                z + 1, 4, main_cell_source_index_2[z])
-
-                            print(Y+'tch_traffic'+W, f'= {kpi_1}'+G,
-                                f'Average : {float(np.nanmean(kpi_1))}'+W)
-
+                            z + 1, 6, 'null')        
+                        else:
                             outSheet.write(
-                                z + 1, 5, float(np.nanmean(kpi_1)))
+                            z + 1, 6, float(np.nanmedian(kpi_2)))
 
-                            if float(np.nanmean(kpi_1)) > 400:
 
-                                outSheet.write(                     
-                                z + 1, 17, 'L1')   
 
-                            elif 250 < float(np.nanmean(kpi_1)) <= 400:
 
-                                outSheet.write(                     
-                                z + 1, 17, 'L2')   
-                            
-                            elif 120 < float(np.nanmean(kpi_1)) <= 250:
 
-                                outSheet.write(                     
-                                z + 1, 17, 'L3')   
+                        print(Y+'amrhr_usage'+W, f'= {kpi_3}'+G,
+                            f'Median : {float(np.nanmedian(kpi_3))}'+W)
 
-                            elif 50 < float(np.nanmean(kpi_1)) <= 120:         
-
-                                outSheet.write(                     
-                                z + 1, 17, 'L4')   
-
-                            elif float(np.nanmean(kpi_1)) <= 50:
-
-                                outSheet.write(                     
-                                z + 1, 17, 'L5')
-
-                            print(Y+'cssr3'+W, f'= {kpi_2}'+G,
-                                f'Median : {float(np.nanmedian(kpi_2))}'+W)
-
+                        if np.isnan(float(np.nanmedian(kpi_3))) == True:
                             outSheet.write(
-                                z + 1, 6, float(np.nanmedian(kpi_2)))
-
-                            print(Y+'amrhr_usage'+W, f'= {kpi_3}'+G,
-                                f'Median : {float(np.nanmedian(kpi_3))}'+W)
-
+                            z + 1, 7, 'null')        
+                        else:
                             outSheet.write(
-                                z + 1, 7, float(np.nanmedian(kpi_3)))
+                            z + 1, 7, float(np.nanmedian(kpi_3)))
 
-                            print(Y+'sdcch_congestion_rate'+W, f'= {kpi_4}'+G,
-                                f'Median : {float(np.nanmedian(kpi_4))}'+W)
 
+
+
+
+                        print(Y+'sdcch_congestion_rate'+W, f'= {kpi_4}'+G,
+                            f'Median : {float(np.nanmedian(kpi_4))}'+W)
+
+                        if np.isnan(float(np.nanmedian(kpi_4))) == True:
                             outSheet.write(
-                                z + 1, 8, float(np.nanmedian(kpi_4)))
-
-                            print(Y+'sdcch_drop_rate'+W, f'= {kpi_5}'+G,
-                                f'Median : {float(np.nanmedian(kpi_5))}'+W)
-
+                            z + 1, 8, 'null')        
+                        else:
                             outSheet.write(
-                                z + 1, 9, float(np.nanmedian(kpi_5)))
+                            z + 1, 8, float(np.nanmedian(kpi_4)))
 
-                            print(Y+'tch_assignment_fr'+W, f'= {kpi_6}'+G,
-                                f'Median : {float(np.nanmedian(kpi_6))}'+W)
 
+
+
+                        print(Y+'sdcch_drop_rate'+W, f'= {kpi_5}'+G,
+                            f'Median : {float(np.nanmedian(kpi_5))}'+W)
+
+                        if np.isnan(float(np.nanmedian(kpi_5))) == True:
                             outSheet.write(
-                                z + 1, 10, float(np.nanmedian(kpi_6)))
-
-                            print(Y+'ihsr2'+W, f'= {kpi_7}'+G,
-                                f'Median : {np.isnan(float(np.nanmedian(kpi_7)))}'+W)
-
-                            if np.isnan(float(np.nanmedian(kpi_7))) == True:
-
-                                outSheet.write(
-                                z + 1, 11, 'null')
-                            
-                            else:
-
-                                outSheet.write(
-                                z + 1, 11, float(np.nanmedian(kpi_7)))
-
-
-                            print(Y+'ohsr2'+W, f'= {kpi_8}'+G,
-                                f'Median : {float(np.nanmedian(kpi_8))}'+W)
-
+                            z + 1, 9, 'null')        
+                        else:
                             outSheet.write(
-                                z + 1, 12, float(np.nanmedian(kpi_8)))
+                            z + 1, 9, float(np.nanmedian(kpi_5)))
 
-                            print(Y+'sdcch_access_success_rate2'+W, f'= {kpi_9}'+G,
-                                f'Median : {float(np.nanmedian(kpi_9))}'+W)
 
+
+
+
+                        print(Y+'tch_assignment_fr'+W, f'= {kpi_6}'+G,
+                            f'Median : {float(np.nanmedian(kpi_6))}'+W)
+
+                        if np.isnan(float(np.nanmedian(kpi_6))) == True:
                             outSheet.write(
-                                z + 1, 13, float(np.nanmedian(kpi_9)))
-
-                            print(Y+'cdr3'+W, f'= {kpi_10}'+G,
-                                f'Median : {float(np.nanmedian(kpi_10))}'+W)
-
+                            z + 1, 10, 'null')        
+                        else:
                             outSheet.write(
-                                z + 1, 14, float(np.nanmedian(kpi_10)))
+                            z + 1, 10, float(np.nanmedian(kpi_6)))
 
-                            print(Y+'rx_qualitty_dl_new'+W, f'= {kpi_11}'+G,
-                                f'Median : {float(np.nanmedian(kpi_11))}'+W)
 
+
+                        print(Y+'ihsr2'+W, f'= {kpi_7}'+G,
+                            f'Median : {np.isnan(float(np.nanmedian(kpi_7)))}'+W)
+
+                        if np.isnan(float(np.nanmedian(kpi_7))) == True:
                             outSheet.write(
-                                z + 1, 15, float(np.nanmedian(kpi_11)))
-
-                            print(Y+'rx_qualitty_ul_new'+W, f'= {kpi_12}'+G,
-                                f'Median : {float(np.nanmedian(kpi_12))}'+W)
-
+                            z + 1, 11, 'null')        
+                        else:
                             outSheet.write(
-                                z + 1, 16, float(np.nanmedian(kpi_12)))
-                            
-                
-                            
+                            z + 1, 11, float(np.nanmedian(kpi_7)))
 
-                        except(TypeError):
 
-                            continue
+
+                        print(Y+'ohsr2'+W, f'= {kpi_8}'+G,
+                            f'Median : {float(np.nanmedian(kpi_8))}'+W)
+                        if np.isnan(float(np.nanmedian(kpi_8))) == True:
+                            outSheet.write(
+                            z + 1, 12, 'null')   
+                        else:
+                            outSheet.write(
+                            z + 1, 12, float(np.nanmedian(kpi_8)))
+
+
+
+                        print(Y+'sdcch_access_success_rate2'+W, f'= {kpi_9}'+G,
+                            f'Median : {float(np.nanmedian(kpi_9))}'+W)
+
+                        if np.isnan(float(np.nanmedian(kpi_9))) == True:
+                            outSheet.write(
+                            z + 1, 13, 'null')   
+                        else:
+                            outSheet.write(
+                            z + 1, 13, float(np.nanmedian(kpi_9)))
+
+
+
+
+                        print(Y+'cdr3'+W, f'= {kpi_10}'+G,
+                            f'Median : {float(np.nanmedian(kpi_10))}'+W)
+
+                        if np.isnan(float(np.nanmedian(kpi_10))) == True:
+                            outSheet.write(
+                            z + 1, 14, 'null')   
+                        else:
+                            outSheet.write(
+                            z + 1, 14, float(np.nanmedian(kpi_10)))
+
+
+
+
+                        print(Y+'rx_qualitty_dl_new'+W, f'= {kpi_11}'+G,
+                            f'Median : {float(np.nanmedian(kpi_11))}'+W)
+
+                        if np.isnan(float(np.nanmedian(kpi_11))) == True:
+                            outSheet.write(
+                            z + 1, 15, 'null')   
+                        else:
+                            outSheet.write(
+                            z + 1, 15, float(np.nanmedian(kpi_11)))
+
+
+
+
+                        print(Y+'rx_qualitty_ul_new'+W, f'= {kpi_12}'+G,
+                            f'Median : {float(np.nanmedian(kpi_12))}'+W)
+
+                        if np.isnan(float(np.nanmedian(kpi_12))) == True:
+                            outSheet.write(
+                            z + 1, 16, 'null')   
+                        else:
+                            outSheet.write(
+                            z + 1, 16, float(np.nanmedian(kpi_12)))
+                        
+            
+                        
+
+                    except(TypeError):
+
+                        continue
 
                 print(R+splitter+W)
 
