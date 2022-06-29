@@ -281,7 +281,7 @@ if __name__ == '__main__':
 
 
                         print(Y+'ihsr2'+W, f'= {kpi_7}'+G,
-                            f'Median : {np.isnan(float(np.nanmedian(kpi_7)))}'+W)
+                            f'Median : {float(np.nanmedian(kpi_7))}'+W)
 
                         if np.isnan(float(np.nanmedian(kpi_7))) == True:
                             outSheet.write(
@@ -648,14 +648,20 @@ if __name__ == '__main__':
 
                 kpi_list = [
 
+                    'Calculation Period',
+                    'Region',
+                    'Province',
+                    'RNC',
+                    'Cell',
                     'cs_erlang',
+                    'CS_RAB_Setup_Success_Ratio',
+                    'CS_IRAT_HO_SR',
+                    'InterFrequency_Hardhandover_success_Ratio_CSservice',
+                    'AMR_Call_Drop_Ratio',
+                    'Softer_Handover_Success_Ratio',
+                    'CS_RRC_Connection_Establishment_SR',
                     'Level',
-                    'cs_rab_setup_success_ratio',
-                    'softer_handover_success_ratio(hu_cell)',
-                    'cs_irat_ho_sr',
-                    'amr_call_drop_ratio_new(hu_cell)',
-                    'interfrequency_hardhandover_success_ratio_csservice',
-                    'cs_rrc_connection_establishment_sr'
+
                     
 
                 ]
@@ -680,13 +686,13 @@ if __name__ == '__main__':
                             kpi_2.append(
                                 astro_CC3[i]['cs_rab_setup_success_ratio'])
                             kpi_3.append(
-                                astro_CC3[i]['softer_handover_success_ratio(hu_cell)'])
-                            kpi_4.append(
                                 astro_CC3[i]['cs_irat_ho_sr'])
+                            kpi_4.append(
+                                astro_CC3[i]['interfrequency_hardhandover_success_ratio_csservice'])
                             kpi_5.append(
                                 astro_CC3[i]['amr_call_drop_ratio_new(hu_cell)'])
                             kpi_6.append(
-                                astro_CC3[i]['interfrequency_hardhandover_success_ratio_csservice'])
+                                astro_CC3[i]['softer_handover_success_ratio(hu_cell)'])
                             kpi_7.append(
                                 astro_CC3[i]['cs_rrc_connection_establishment_sr'])
                             
@@ -698,7 +704,7 @@ if __name__ == '__main__':
                     row_1 = 0
 
                     row_2 = 0
-                    column_2 = 1
+                    column_2 = 0
 
                     for kpi in kpi_list:
 
@@ -706,80 +712,120 @@ if __name__ == '__main__':
 
                         column_2 += 1
 
-                    outSheet.write(row_2, row_1, 'cell')
+             
 
                     try:
 
                         print(f'{z} cell : {C+main_cell_source_index_3[z]+W}')
                         outSheet.write(
-                            z + 1, row_1, main_cell_source_index_3[z])
+                            z + 1, 4, main_cell_source_index_3[z])
 
                         print(Y+'cs_erlang'+W, f'= {kpi_1}'+G,
                               f'Average : {float(np.nanmean(kpi_1))}'+W)
 
                         outSheet.write(
-                            z + 1, 1, float(np.nanmean(kpi_1)))
+                            z + 1, 5, float(np.nanmean(kpi_1)))
 
                         if float(np.nanmean(kpi_1)) > 150:
 
                             outSheet.write(                     
-                            z + 1, 2, 'L1')   
+                            z + 1, 12, 'L1')   
 
                         elif 120 < float(np.nanmean(kpi_1)) <= 150:
 
                             outSheet.write(                     
-                            z + 1, 2, 'L2')   
+                            z + 1, 12, 'L2')   
                         
                         elif 90 < float(np.nanmean(kpi_1)) <= 120:
 
                             outSheet.write(                     
-                            z + 1, 2, 'L3')   
+                            z + 1, 12, 'L3')   
 
                         elif 50 < float(np.nanmean(kpi_1)) <= 90:         
 
                             outSheet.write(                     
-                            z + 1, 2, 'L4')   
+                            z + 1, 12, 'L4')   
 
                         elif float(np.nanmean(kpi_1)) <= 50:
 
                             outSheet.write(                     
-                            z + 1, 2, 'L5')
+                            z + 1, 12, 'L5')
 
                         print(Y+'cs_rab_setup_success_ratio'+W, f'= {kpi_2}'+G,
                               f'Median : {float(np.nanmedian(kpi_2))}'+W)
 
-                        outSheet.write(
-                            z + 1, 3, float(np.nanmedian(kpi_2)))
+                        if np.isnan(float(np.nanmedian(kpi_2))) == True:
+                            outSheet.write(
+                            z + 1, 6, 'null')        
+                        else:
+                            outSheet.write(
+                            z + 1, 6, float(np.nanmedian(kpi_2)))
 
-                        print(Y+'softer_handover_success_ratio(hu_cell)'+W, f'= {kpi_3}'+G,
+
+
+
+                        print(Y+'cs_irat_ho_sr'+W, f'= {kpi_3}'+G,
                               f'Median : {float(np.nanmedian(kpi_3))}'+W)
 
-                        outSheet.write(
-                            z + 1, 4, float(np.nanmedian(kpi_3)))
+                        if np.isnan(float(np.nanmedian(kpi_3))) == True:
+                            outSheet.write(
+                            z + 1, 7, 'null')        
+                        else:
+                            outSheet.write(
+                            z + 1, 7, float(np.nanmedian(kpi_3)))
 
-                        print(Y+'cs_irat_ho_sr)'+W, f'= {kpi_4}'+G,
+
+
+
+                        print(Y+'interfrequency_hardhandover_success_ratio_csservice'+W, f'= {kpi_4}'+G,
                               f'Median : {float(np.nanmedian(kpi_4))}'+W)
 
-                        outSheet.write(
-                            z + 1, 5, float(np.nanmedian(kpi_4)))
+                        if np.isnan(float(np.nanmedian(kpi_4))) == True:
+                            outSheet.write(
+                            z + 1, 8, 'null')        
+                        else:
+                            outSheet.write(
+                            z + 1, 8, float(np.nanmedian(kpi_4)))
+
+
+
 
                         print(Y+'amr_call_drop_ratio_new(hu_cell)'+W, f'= {kpi_5}'+G,
                               f'Median : {float(np.nanmedian(kpi_5))}'+W)
 
-                        outSheet.write(
-                            z + 1, 6, float(np.nanmedian(kpi_5)))
+                        if np.isnan(float(np.nanmedian(kpi_5))) == True:
+                            outSheet.write(
+                            z + 1, 9, 'null')        
+                        else:
+                            outSheet.write(
+                            z + 1, 9, float(np.nanmedian(kpi_5)))
 
-                        print(Y+'interfrequency_hardhandover_success_ratio_csservice'+W, f'= {kpi_6}'+G,
+
+
+
+
+                        print(Y+'softer_handover_success_ratio(hu_cell)'+W, f'= {kpi_6}'+G,
                               f'Median : {float(np.nanmedian(kpi_6))}'+W)
 
-                        outSheet.write(
-                            z + 1, 7, float(np.nanmedian(kpi_6)))
+                        if np.isnan(float(np.nanmedian(kpi_6))) == True:
+                            outSheet.write(
+                            z + 1, 10, 'null')        
+                        else:
+                            outSheet.write(
+                            z + 1, 10, float(np.nanmedian(kpi_6)))
+
+
+
 
                         print(Y+'cs_rrc_connection_establishment_sr'+W, f'= {kpi_7}'+G,
                               f'Median : {float(np.nanmedian(kpi_7))}'+W)
 
-                        outSheet.write(
-                            z + 1, 8, float(np.nanmedian(kpi_7)))
+                        if np.isnan(float(np.nanmedian(kpi_7))) == True:
+                            outSheet.write(
+                            z + 1, 11, 'null')        
+                        else:
+                            outSheet.write(
+                            z + 1, 11, float(np.nanmedian(kpi_7)))
                         
 
 
