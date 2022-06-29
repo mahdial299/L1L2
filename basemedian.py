@@ -398,15 +398,20 @@ if __name__ == '__main__':
 
                 kpi_list = [
 
-                    'payload_total(cell_hu)',
-                    'Level',
-                    'tbf_establishment_success_rate(ul+dl)(%)(hu_cell)',
-                    'tbf_drop(ul+dl)(hu_cell)',
-                    'average_throughput_of_downlink_gprs_llc_per_user(kbps)',
-                    'average_throughput_of_downlink_egprs_llc_per_user(kbps)',
-                    'thr_dl_gprs_per_ts(cell_hu)',
-                    'thr_dl_egprs_per_ts(cell_hu)',
-                    'edge_share_payload(cell_hu)'
+                    'Calculation Period',
+                    'Region',
+                    'Province',
+                    'BSC',
+                    'Cell',
+                    'Payload_Total',
+                    'TBF_Establishment_Success_Rate(UL+DL)(%)',
+                    'TBF_Drop(UL+DL)',
+                    'Average_Throughput_of_Downlink_GPRS_LLC_per_User(kbps)',
+                    'Average_Throughput_of_Downlink_EGPRS_LLC_per_User(kbps)',
+                    'THR_DL_GPRS_PER_TS',
+                    'THR_DL_EGPRS_PER_TS',
+                    'Edge_share_Payload',
+                    'Level'
 
                 ]
 
@@ -453,7 +458,7 @@ if __name__ == '__main__':
                     row_1 = 0
 
                     row_2 = 0
-                    column_2 = 1
+                    column_2 = 0
 
                     for kpi in kpi_list:
 
@@ -461,7 +466,7 @@ if __name__ == '__main__':
 
                         column_2 += 1
 
-                    outSheet.write(row_2, row_1, 'cell')
+                  
 
                     try:
 
@@ -469,7 +474,7 @@ if __name__ == '__main__':
 
                         print(f'{z} cell : {C+main_cell_source_index_2[z]+W}')
                         outSheet.write(
-                            z + 1, row_1, main_cell_source_index_2[z])
+                            z + 1, 4, main_cell_source_index_2[z])
                         
                         
 
@@ -477,76 +482,127 @@ if __name__ == '__main__':
                               f'Average : {float(np.nanmean(kpi_1))}'+W)
 
                         outSheet.write(
-                            z + 1, 1, float(np.nanmean(kpi_1)))
+                            z + 1, 5, float(np.nanmean(kpi_1)))
 
                         if float(np.nanmean(kpi_1)) > 1:
 
                             outSheet.write(                     
-                            z + 1, 2, 'L1')   
+                            z + 1, 13, 'L1')   
 
                         elif 0.7 < float(np.nanmean(kpi_1)) <= 1:
 
                             outSheet.write(                     
-                            z + 1, 2, 'L2')   
+                            z + 1, 13, 'L2')   
                         
                         elif 0.4 < float(np.nanmean(kpi_1)) <= 0.7:
 
                             outSheet.write(                     
-                            z + 1, 2, 'L3')   
+                            z + 1, 13, 'L3')   
 
                         elif 0.2 < float(np.nanmean(kpi_1)) <= 0.4:         
 
                             outSheet.write(                     
-                            z + 1, 2, 'L4')   
+                            z + 1, 13, 'L4')   
 
                         elif float(np.nanmean(kpi_1)) <= 0.2:
 
                             outSheet.write(                     
-                            z + 1, 2, 'L5')
+                            z + 1, 13, 'L5')
 
                         print(Y+'tbf_establishment_success_rate(ul+dl)(%)(hu_cell)'+W, f'= {kpi_2}'+G,
                               f'Median : {float(np.nanmedian(kpi_2))}'+W)
 
-                        outSheet.write(
-                            z + 1, 3, float(np.nanmedian(kpi_2)))
+                        if np.isnan(float(np.nanmedian(kpi_2))) == True:
+                            outSheet.write(
+                            z + 1, 6, 'null')        
+                        else:
+                            outSheet.write(
+                            z + 1, 6, float(np.nanmedian(kpi_2)))
+
+
+
 
                         print(Y+'tbf_drop(ul+dl)(hu_cell)'+W, f'= {kpi_3}'+G,
                               f'Median : {float(np.nanmedian(kpi_3))}'+W)
 
-                        outSheet.write(
-                            z + 1, 4, float(np.nanmedian(kpi_3)))
+                        if np.isnan(float(np.nanmedian(kpi_3))) == True:
+                            outSheet.write(
+                            z + 1, 7, 'null')        
+                        else:
+                            outSheet.write(
+                            z + 1, 7, float(np.nanmedian(kpi_3)))
+
+
+
+
 
                         print(Y+'average_throughput_of_downlink_gprs_llc_per_user(kbps)'+W, f'= {kpi_4}'+G,
                               f'Median : {float(np.nanmedian(kpi_4))}'+W)
 
-                        outSheet.write(
-                            z + 1, 5, float(np.nanmedian(kpi_4)))
+                        if np.isnan(float(np.nanmedian(kpi_4))) == True:
+                            outSheet.write(
+                            z + 1, 8, 'null')        
+                        else:
+                            outSheet.write(
+                            z + 1, 8, float(np.nanmedian(kpi_4)))
+
+
+
 
                         print(Y+'average_throughput_of_downlink_egprs_llc_per_user(kbps)'+W, f'= {kpi_5}'+G,
                               f'Median : {float(np.nanmedian(kpi_5))}'+W)
 
-                        outSheet.write(
-                            z + 1, 6, float(np.nanmedian(kpi_5)))
+                        if np.isnan(float(np.nanmedian(kpi_5))) == True:
+                            outSheet.write(
+                            z + 1, 9, 'null')        
+                        else:
+                            outSheet.write(
+                            z + 1, 9, float(np.nanmedian(kpi_5)))
+
+
+
+
+
 
                         print(Y+'thr_dl_gprs_per_ts(cell_hu)'+W, f'= {kpi_6}'+G,
                               f'Median : {float(np.nanmedian(kpi_6))}'+W)
 
-                        outSheet.write(
-                            z + 1, 7, float(np.nanmedian(kpi_6)))
+                        if np.isnan(float(np.nanmedian(kpi_6))) == True:
+                            outSheet.write(
+                            z + 1, 10, 'null')        
+                        else:
+                            outSheet.write(
+                            z + 1, 10, float(np.nanmedian(kpi_6)))
+
+
+
+
+
 
                         print(Y+'thr_dl_egprs_per_ts(cell_hu)'+W, f'= {kpi_7}'+G,
                               f'Median : {float(np.nanmedian(kpi_7))}'+W)
 
-                        outSheet.write(
-                            z + 1, 8, float(np.nanmedian(kpi_7)))
+                        if np.isnan(float(np.nanmedian(kpi_7))) == True:
+                            outSheet.write(
+                            z + 1, 11, 'null')        
+                        else:
+                            outSheet.write(
+                            z + 1, 11, float(np.nanmedian(kpi_7)))
+
+
+
+                        
 
                         print(Y+'edge_share_payload(cell_hu)'+W, f'= {kpi_8}'+G,
                               f'Median : {float(np.nanmedian(kpi_8))}'+W)
 
-                        outSheet.write(
-                            z + 1, 9, float(np.nanmedian(kpi_8)))
+                        if np.isnan(float(np.nanmedian(kpi_8))) == True:
+                            outSheet.write(
+                            z + 1, 12, 'null')        
+                        else:
+                            outSheet.write(
+                            z + 1, 12, float(np.nanmedian(kpi_8)))
 
-                            # warnings.filterwarnings(action='ignore', message='All-NaN slice encountered')
 
         
 
