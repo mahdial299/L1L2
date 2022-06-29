@@ -874,22 +874,27 @@ if __name__ == '__main__':
 
                 kpi_list = [
                     
-                    'payload',
-                    'Level',
-                    'ps_cssr',
-                    'ps_call_drop_ratio',
-                    'average_hsdpa_user_throughput_dc+sc(mbit/s)(cell_huawei)',
-                    'hsupa_uplink_throughput_in_v16(cell_hu)',
-                    'cs+ps_rab_setup_success_ratio',
-                    'hsdpa_soft_handover_success_ratio',
-                    'hs_share_payload_%',
-                    'hsdpa_cdr(%)_(hu_cell)_new',
-                    'hsdpa_scheduling_cell_throughput(cell_huawei)',
-                    'ps_rrc_connection_success_rate_repeatless(hu_cell)',
+                    'Calculation Period',
+                    'Region',
+                    'Province',
+                    'RNC',
+                    'Cell',
+                    'Payload',
+                    'AVERAGE_HSDPA_USER_THROUGHPUT_DC+SC(Mbit/s)',
+                    'CS+PS_RAB_Setup_Success_Ratio',
+                    'HSDPA_Soft_HandOver_Success_Ratio',
+                    'HS_share_PAYLOAD_%',
+                    'HSDPA_cdr(%)',
+                    'HSDPA_SCHEDULING_Cell_throughput',
+                    'PS_RAB_Setup_Success_Ratio',
+                    'PS_RRC_Connection_success_Rate_repeatless',
+                    'PS_Call_Drop_Ratio',
+                    'PS_CSSR',
+                    'hsupa_uplink_throughput_in_V16',
                     'hsdpa_rab_setup_success_ratio(hu_cell)',
                     'hsupa_rab_setup_success_ratio(hu_cell)',
-                    'ps_rab_setup_success_ratio',
-                    'hsupa_cdr(%)_(hu_cell)_new'
+                    'hsupa_cdr(%)_(hu_cell)_new',
+                    'Level'
 
 
 
@@ -919,31 +924,31 @@ if __name__ == '__main__':
                         if astro_RD3[i]['cell'] == main_cell_source_index_3[z]:
 
                             kpi_1.append(astro_RD3[i]['payload'])
-                            kpi_2.append(astro_RD3[i]['ps_cssr'])
-                            kpi_3.append(astro_RD3[i]['ps_call_drop_ratio'])
+                            kpi_2.append(astro_RD3[i][''])
+                            kpi_3.append(astro_RD3[i][''])
                             kpi_4.append(
-                                astro_RD3[i]['average_hsdpa_user_throughput_dc+sc(mbit/s)(cell_huawei)'])
+                                astro_RD3[i][''])
                             kpi_5.append(
-                                astro_RD3[i]['hsupa_uplink_throughput_in_v16(cell_hu)'])
+                                astro_RD3[i][''])
                             kpi_6.append(
-                                astro_RD3[i]['cs+ps_rab_setup_success_ratio'])
+                                astro_RD3[i]['cs+'])
                             kpi_7.append(
-                                astro_RD3[i]['hsdpa_soft_handover_success_ratio'])
-                            kpi_8.append(astro_RD3[i]['hs_share_payload_%'])
+                                astro_RD3[i][''])
+                            kpi_8.append(astro_RD3[i][''])
                             kpi_9.append(
-                                astro_RD3[i]['hsdpa_cdr(%)_(hu_cell)_new'])
+                                astro_RD3[i][''])
                             kpi_10.append(
-                                astro_RD3[i]['hsdpa_scheduling_cell_throughput(cell_huawei)'])
+                                astro_RD3[i][''])
                             kpi_11.append(
-                                astro_RD3[i]['ps_rrc_connection_success_rate_repeatless(hu_cell)'])
+                                astro_RD3[i][''])
                             kpi_12.append(
-                                astro_RD3[i]['hsdpa_rab_setup_success_ratio(hu_cell)'])
+                                astro_RD3[i][''])
                             kpi_13.append(
-                                astro_RD3[i]['hsupa_rab_setup_success_ratio(hu_cell)'])
+                                astro_RD3[i][''])
                             kpi_14.append(
-                                astro_RD3[i]['ps_rab_setup_success_ratio'])
+                                astro_RD3[i][''])
                             kpi_15.append(
-                                astro_RD3[i]['hsupa_cdr(%)_(hu_cell)_new'])
+                                astro_RD3[i][''])
                          
 
                         else:
@@ -953,7 +958,7 @@ if __name__ == '__main__':
                     row_1 = 0
 
                     row_2 = 0
-                    column_2 = 1
+                    column_2 = 0
 
                     for kpi in kpi_list:
 
@@ -961,129 +966,229 @@ if __name__ == '__main__':
 
                         column_2 += 1
 
-                    outSheet.write(row_2, row_1, 'cell')
+
 
                     try:
 
                         print(f'{z} cell : {C+main_cell_source_index_3[z]+W}')
                         outSheet.write(
-                            z + 1, row_1, main_cell_source_index_3[z])
+                            z + 1, 4, main_cell_source_index_3[z])
 
                         print(Y+'payload'+W, f'= {kpi_1}'+G,
                               f'Average : {float(np.nanmean(kpi_1))}'+W)
 
                         outSheet.write(
-                            z + 1, 1, float(np.nanmean(kpi_1)))
+                            z + 1, 5, float(np.nanmean(kpi_1)))
 
                         
                         if float(np.nanmean(kpi_1)) > 28:
 
                             outSheet.write(                     
-                            z + 1, 2, 'L1')   
+                            z + 1, 20, 'L1')   
 
                         elif 23 < float(np.nanmean(kpi_1)) <= 28:
 
                             outSheet.write(                     
-                            z + 1, 2, 'L2')   
+                            z + 1, 20, 'L2')   
                         
                         elif 18 < float(np.nanmean(kpi_1)) <= 23:
 
                             outSheet.write(                     
-                            z + 1, 2, 'L3')   
+                            z + 1, 20, 'L3')   
 
                         elif 13 < float(np.nanmean(kpi_1)) <= 18:         
 
                             outSheet.write(                     
-                            z + 1, 2, 'L4')   
+                            z + 1, 20, 'L4')   
 
                         elif float(np.nanmean(kpi_1)) <= 13:
 
                             outSheet.write(                     
-                            z + 1, 2, 'L5')
+                            z + 1, 20, 'L5')
 
-                        print(Y+'ps_cssr'+W, f'= {kpi_2}'+G,
+                        print(Y+''+W, f'= {kpi_2}'+G,
                               f'Median : {float(np.nanmedian(kpi_2))}'+W)
 
-                        outSheet.write(
-                            z + 1, 3, float(np.nanmedian(kpi_2)))
+                        if np.isnan(float(np.nanmedian(kpi_2))) == True:
+                            outSheet.write(
+                            z + 1, 6, 'null')        
+                        else:
+                            outSheet.write(
+                            z + 1, 6, float(np.nanmedian(kpi_2)))
 
-                        print(Y+'ps_call_drop_ratio'+W, f'= {kpi_3}'+G,
+
+
+    
+
+                        print(Y+''+W, f'= {kpi_3}'+G,
                               f'Median : {float(np.nanmedian(kpi_3))}'+W)
 
-                        outSheet.write(
-                            z + 1, 4, float(np.nanmedian(kpi_3)))
+                        if np.isnan(float(np.nanmedian(kpi_3))) == True:
+                            outSheet.write(
+                            z + 1, 7, 'null')        
+                        else:
+                            outSheet.write(
+                            z + 1, 7, float(np.nanmedian(kpi_3)))
 
-                        print(Y+'average_hsdpa_user_throughput_dc+sc(mbit/s)(cell_huawei)'+W, f'= {kpi_4}'+G,
+
+
+
+
+                        print(Y+''+W, f'= {kpi_4}'+G,
                               f'Median : {float(np.nanmedian(kpi_4))}'+W)
 
-                        outSheet.write(
-                            z + 1, 5, float(np.nanmedian(kpi_4)))
+                        if np.isnan(float(np.nanmedian(kpi_4))) == True:
+                            outSheet.write(
+                            z + 1, 8, 'null')        
+                        else:
+                            outSheet.write(
+                            z + 1, 8, float(np.nanmedian(kpi_4)))
 
-                        print(Y+'hsupa_uplink_throughput_in_v16(cell_hu)'+W, f'= {kpi_5}'+G,
+
+
+
+                        print(Y+''+W, f'= {kpi_5}'+G,
                               f'Median : {float(np.nanmedian(kpi_5))}'+W)
 
-                        outSheet.write(
-                            z + 1, 6, float(np.nanmedian(kpi_5)))
+                        if np.isnan(float(np.nanmedian(kpi_5))) == True:
+                            outSheet.write(
+                            z + 1, 9, 'null')        
+                        else:
+                            outSheet.write(
+                            z + 1, 9, float(np.nanmedian(kpi_5)))
 
-                        print(Y+'cs+ps_rab_setup_success_ratio'+W, f'= {kpi_6}'+G,
+
+
+
+                        print(Y+''+W, f'= {kpi_6}'+G,
                               f'Median : {float(np.nanmedian(kpi_6))}'+W)
 
-                        outSheet.write(
-                            z + 1, 7, float(np.nanmedian(kpi_6)))
+                        if np.isnan(float(np.nanmedian(kpi_6))) == True:
+                            outSheet.write(
+                            z + 1, 10, 'null')        
+                        else:
+                            outSheet.write(
+                            z + 1, 10, float(np.nanmedian(kpi_6)))
 
-                        print(Y+'hsdpa_soft_handover_success_ratio'+W, f'= {kpi_7}'+G,
+
+
+
+                        print(Y+''+W, f'= {kpi_7}'+G,
                               f'Median : {float(np.nanmedian(kpi_7))}'+W)
 
-                        outSheet.write(
-                            z + 1, 8, float(np.nanmedian(kpi_7)))
+                        if np.isnan(float(np.nanmedian(kpi_7))) == True:
+                            outSheet.write(
+                            z + 1, 11, 'null')        
+                        else:
+                            outSheet.write(
+                            z + 1, 11, float(np.nanmedian(kpi_7)))
 
-                        print(Y+'hs_share_payload_%'+W, f'= {kpi_8}'+G,
+
+
+
+                        print(Y+''+W, f'= {kpi_8}'+G,
                               f'Median : {float(np.nanmedian(kpi_8))}'+W)
 
-                        outSheet.write(
-                            z + 1, 9, float(np.nanmedian(kpi_8)))
+                        if np.isnan(float(np.nanmedian(kpi_8))) == True:
+                            outSheet.write(
+                            z + 1, 12, 'null')        
+                        else:
+                            outSheet.write(
+                            z + 1, 12, float(np.nanmedian(kpi_8)))
 
-                        print(Y+'hsdpa_cdr(%)_(hu_cell)_new'+W, f'= {kpi_9}'+G,
+
+
+
+
+                        print(Y+''+W, f'= {kpi_9}'+G,
                               f'Median : {float(np.nanmedian(kpi_9))}'+W)
 
-                        outSheet.write(
-                            z + 1, 10, float(np.nanmedian(kpi_9)))
+                        if np.isnan(float(np.nanmedian(kpi_9))) == True:
+                            outSheet.write(
+                            z + 1, 13, 'null')        
+                        else:
+                            outSheet.write(
+                            z + 1, 13, float(np.nanmedian(kpi_9)))
 
-                        print(Y+'hsdpa_scheduling_cell_throughput(cell_huawei)'+W, f'= {kpi_10}'+G,
+
+
+
+                        print(Y+''+W, f'= {kpi_10}'+G,
                               f'Median : {float(np.nanmedian(kpi_10))}'+W)
 
-                        outSheet.write(
-                            z + 1, 11, float(np.nanmedian(kpi_10)))
+                        if np.isnan(float(np.nanmedian(kpi_10))) == True:
+                            outSheet.write(
+                            z + 1, 14, 'null')        
+                        else:
+                            outSheet.write(
+                            z + 1, 14, float(np.nanmedian(kpi_10)))
 
-                        print(Y+'ps_rrc_connection_success_rate_repeatless(hu_cell)'+W, f'= {kpi_11}'+G,
+
+
+
+                        print(Y+''+W, f'= {kpi_11}'+G,
                               f'Median : {float(np.nanmedian(kpi_11))}'+W)
 
-                        outSheet.write(
-                            z + 1, 12, float(np.nanmedian(kpi_11)))
+                        if np.isnan(float(np.nanmedian(kpi_11))) == True:
+                            outSheet.write(
+                            z + 1, 15, 'null')        
+                        else:
+                            outSheet.write(
+                            z + 1, 15, float(np.nanmedian(kpi_11)))
 
-                        print(Y+'hsdpa_rab_setup_success_ratio(hu_cell)'+W, f'= {kpi_12}'+G,
+
+
+
+                        print(Y+''+W, f'= {kpi_12}'+G,
                               f'Median : {float(np.nanmedian(kpi_12))}'+W)
 
-                        outSheet.write(
-                            z + 1, 13, float(np.nanmedian(kpi_12)))
+                        if np.isnan(float(np.nanmedian(kpi_12))) == True:
+                            outSheet.write(
+                            z + 1, 16, 'null')        
+                        else:
+                            outSheet.write(
+                            z + 1, 16, float(np.nanmedian(kpi_12)))
 
-                        print(Y+'hsupa_rab_setup_success_ratio(hu_cell)'+W, f'= {kpi_13}'+G,
+
+
+
+                        print(Y+''+W, f'= {kpi_13}'+G,
                               f'Median : {float(np.nanmedian(kpi_13))}'+W)
 
-                        outSheet.write(
-                            z + 1, 14, float(np.nanmedian(kpi_13)))
+                        if np.isnan(float(np.nanmedian(kpi_13))) == True:
+                            outSheet.write(
+                            z + 1, 17, 'null')        
+                        else:
+                            outSheet.write(
+                            z + 1, 17, float(np.nanmedian(kpi_13)))
 
-                        print(Y+'ps_rab_setup_success_ratio'+W, f'= {kpi_14}'+G,
+
+
+
+
+                        print(Y+''+W, f'= {kpi_14}'+G,
                               f'Median : {float(np.nanmedian(kpi_14))}'+W)
 
-                        outSheet.write(
-                            z + 1, 15, float(np.nanmedian(kpi_14)))
+                        if np.isnan(float(np.nanmedian(kpi_14))) == True:
+                            outSheet.write(
+                            z + 1, 18, 'null')        
+                        else:
+                            outSheet.write(
+                            z + 1, 18, float(np.nanmedian(kpi_14)))
 
-                        print(Y+'hsupa_cdr(%)_(hu_cell)_new'+W, f'= {kpi_15}'+G,
+
+
+
+
+                        print(Y+''+W, f'= {kpi_15}'+G,
                               f'Median : {float(np.nanmedian(kpi_15))}'+W)
 
-                        outSheet.write(
-                            z + 1, 16, float(np.nanmedian(kpi_15)))
+                        if np.isnan(float(np.nanmedian(kpi_15))) == True:
+                            outSheet.write(
+                            z + 1, 19, 'null')        
+                        else:
+                            outSheet.write(
+                            z + 1, 19, float(np.nanmedian(kpi_15)))
 
                       
 
