@@ -20,6 +20,9 @@ user = 'Mehdi Alebrahim'
 
 gitdir = fr'C:\Users\{user}\Desktop\L12'
 
+datadir = fr'{gitdir}\Data'
+
+basedir = fr'{gitdir}\Daily_baselines'
 
 def ban():
 
@@ -71,7 +74,7 @@ if __name__ == '__main__':
 
             case 1:
 
-                            
+              
         
 
                 outWorkbook = xlsxwriter.Workbook(f"CC2_Daily_BL.xlsx")
