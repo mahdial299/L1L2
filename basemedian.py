@@ -174,7 +174,7 @@ if __name__ == '__main__':
 
                         
 
-                        print(f'{z} cell : {C+main_cell_source_index_2[z]+W}')
+                        print(f'{R + z + W} cell : {C+main_cell_source_index_2[z]+W}')
 
                         outSheet.write(
                             z + 1, 4, main_cell_source_index_2[z])
