@@ -1,5 +1,4 @@
 import pyfiglet
-from sqlalchemy import true
 import xlsxwriter
 import pandas as pd
 import numpy as np
@@ -174,7 +173,7 @@ if __name__ == '__main__':
 
                         
 
-                        print(f'{R + z + W} cell : {C+main_cell_source_index_2[z]+W}')
+                        print(f'{z} cell : {C+main_cell_source_index_2[z]+W}')
 
                         outSheet.write(
                             z + 1, 4, main_cell_source_index_2[z])
@@ -1293,26 +1292,26 @@ if __name__ == '__main__':
                             kpi_2.append(
                                 astro_RD4[i]['average_downlink_user_throughput(mbit/s)'])
                             kpi_3.append(
-                                astro_RD4[i]['Call_Drop_Rate'])
-                            kpi_4.append(astro_RD4[i]['Average_UPlink_User_Throughput(Mbit/s)'])
-                            kpi_5.append(astro_RD4[i]['RRC_Connection_Setup_Success_Rate_service'])
-                            kpi_6.append(astro_RD4[i]['E-RAB_Setup_Success_Rate'])
+                                astro_RD4[i]['call_drop_rate'])
+                            kpi_4.append(astro_RD4[i]['average_uplink_user_throughput(mbit/s)'])
+                            kpi_5.append(astro_RD4[i]['rrc_connection_setup_success_rate_service'])
+                            kpi_6.append(astro_RD4[i]['e-rab_setup_success_rate'])
                             kpi_7.append(
-                                astro_RD4[i]['E-RAB_Setup_Success_Rate(Hu_Cell)'])
+                                astro_RD4[i]['e-rab_setup_success_rate(hu_cell)'])
                             kpi_8.append(
-                                astro_RD4[i]['intra_rat_handover_sr_intra+inter_frequency(huawei_lte_cell'])
+                                astro_RD4[i]['intra_rat_handover_sr_intra+inter_frequency(huawei_lte_cell)'])
                             kpi_9.append(
-                                astro_RD4[i]['CSFB_Rate'])
+                                astro_RD4[i]['csfb_rate'])
                             kpi_10.append(
-                                astro_RD4[i]['S1Signal_E-RAB_Setup_SR(Hu_Cell)'])
-                            kpi_11.append(astro_RD4[i]['InterF_HOOut_SR'])
+                                astro_RD4[i]['s1signal_e-rab_setup_sr(hu_cell)'])
+                            kpi_11.append(astro_RD4[i]['interf_hoout_sr'])
                             kpi_12.append(
-                                astro_RD4[i]['IntraF_HOOut_SR'])
+                                astro_RD4[i]['intraf_hoout_sr'])
                             kpi_13.append(
                                 astro_RD4[i]['downlink_cell_throghput(kbit/s)'])
                             kpi_14.append(astro_RD4[i]['uplink_cell_throghput(kbit/s)'])
-                            kpi_15.append(astro_RD4[i]['Average_UL_Packet_Loss_%(Huawei_LTE_UCell)'])
-                            kpi_16.append(astro_RD4[i]['CSSR(ALL)'])
+                            kpi_15.append(astro_RD4[i]['average_ul_packet_loss_%(huawei_lte_ucell)'])
+                            kpi_16.append(astro_RD4[i]['cssr(all)'])
                          
 
                         else:
@@ -1336,38 +1335,38 @@ if __name__ == '__main__':
 
                         print(f'{z} cell : {C+main_cell_source_index_4[z]+W}')
                         outSheet.write(
-                            z + 1, 4, main_cell_source_index_4[z])
+                            z + 1, 3, main_cell_source_index_4[z])
 
                         print(Y+'total_traffic_volume(gb)'+W, f'= {kpi_1}'+G,
                             f'Average : {float(np.nanmean(kpi_1))}'+W)    # edit from here 
 
-                        outSheet.write(z + 1, 5 , float(np.nanmean(kpi_1)))
+                        outSheet.write(z + 1, 4 , float(np.nanmean(kpi_1)))
 
 
                         if float(np.nanmean(kpi_1)) > 160:
 
                             outSheet.write(                     
-                            z + 1, 21, 'L1')   
+                            z + 1, 20, 'L1')   
 
                         elif 120 < float(np.nanmean(kpi_1)) <= 160:
 
                             outSheet.write(                     
-                            z + 1, 21, 'L2')   
+                            z + 1, 20, 'L2')   
                         
                         elif 80 < float(np.nanmean(kpi_1)) <= 120:
 
                             outSheet.write(                     
-                            z + 1, 21, 'L3')   
+                            z + 1, 20, 'L3')   
 
                         elif 40 < float(np.nanmean(kpi_1)) <= 80:         
 
                             outSheet.write(                     
-                            z + 1, 21, 'L4')   
+                            z + 1, 20, 'L4')   
 
                         elif float(np.nanmean(kpi_1)) <= 40:
 
                             outSheet.write(                     
-                            z + 1, 21, 'L5')
+                            z + 1, 20, 'L5')
 
 
                         print(Y+'average_downlink_user_throughput(mbit/s)'+W, f'= {kpi_2}'+G,
@@ -1375,10 +1374,10 @@ if __name__ == '__main__':
 
                         if np.isnan(float(np.nanmedian(kpi_2))) == True:
                             outSheet.write(
-                            z + 1, 6, 'null')        
+                            z + 1, 5, 'null')        
                         else:
                             outSheet.write(
-                            z + 1, 6, float(np.nanmedian(kpi_2)))
+                            z + 1, 5, float(np.nanmedian(kpi_2)))
 
 
                         
@@ -1388,10 +1387,10 @@ if __name__ == '__main__':
 
                         if np.isnan(float(np.nanmedian(kpi_3))) == True:
                             outSheet.write(
-                            z + 1, 7, 'null')        
+                            z + 1, 6, 'null')        
                         else:
                             outSheet.write(
-                            z + 1, 7, float(np.nanmedian(kpi_3)))
+                            z + 1, 6, float(np.nanmedian(kpi_3)))
 
 
 
@@ -1402,10 +1401,10 @@ if __name__ == '__main__':
 
                         if np.isnan(float(np.nanmedian(kpi_4))) == True:
                             outSheet.write(
-                            z + 1, 8, 'null')        
+                            z + 1, 7, 'null')        
                         else:
                             outSheet.write(
-                            z + 1, 8, float(np.nanmedian(kpi_4)))
+                            z + 1, 7, float(np.nanmedian(kpi_4)))
 
 
 
@@ -1416,10 +1415,10 @@ if __name__ == '__main__':
 
                         if np.isnan(float(np.nanmedian(kpi_5))) == True:
                             outSheet.write(
-                            z + 1, 9, 'null')        
+                            z + 1, 8, 'null')        
                         else:
                             outSheet.write(
-                            z + 1, 9, float(np.nanmedian(kpi_5)))
+                            z + 1, 8, float(np.nanmedian(kpi_5)))
 
 
 
@@ -1429,10 +1428,10 @@ if __name__ == '__main__':
 
                         if np.isnan(float(np.nanmedian(kpi_6))) == True:
                             outSheet.write(
-                            z + 1, 10, 'null')        
+                            z + 1, 9, 'null')        
                         else:
                             outSheet.write(
-                            z + 1, 10, float(np.nanmedian(kpi_6)))
+                            z + 1, 9, float(np.nanmedian(kpi_6)))
 
 
 
@@ -1442,10 +1441,10 @@ if __name__ == '__main__':
 
                         if np.isnan(float(np.nanmedian(kpi_7))) == True:
                             outSheet.write(
-                            z + 1, 11, 'null')        
+                            z + 1, 10, 'null')        
                         else:
                             outSheet.write(
-                            z + 1, 11, float(np.nanmedian(kpi_7)))
+                            z + 1, 10, float(np.nanmedian(kpi_7)))
 
 
 
@@ -1455,10 +1454,10 @@ if __name__ == '__main__':
 
                         if np.isnan(float(np.nanmedian(kpi_8))) == True:
                             outSheet.write(
-                            z + 1, 12, 'null')        
+                            z + 1, 11, 'null')        
                         else:
                             outSheet.write(
-                            z + 1, 12, float(np.nanmedian(kpi_8)))
+                            z + 1, 11, float(np.nanmedian(kpi_8)))
 
 
 
@@ -1467,10 +1466,10 @@ if __name__ == '__main__':
 
                         if np.isnan(float(np.nanmedian(kpi_9))) == True:
                             outSheet.write(
-                            z + 1, 13, 'null')        
+                            z + 1, 12, 'null')        
                         else:
                             outSheet.write(
-                            z + 1, 13, float(np.nanmedian(kpi_9)))
+                            z + 1, 12, float(np.nanmedian(kpi_9)))
 
 
 
@@ -1480,10 +1479,10 @@ if __name__ == '__main__':
 
                         if np.isnan(float(np.nanmedian(kpi_10))) == True:
                             outSheet.write(
-                            z + 1, 14, 'null')        
+                            z + 1, 13, 'null')        
                         else:
                             outSheet.write(
-                            z + 1, 14, float(np.nanmedian(kpi_10)))
+                            z + 1, 13, float(np.nanmedian(kpi_10)))
 
 
 
@@ -1492,10 +1491,10 @@ if __name__ == '__main__':
 
                         if np.isnan(float(np.nanmedian(kpi_11))) == True:
                             outSheet.write(
-                            z + 1, 15, 'null')        
+                            z + 1, 14, 'null')        
                         else:
                             outSheet.write(
-                            z + 1, 15, float(np.nanmedian(kpi_11)))
+                            z + 1, 14, float(np.nanmedian(kpi_11)))
 
 
 
@@ -1505,10 +1504,10 @@ if __name__ == '__main__':
 
                         if np.isnan(float(np.nanmedian(kpi_12))) == True:
                             outSheet.write(
-                            z + 1, 16, 'null')        
+                            z + 1, 15, 'null')        
                         else:
                             outSheet.write(
-                            z + 1, 16, float(np.nanmedian(kpi_12)))
+                            z + 1, 15, float(np.nanmedian(kpi_12)))
 
 
 
@@ -1518,10 +1517,10 @@ if __name__ == '__main__':
 
                         if np.isnan(float(np.nanmedian(kpi_13))) == True:
                             outSheet.write(
-                            z + 1, 17, 'null')        
+                            z + 1, 16, 'null')        
                         else:
                             outSheet.write(
-                            z + 1, 17, float(np.nanmedian(kpi_13)))
+                            z + 1, 16, float(np.nanmedian(kpi_13)))
 
 
 
@@ -1532,10 +1531,10 @@ if __name__ == '__main__':
 
                         if np.isnan(float(np.nanmedian(kpi_14))) == True:
                             outSheet.write(
-                            z + 1, 18, 'null')        
+                            z + 1, 17, 'null')        
                         else:
                             outSheet.write(
-                            z + 1, 18, float(np.nanmedian(kpi_14)))
+                            z + 1, 17, float(np.nanmedian(kpi_14)))
 
 
 
@@ -1545,10 +1544,10 @@ if __name__ == '__main__':
 
                         if np.isnan(float(np.nanmedian(kpi_15))) == True:
                             outSheet.write(
-                            z + 1, 19, 'null')        
+                            z + 1, 18, 'null')        
                         else:
                             outSheet.write(
-                            z + 1, 19, float(np.nanmedian(kpi_15)))
+                            z + 1, 18, float(np.nanmedian(kpi_15)))
 
 
 
@@ -1557,10 +1556,10 @@ if __name__ == '__main__':
 
                         if np.isnan(float(np.nanmedian(kpi_16))) == True:
                             outSheet.write(
-                            z + 1, 20, 'null')        
+                            z + 1, 19, 'null')        
                         else:
                             outSheet.write(
-                            z + 1, 20, float(np.nanmedian(kpi_16)))
+                            z + 1, 19, float(np.nanmedian(kpi_16)))
                         
                         
                         
