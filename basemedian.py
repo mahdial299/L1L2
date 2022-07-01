@@ -2223,7 +2223,7 @@ if __name__ == '__main__':
 
                             for i in range(len(astro_CC3)):
 
-                                if astro_CC3[i]['cell'] == main_cell_source_index_3[z]:
+                                if astro_CC3[i]['CELL'] == main_cell_source_index_3[z]:
 
                                     kpi_1.append(astro_CC3[i]['CS_TrafficBH'])
                                     kpi_2.append(
