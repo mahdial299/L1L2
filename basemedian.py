@@ -2173,12 +2173,12 @@ if __name__ == '__main__':
 
                     case 3:
 
-                        outWorkbook = xlsxwriter.Workbook(f"CC3_Daily_BL.xlsx")
+                        outWorkbook = xlsxwriter.Workbook(f"CC3_BH_BL.xlsx")
 
                         outSheet = outWorkbook.add_worksheet(name='Median_bl')
 
                         # ==================== data
-                        df_CC3 = pd.read_excel('CC3_Daily_data.xlsx', sheet_name='Sheet0')
+                        df_CC3 = pd.read_excel('CC3_BH_data.xlsx', sheet_name='Sheet0')
                         astro_CC3 = df_CC3.to_dict('records')
                         # ====================
 
@@ -2384,7 +2384,7 @@ if __name__ == '__main__':
                         outWorkbook.close()
 
                         userfdec = input(
-                            C+'CC3-Daily calculation Done! continue? [y/n] : '+W)
+                            C+'CC3-BH calculation Done! continue? [y/n] : '+W)
 
                         userfdec = userfdec.lower()
 
