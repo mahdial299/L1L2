@@ -374,7 +374,7 @@ if __name__ == '__main__':
                         outWorkbook.close()
 
                         userfdec = input(
-                            C+'CC2 calculation Done! continue? [y/n] : '+W)
+                            C+'CC2-Daily calculation Done! continue? [y/n] : '+W)
 
                         userfdec = userfdec.lower()
 
@@ -625,7 +625,7 @@ if __name__ == '__main__':
                         outWorkbook.close()
 
                         userfdec = input(
-                            C+'RD2 calculation Done! continue? [y/n] : '+W)
+                            C+'RD2-Daily calculation Done! continue? [y/n] : '+W)
 
                         userfdec = userfdec.lower()
 
@@ -851,7 +851,7 @@ if __name__ == '__main__':
                         outWorkbook.close()
 
                         userfdec = input(
-                            C+'CC3 calculation Done! continue? [y/n] : '+W)
+                            C+'CC3-Daily calculation Done! continue? [y/n] : '+W)
 
                         userfdec = userfdec.lower()
 
@@ -1212,7 +1212,7 @@ if __name__ == '__main__':
                         outWorkbook.close()
 
                         userfdec = input(
-                            C+'RD3 calculation Done! continue? [y/n] : '+W)
+                            C+'RD3-Daily calculation Done! continue? [y/n] : '+W)
 
                         userfdec = userfdec.lower()
 
@@ -1581,7 +1581,7 @@ if __name__ == '__main__':
                         outWorkbook.close()
 
                         userfdec = input(
-                            C+'RD4 calculation Done! continue? [y/n] : '+W)
+                            C+'RD4-Daily calculation Done! continue? [y/n] : '+W)
 
                         userfdec = userfdec.lower()
 
@@ -1903,7 +1903,7 @@ if __name__ == '__main__':
                         outWorkbook.close()
 
                         userfdec = input(
-                            C+'CC2 calculation Done! continue? [y/n] : '+W)
+                            C+'CC2-BH calculation Done! continue? [y/n] : '+W)
 
                         userfdec = userfdec.lower()
 
@@ -1919,7 +1919,256 @@ if __name__ == '__main__':
 
                     case 2:
 
-                        pass
+                        
+                        # os.makedirs(fr'{gitdir}/RD2_BL')
+                        outWorkbook = xlsxwriter.Workbook(f"RD2_Daily_BL.xlsx")
+
+                        outSheet = outWorkbook.add_worksheet(name='Median_bl')
+
+                        # ================= data
+                        df_RD2 = pd.read_excel('RD2_Daily_data.xlsx', sheet_name='Sheet0')
+                        astro_RD2 = df_RD2.to_dict('records')
+                        # ========================
+
+                        main_cell_source_index_2 = df_RD2[['cell_ref']].dropna()
+                        main_cell_source_index_2 = np.asanyarray(
+                            main_cell_source_index_2).flatten()
+                        main_cell_source_index_2 = list(
+                            np.nan_to_num(main_cell_source_index_2))
+
+                        kpi_list = [
+
+
+                            'Calculation Period',
+                            'Region',
+                            'Province',
+                            'BSC',
+                            'Cell',
+                            'Payload_Total',
+                            'TBF_Establishment_Success_Rate(UL+DL)(%)',
+                            'TBF_Drop(UL+DL)',
+                            'Average_Throughput_of_Downlink_GPRS_LLC_per_User(kbps)',
+                            'Average_Throughput_of_Downlink_EGPRS_LLC_per_User(kbps)',
+                            'THR_DL_GPRS_PER_TS',
+                            'THR_DL_EGPRS_PER_TS',
+                            'Edge_share_Payload',
+                            'Level'
+
+                        ]
+
+                        for z in range(len(main_cell_source_index_2)):
+
+                            # ---------------------------------- 2G Data KPIs
+                            kpi_1 = []
+                            kpi_2 = []
+                            kpi_3 = []
+                            kpi_4 = []
+                            kpi_5 = []
+                            kpi_6 = []
+                            kpi_7 = []
+                            kpi_8 = []
+                    
+
+                            for i in range(len(astro_RD2)):
+
+                                if astro_RD2[i]['CELL'] == main_cell_source_index_2[z]:
+
+                                    kpi_1.append(
+                                        astro_RD2[i]['Payload_Total(CELL_HU)'])
+                                    kpi_2.append(
+                                        astro_RD2[i]['TBF_Establishment_Success_Rate(UL+DL)(%)(HU_Cell)'])
+                                    kpi_3.append(
+                                        astro_RD2[i]['TBF_Drop(UL+DL)(HU_Cell)'])
+                                    kpi_4.append(
+                                        astro_RD2[i]['Average_Throughput_of_Downlink_GPRS_LLC_per_User(kbps)'])
+                                    kpi_5.append(
+                                        astro_RD2[i]['Average_Throughput_of_Downlink_EGPRS_LLC_per_User(kbps)'])
+                                    kpi_6.append(
+                                        astro_RD2[i]['THR_DL_GPRS_PER_TS(CELL_HU)'])
+                                    kpi_7.append(
+                                        astro_RD2[i]['THR_DL_EGPRS_PER_TS(CELL_HU)'])
+                                    kpi_8.append(
+                                        astro_RD2[i]['Edge_share_Payload(CELL_HU)'])
+                                
+
+                                else:
+
+                                    continue
+
+                            # ================================== excel writing main
+                            row_1 = 0
+
+                            row_2 = 0
+                            column_2 = 0
+
+                            for kpi in kpi_list:
+
+                                outSheet.write(row_2, column_2, kpi)
+
+                                column_2 += 1
+
+                        
+
+                            try:
+
+                                
+
+                                print(f'{z} cell : {C+main_cell_source_index_2[z]+W}')
+                                outSheet.write(
+                                    z + 1, 4, main_cell_source_index_2[z])
+                                
+                                
+
+                                print(Y+'payload_total(cell_hu)'+W, f'= {kpi_1}'+G,
+                                    f'Average : {float(np.nanmean(kpi_1))}'+W)
+
+                                outSheet.write(
+                                    z + 1, 5, float(np.nanmean(kpi_1)))
+
+                                if float(np.nanmean(kpi_1)) > 1:
+
+                                    outSheet.write(                     
+                                    z + 1, 13, 'L1')   
+
+                                elif 0.7 < float(np.nanmean(kpi_1)) <= 1:
+
+                                    outSheet.write(                     
+                                    z + 1, 13, 'L2')   
+                                
+                                elif 0.4 < float(np.nanmean(kpi_1)) <= 0.7:
+
+                                    outSheet.write(                     
+                                    z + 1, 13, 'L3')   
+
+                                elif 0.2 < float(np.nanmean(kpi_1)) <= 0.4:         
+
+                                    outSheet.write(                     
+                                    z + 1, 13, 'L4')   
+
+                                elif float(np.nanmean(kpi_1)) <= 0.2:
+
+                                    outSheet.write(                     
+                                    z + 1, 13, 'L5')
+
+                                print(Y+'tbf_establishment_success_rate(ul+dl)(%)(hu_cell)'+W, f'= {kpi_2}'+G,
+                                    f'Median : {float(np.nanmedian(kpi_2))}'+W)
+
+                                if np.isnan(float(np.nanmedian(kpi_2))) == True:
+                                    outSheet.write(
+                                    z + 1, 6, 'null')        
+                                else:
+                                    outSheet.write(
+                                    z + 1, 6, float(np.nanmedian(kpi_2)))
+
+
+
+
+                                print(Y+'tbf_drop(ul+dl)(hu_cell)'+W, f'= {kpi_3}'+G,
+                                    f'Median : {float(np.nanmedian(kpi_3))}'+W)
+
+                                if np.isnan(float(np.nanmedian(kpi_3))) == True:
+                                    outSheet.write(
+                                    z + 1, 7, 'null')        
+                                else:
+                                    outSheet.write(
+                                    z + 1, 7, float(np.nanmedian(kpi_3)))
+
+
+
+
+
+                                print(Y+'average_throughput_of_downlink_gprs_llc_per_user(kbps)'+W, f'= {kpi_4}'+G,
+                                    f'Median : {float(np.nanmedian(kpi_4))}'+W)
+
+                                if np.isnan(float(np.nanmedian(kpi_4))) == True:
+                                    outSheet.write(
+                                    z + 1, 8, 'null')        
+                                else:
+                                    outSheet.write(
+                                    z + 1, 8, float(np.nanmedian(kpi_4)))
+
+
+
+
+                                print(Y+'average_throughput_of_downlink_egprs_llc_per_user(kbps)'+W, f'= {kpi_5}'+G,
+                                    f'Median : {float(np.nanmedian(kpi_5))}'+W)
+
+                                if np.isnan(float(np.nanmedian(kpi_5))) == True:
+                                    outSheet.write(
+                                    z + 1, 9, 'null')        
+                                else:
+                                    outSheet.write(
+                                    z + 1, 9, float(np.nanmedian(kpi_5)))
+
+
+
+
+
+
+                                print(Y+'thr_dl_gprs_per_ts(cell_hu)'+W, f'= {kpi_6}'+G,
+                                    f'Median : {float(np.nanmedian(kpi_6))}'+W)
+
+                                if np.isnan(float(np.nanmedian(kpi_6))) == True:
+                                    outSheet.write(
+                                    z + 1, 10, 'null')        
+                                else:
+                                    outSheet.write(
+                                    z + 1, 10, float(np.nanmedian(kpi_6)))
+
+
+
+
+
+
+                                print(Y+'thr_dl_egprs_per_ts(cell_hu)'+W, f'= {kpi_7}'+G,
+                                    f'Median : {float(np.nanmedian(kpi_7))}'+W)
+
+                                if np.isnan(float(np.nanmedian(kpi_7))) == True:
+                                    outSheet.write(
+                                    z + 1, 11, 'null')        
+                                else:
+                                    outSheet.write(
+                                    z + 1, 11, float(np.nanmedian(kpi_7)))
+
+
+
+                                
+
+                                print(Y+'edge_share_payload(cell_hu)'+W, f'= {kpi_8}'+G,
+                                    f'Median : {float(np.nanmedian(kpi_8))}'+W)
+
+                                if np.isnan(float(np.nanmedian(kpi_8))) == True:
+                                    outSheet.write(
+                                    z + 1, 12, 'null')        
+                                else:
+                                    outSheet.write(
+                                    z + 1, 12, float(np.nanmedian(kpi_8)))
+
+
+                
+
+                            except(TypeError):
+
+                                continue
+
+                        print(R+splitter+W)
+
+                        outWorkbook.close()
+
+                        userfdec = input(
+                            C+'RD2-BH calculation Done! continue? [y/n] : '+W)
+
+                        userfdec = userfdec.lower()
+
+                        match userfdec:
+
+                            case 'y':
+
+                                continue
+
+                            case 'n':
+
+                                sys.exit()
 
                     case 3:
 
