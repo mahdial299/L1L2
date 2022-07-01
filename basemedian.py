@@ -641,12 +641,12 @@ if __name__ == '__main__':
 
                     case 3:
 
-                        outWorkbook = xlsxwriter.Workbook(f"CC3_BH_BL.xlsx")
+                        outWorkbook = xlsxwriter.Workbook(f"CC3_Daily_BL.xlsx")
 
                         outSheet = outWorkbook.add_worksheet(name='Median_bl')
 
                         # ==================== data
-                        df_CC3 = pd.read_excel('CC3_BH_data.xlsx', sheet_name='Sheet0')
+                        df_CC3 = pd.read_excel('CC3_Daily_data.xlsx', sheet_name='Sheet0')
                         astro_CC3 = df_CC3.to_dict('records')
                         # ====================
 
@@ -693,19 +693,19 @@ if __name__ == '__main__':
 
                                 if astro_CC3[i]['cell'] == main_cell_source_index_3[z]:
 
-                                    kpi_1.append(astro_CC3[i]['CS_TrafficBH'])
+                                    kpi_1.append(astro_CC3[i]['cs_erlang'])
                                     kpi_2.append(
-                                        astro_CC3[i]['CS_RAB_Setup_Success_Ratio'])
+                                        astro_CC3[i]['cs_rab_setup_success_ratio'])
                                     kpi_3.append(
-                                        astro_CC3[i]['CS_IRAT_HO_SR'])
+                                        astro_CC3[i]['cs_irat_ho_sr'])
                                     kpi_4.append(
-                                        astro_CC3[i]['InterFrequency_Hardhandover_success_Ratio_CSservice'])
+                                        astro_CC3[i]['interfrequency_hardhandover_success_ratio_csservice'])
                                     kpi_5.append(
-                                        astro_CC3[i]['AMR_Call_Drop_Ratio_New(Hu_CELL)'])
+                                        astro_CC3[i]['amr_call_drop_ratio_new(hu_cell)'])
                                     kpi_6.append(
-                                        astro_CC3[i]['Softer_Handover_Success_Ratio(Hu_Cell)'])
+                                        astro_CC3[i]['softer_handover_success_ratio(hu_cell)'])
                                     kpi_7.append(
-                                        astro_CC3[i]['CS_RRC_Connection_Establishment_SR'])
+                                        astro_CC3[i]['cs_rrc_connection_establishment_sr'])
                                     
 
                                 else:
@@ -2173,7 +2173,230 @@ if __name__ == '__main__':
 
                     case 3:
 
-                        pass
+                        outWorkbook = xlsxwriter.Workbook(f"CC3_Daily_BL.xlsx")
+
+                        outSheet = outWorkbook.add_worksheet(name='Median_bl')
+
+                        # ==================== data
+                        df_CC3 = pd.read_excel('CC3_Daily_data.xlsx', sheet_name='Sheet0')
+                        astro_CC3 = df_CC3.to_dict('records')
+                        # ====================
+
+                        main_cell_source_index_3 = df_CC3[['cell_ref']].dropna()
+                        main_cell_source_index_3 = np.asanyarray(
+                            main_cell_source_index_3).flatten()
+                        main_cell_source_index_3 = list(
+                            np.nan_to_num(main_cell_source_index_3))
+
+                        kpi_list = [
+
+
+                            'Calculation Period',
+                            'Region',
+                            'Province',
+                            'RNC',
+                            'Cell',
+                            'cs_erlang',
+                            'CS_RAB_Setup_Success_Ratio',
+                            'CS_IRAT_HO_SR',
+                            'InterFrequency_Hardhandover_success_Ratio_CSservice',
+                            'AMR_Call_Drop_Ratio',
+                            'Softer_Handover_Success_Ratio',
+                            'CS_RRC_Connection_Establishment_SR',
+                            'Level',
+
+                            
+
+                        ]
+                        for z in range(len(main_cell_source_index_3)):
+
+                            # ---------------------------------- 3G Voice KPIs
+                            kpi_1 = []
+                            kpi_2 = []
+                            kpi_3 = []
+                            kpi_4 = []
+                            kpi_5 = []
+                            kpi_6 = []
+                            kpi_7 = []
+                        
+                    
+
+                            for i in range(len(astro_CC3)):
+
+                                if astro_CC3[i]['cell'] == main_cell_source_index_3[z]:
+
+                                    kpi_1.append(astro_CC3[i]['CS_TrafficBH'])
+                                    kpi_2.append(
+                                        astro_CC3[i]['CS_RAB_Setup_Success_Ratio'])
+                                    kpi_3.append(
+                                        astro_CC3[i]['CS_IRAT_HO_SR'])
+                                    kpi_4.append(
+                                        astro_CC3[i]['InterFrequency_Hardhandover_success_Ratio_CSservice'])
+                                    kpi_5.append(
+                                        astro_CC3[i]['AMR_Call_Drop_Ratio_New(Hu_CELL)'])
+                                    kpi_6.append(
+                                        astro_CC3[i]['Softer_Handover_Success_Ratio(Hu_Cell)'])
+                                    kpi_7.append(
+                                        astro_CC3[i]['CS_RRC_Connection_Establishment_SR'])
+                                    
+
+                                else:
+
+                                    continue
+
+                            row_1 = 0
+
+                            row_2 = 0
+                            column_2 = 0
+
+                            for kpi in kpi_list:
+
+                                outSheet.write(row_2, column_2, kpi)
+
+                                column_2 += 1
+
+                    
+
+                            try:
+
+                                print(f'{z} cell : {C+main_cell_source_index_3[z]+W}')
+                                outSheet.write(
+                                    z + 1, 4, main_cell_source_index_3[z])
+
+                                print(Y+'cs_erlang'+W, f'= {kpi_1}'+G,
+                                    f'Average : {float(np.nanmean(kpi_1))}'+W)
+
+                                outSheet.write(
+                                    z + 1, 5, float(np.nanmean(kpi_1)))
+
+                                if float(np.nanmean(kpi_1)) > 150:
+
+                                    outSheet.write(                     
+                                    z + 1, 12, 'L1')   
+
+                                elif 120 < float(np.nanmean(kpi_1)) <= 150:
+
+                                    outSheet.write(                     
+                                    z + 1, 12, 'L2')   
+                                
+                                elif 90 < float(np.nanmean(kpi_1)) <= 120:
+
+                                    outSheet.write(                     
+                                    z + 1, 12, 'L3')   
+
+                                elif 50 < float(np.nanmean(kpi_1)) <= 90:         
+
+                                    outSheet.write(                     
+                                    z + 1, 12, 'L4')   
+
+                                elif float(np.nanmean(kpi_1)) <= 50:
+
+                                    outSheet.write(                     
+                                    z + 1, 12, 'L5')
+
+                                print(Y+'cs_rab_setup_success_ratio'+W, f'= {kpi_2}'+G,
+                                    f'Median : {float(np.nanmedian(kpi_2))}'+W)
+
+                                if np.isnan(float(np.nanmedian(kpi_2))) == True:
+                                    outSheet.write(
+                                    z + 1, 6, 'null')        
+                                else:
+                                    outSheet.write(
+                                    z + 1, 6, float(np.nanmedian(kpi_2)))
+
+
+
+
+                                print(Y+'cs_irat_ho_sr'+W, f'= {kpi_3}'+G,
+                                    f'Median : {float(np.nanmedian(kpi_3))}'+W)
+
+                                if np.isnan(float(np.nanmedian(kpi_3))) == True:
+                                    outSheet.write(
+                                    z + 1, 7, 'null')        
+                                else:
+                                    outSheet.write(
+                                    z + 1, 7, float(np.nanmedian(kpi_3)))
+
+
+
+
+                                print(Y+'interfrequency_hardhandover_success_ratio_csservice'+W, f'= {kpi_4}'+G,
+                                    f'Median : {float(np.nanmedian(kpi_4))}'+W)
+
+                                if np.isnan(float(np.nanmedian(kpi_4))) == True:
+                                    outSheet.write(
+                                    z + 1, 8, 'null')        
+                                else:
+                                    outSheet.write(
+                                    z + 1, 8, float(np.nanmedian(kpi_4)))
+
+
+
+
+                                print(Y+'amr_call_drop_ratio_new(hu_cell)'+W, f'= {kpi_5}'+G,
+                                    f'Median : {float(np.nanmedian(kpi_5))}'+W)
+
+                                if np.isnan(float(np.nanmedian(kpi_5))) == True:
+                                    outSheet.write(
+                                    z + 1, 9, 'null')        
+                                else:
+                                    outSheet.write(
+                                    z + 1, 9, float(np.nanmedian(kpi_5)))
+
+
+
+
+
+                                print(Y+'softer_handover_success_ratio(hu_cell)'+W, f'= {kpi_6}'+G,
+                                    f'Median : {float(np.nanmedian(kpi_6))}'+W)
+
+                                if np.isnan(float(np.nanmedian(kpi_6))) == True:
+                                    outSheet.write(
+                                    z + 1, 10, 'null')        
+                                else:
+                                    outSheet.write(
+                                    z + 1, 10, float(np.nanmedian(kpi_6)))
+
+
+
+
+                                print(Y+'cs_rrc_connection_establishment_sr'+W, f'= {kpi_7}'+G,
+                                    f'Median : {float(np.nanmedian(kpi_7))}'+W)
+
+                                if np.isnan(float(np.nanmedian(kpi_7))) == True:
+                                    outSheet.write(
+                                    z + 1, 11, 'null')        
+                                else:
+                                    outSheet.write(
+                                    z + 1, 11, float(np.nanmedian(kpi_7)))
+                                
+
+
+
+                            except(TypeError):
+
+                                continue
+
+                            
+
+                        print(R+splitter+W)
+
+                        outWorkbook.close()
+
+                        userfdec = input(
+                            C+'CC3-Daily calculation Done! continue? [y/n] : '+W)
+
+                        userfdec = userfdec.lower()
+
+                        match userfdec:
+
+                            case 'y':
+
+                                continue
+
+                            case 'n':
+
+                                sys.exit()
 
                     case 4:
 
