@@ -641,12 +641,12 @@ if __name__ == '__main__':
 
                     case 3:
 
-                        outWorkbook = xlsxwriter.Workbook(f"CC3_Daily_BL.xlsx")
+                        outWorkbook = xlsxwriter.Workbook(f"CC3_BH_BL.xlsx")
 
                         outSheet = outWorkbook.add_worksheet(name='Median_bl')
 
                         # ==================== data
-                        df_CC3 = pd.read_excel('CC3_Daily_data.xlsx', sheet_name='Sheet0')
+                        df_CC3 = pd.read_excel('CC3_BH_data.xlsx', sheet_name='Sheet0')
                         astro_CC3 = df_CC3.to_dict('records')
                         # ====================
 
@@ -657,6 +657,7 @@ if __name__ == '__main__':
                             np.nan_to_num(main_cell_source_index_3))
 
                         kpi_list = [
+
 
                             'Calculation Period',
                             'Region',
@@ -692,19 +693,19 @@ if __name__ == '__main__':
 
                                 if astro_CC3[i]['cell'] == main_cell_source_index_3[z]:
 
-                                    kpi_1.append(astro_CC3[i]['cs_erlang'])
+                                    kpi_1.append(astro_CC3[i]['CS_TrafficBH'])
                                     kpi_2.append(
-                                        astro_CC3[i]['cs_rab_setup_success_ratio'])
+                                        astro_CC3[i]['CS_RAB_Setup_Success_Ratio'])
                                     kpi_3.append(
-                                        astro_CC3[i]['cs_irat_ho_sr'])
+                                        astro_CC3[i]['CS_IRAT_HO_SR'])
                                     kpi_4.append(
-                                        astro_CC3[i]['interfrequency_hardhandover_success_ratio_csservice'])
+                                        astro_CC3[i]['InterFrequency_Hardhandover_success_Ratio_CSservice'])
                                     kpi_5.append(
-                                        astro_CC3[i]['amr_call_drop_ratio_new(hu_cell)'])
+                                        astro_CC3[i]['AMR_Call_Drop_Ratio_New(Hu_CELL)'])
                                     kpi_6.append(
-                                        astro_CC3[i]['softer_handover_success_ratio(hu_cell)'])
+                                        astro_CC3[i]['Softer_Handover_Success_Ratio(Hu_Cell)'])
                                     kpi_7.append(
-                                        astro_CC3[i]['cs_rrc_connection_establishment_sr'])
+                                        astro_CC3[i]['CS_RRC_Connection_Establishment_SR'])
                                     
 
                                 else:
