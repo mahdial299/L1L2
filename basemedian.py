@@ -1921,12 +1921,12 @@ if __name__ == '__main__':
 
                         
                         # os.makedirs(fr'{gitdir}/RD2_BL')
-                        outWorkbook = xlsxwriter.Workbook(f"RD2_Daily_BL.xlsx")
+                        outWorkbook = xlsxwriter.Workbook(f"RD2_BH_BL.xlsx")
 
                         outSheet = outWorkbook.add_worksheet(name='Median_bl')
 
                         # ================= data
-                        df_RD2 = pd.read_excel('RD2_Daily_data.xlsx', sheet_name='Sheet0')
+                        df_RD2 = pd.read_excel('RD2_BH_data.xlsx', sheet_name='Sheet0')
                         astro_RD2 = df_RD2.to_dict('records')
                         # ========================
 
