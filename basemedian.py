@@ -2761,7 +2761,372 @@ if __name__ == '__main__':
 
                     case 5:
 
-                        pass
+                        
+                        outWorkbook = xlsxwriter.Workbook(f"RD4_BH_BL.xlsx")
+
+                        outSheet = outWorkbook.add_worksheet(name='Median_bl')
+
+                        # ==================== data
+                        df_RD4 = pd.read_excel('RD4_BH_data.xlsx', sheet_name='Sheet0')
+                        astro_RD4 = df_RD4.to_dict('records')
+                        # ====================
+
+                        main_cell_source_index_4 = df_RD4[['cell_ref']].dropna()
+                        main_cell_source_index_4 = np.asanyarray(
+                            main_cell_source_index_4).flatten()
+                        main_cell_source_index_4 = list(
+                            np.nan_to_num(main_cell_source_index_4))
+
+                        kpi_list = [
+                            
+                            'Calculation Period',
+                            'Region',
+                            'Province',
+                            'Cell',
+                            'total_traffic_volume(gb)',
+                            'Average_Downlink_User_Throughput(Mbit/s)',
+                            'Call_Drop_Rate',
+                            'Average_UPlink_User_Throughput(Mbit/s)',
+                            'RRC_Connection_Setup_Success_Rate_service',
+                            'E-RAB_Setup_Success_Rate',
+                            'E-RAB_Setup_Success_Rate(Hu_Cell)',
+                            'intra_rat_handover_sr_intra+inter_frequency(huawei_lte_cell',
+                            'CSFB_Rate',
+                            'S1Signal_E-RAB_Setup_SR(Hu_Cell)',
+                            'InterF_HOOut_SR',
+                            'IntraF_HOOut_SR',
+                            'downlink_cell_throghput(kbit/s)',
+                            'uplink_cell_throghput(kbit/s)',
+                            'Average_UL_Packet_Loss_%(Huawei_LTE_UCell)',
+                            'CSSR(ALL)',
+                            'Level'
+
+                        ]
+
+                        for z in range(len(main_cell_source_index_4)):
+
+                            # ---------------------------------- 2G Data KPIs
+                            kpi_1 = []
+                            kpi_2 = []
+                            kpi_3 = []
+                            kpi_4 = []
+                            kpi_5 = []
+                            kpi_6 = []
+                            kpi_7 = []
+                            kpi_8 = []
+                            kpi_9 = []
+                            kpi_10 = []
+                            kpi_11 = []
+                            kpi_12 = []
+                            kpi_13 = []
+                            kpi_14 = []
+                            kpi_15 = []
+                            kpi_16 = []
+                    
+
+                            for i in range(len(astro_RD4)):
+
+                                if astro_RD4[i]['CELL'] == main_cell_source_index_4[z]:
+
+                                    kpi_1.append(
+                                        astro_RD4[i]['Total_Traffic_Volume(GB)'])
+                                    kpi_2.append(
+                                        astro_RD4[i]['Average_Downlink_User_Throughput(Mbit/s)'])
+                                    kpi_3.append(
+                                        astro_RD4[i]['Call_Drop_Rate'])
+                                    kpi_4.append(astro_RD4[i]['Average_UPlink_User_Throughput(Mbit/s)'])
+                                    kpi_5.append(astro_RD4[i]['RRC_Connection_Setup_Success_Rate_service'])
+                                    kpi_6.append(astro_RD4[i]['E-RAB_Setup_Success_Rate'])
+                                    kpi_7.append(
+                                        astro_RD4[i]['E-RAB_Setup_Success_Rate(Hu_Cell)'])
+                                    kpi_8.append(
+                                        astro_RD4[i]['Intra_RAT_Handover_SR_Intra+Inter_frequency(Huawei_LTE_Cell)'])
+                                    kpi_9.append(
+                                        astro_RD4[i]['CSFB_Rate'])
+                                    kpi_10.append(
+                                        astro_RD4[i]['S1Signal_E-RAB_Setup_SR(Hu_Cell)'])
+                                    kpi_11.append(astro_RD4[i]['InterF_HOOut_SR'])
+                                    kpi_12.append(
+                                        astro_RD4[i]['IntraF_HOOut_SR'])
+                                    kpi_13.append(
+                                        astro_RD4[i]['Downlink_Cell_Throghput(Kbit/s)'])
+                                    kpi_14.append(astro_RD4[i]['Uplink_Cell_Throghput(Kbit/s)'])
+                                    kpi_15.append(astro_RD4[i]['Average_UL_Packet_Loss_%(Huawei_LTE_UCell)'])
+                                    kpi_16.append(astro_RD4[i]['CSSR(ALL)'])
+                                
+
+                                else:
+
+                                    continue
+                            
+                            row_1 = 0
+
+                            row_2 = 0
+                            column_2 = 0
+
+                            for kpi in kpi_list:
+
+                                outSheet.write(row_2, column_2, kpi)
+
+                                column_2 += 1
+
+
+
+                            try:
+
+                                print(f'{z} cell : {C+main_cell_source_index_4[z]+W}')
+                                outSheet.write(
+                                    z + 1, 3, main_cell_source_index_4[z])
+
+                                print(Y+'total_traffic_volume(gb)'+W, f'= {kpi_1}'+G,
+                                    f'Average : {float(np.nanmean(kpi_1))}'+W)    # edit from here 
+
+                                outSheet.write(z + 1, 4 , float(np.nanmean(kpi_1)))
+
+
+                                if float(np.nanmean(kpi_1)) > 160:
+
+                                    outSheet.write(                     
+                                    z + 1, 20, 'L1')   
+
+                                elif 120 < float(np.nanmean(kpi_1)) <= 160:
+
+                                    outSheet.write(                     
+                                    z + 1, 20, 'L2')   
+                                
+                                elif 80 < float(np.nanmean(kpi_1)) <= 120:
+
+                                    outSheet.write(                     
+                                    z + 1, 20, 'L3')   
+
+                                elif 40 < float(np.nanmean(kpi_1)) <= 80:         
+
+                                    outSheet.write(                     
+                                    z + 1, 20, 'L4')   
+
+                                elif float(np.nanmean(kpi_1)) <= 40:
+
+                                    outSheet.write(                     
+                                    z + 1, 20, 'L5')
+
+
+                                print(Y+'average_downlink_user_throughput(mbit/s)'+W, f'= {kpi_2}'+G,
+                                    f'Median : {float(np.nanmedian(kpi_2))}'+W)
+
+                                if np.isnan(float(np.nanmedian(kpi_2))) == True:
+                                    outSheet.write(
+                                    z + 1, 5, 'null')        
+                                else:
+                                    outSheet.write(
+                                    z + 1, 5, float(np.nanmedian(kpi_2)))
+
+
+                                
+
+                                print(Y+'Call_Drop_Rate'+W, f'= {kpi_3}'+G,
+                                    f'Median : {float(np.nanmedian(kpi_3))}'+W)
+
+                                if np.isnan(float(np.nanmedian(kpi_3))) == True:
+                                    outSheet.write(
+                                    z + 1, 6, 'null')        
+                                else:
+                                    outSheet.write(
+                                    z + 1, 6, float(np.nanmedian(kpi_3)))
+
+
+
+
+
+                                print(Y+'Average_UPlink_User_Throughput(Mbit/s)'+W, f'= {kpi_4}'+G,
+                                    f'Median : {float(np.nanmedian(kpi_4))}'+W)
+
+                                if np.isnan(float(np.nanmedian(kpi_4))) == True:
+                                    outSheet.write(
+                                    z + 1, 7, 'null')        
+                                else:
+                                    outSheet.write(
+                                    z + 1, 7, float(np.nanmedian(kpi_4)))
+
+
+
+
+
+                                print(Y+'RRC_Connection_Setup_Success_Rate_service'+W, f'= {kpi_5}'+G,
+                                    f'Median : {float(np.nanmedian(kpi_5))}'+W)
+
+                                if np.isnan(float(np.nanmedian(kpi_5))) == True:
+                                    outSheet.write(
+                                    z + 1, 8, 'null')        
+                                else:
+                                    outSheet.write(
+                                    z + 1, 8, float(np.nanmedian(kpi_5)))
+
+
+
+
+                                print(Y+'E-RAB_Setup_Success_Rate'+W, f'= {kpi_6}'+G,
+                                    f'Median : {float(np.nanmedian(kpi_6))}'+W)
+
+                                if np.isnan(float(np.nanmedian(kpi_6))) == True:
+                                    outSheet.write(
+                                    z + 1, 9, 'null')        
+                                else:
+                                    outSheet.write(
+                                    z + 1, 9, float(np.nanmedian(kpi_6)))
+
+
+
+
+                                print(Y+'E-RAB_Setup_Success_Rate(Hu_Cell)'+W, f'= {kpi_7}'+G,
+                                    f'Median : {float(np.nanmedian(kpi_7))}'+W)
+
+                                if np.isnan(float(np.nanmedian(kpi_7))) == True:
+                                    outSheet.write(
+                                    z + 1, 10, 'null')        
+                                else:
+                                    outSheet.write(
+                                    z + 1, 10, float(np.nanmedian(kpi_7)))
+
+
+
+
+                                print(Y+'intra_rat_handover_sr_intra+inter_frequency(huawei_lte_cell'+W, f'= {kpi_8}'+G,
+                                    f'Median : {float(np.nanmedian(kpi_8))}'+W)
+
+                                if np.isnan(float(np.nanmedian(kpi_8))) == True:
+                                    outSheet.write(
+                                    z + 1, 11, 'null')        
+                                else:
+                                    outSheet.write(
+                                    z + 1, 11, float(np.nanmedian(kpi_8)))
+
+
+
+                                print(Y+'CSFB_Rate'+W, f'= {kpi_9}'+G,
+                                    f'Median : {float(np.nanmedian(kpi_9))}'+W)
+
+                                if np.isnan(float(np.nanmedian(kpi_9))) == True:
+                                    outSheet.write(
+                                    z + 1, 12, 'null')        
+                                else:
+                                    outSheet.write(
+                                    z + 1, 12, float(np.nanmedian(kpi_9)))
+
+
+
+
+                                print(Y+'S1Signal_E-RAB_Setup_SR(Hu_Cell)'+W, f'= {kpi_10}'+G,
+                                    f'Median : {float(np.nanmedian(kpi_10))}'+W)
+
+                                if np.isnan(float(np.nanmedian(kpi_10))) == True:
+                                    outSheet.write(
+                                    z + 1, 13, 'null')        
+                                else:
+                                    outSheet.write(
+                                    z + 1, 13, float(np.nanmedian(kpi_10)))
+
+
+
+                                print(Y+'InterF_HOOut_SR'+W, f'= {kpi_11}'+G,
+                                    f'Median : {float(np.nanmedian(kpi_11))}'+W)
+
+                                if np.isnan(float(np.nanmedian(kpi_11))) == True:
+                                    outSheet.write(
+                                    z + 1, 14, 'null')        
+                                else:
+                                    outSheet.write(
+                                    z + 1, 14, float(np.nanmedian(kpi_11)))
+
+
+
+
+                                print(Y+'IntraF_HOOut_SR'+W, f'= {kpi_12}'+G,
+                                    f'Median : {float(np.nanmedian(kpi_12))}'+W)
+
+                                if np.isnan(float(np.nanmedian(kpi_12))) == True:
+                                    outSheet.write(
+                                    z + 1, 15, 'null')        
+                                else:
+                                    outSheet.write(
+                                    z + 1, 15, float(np.nanmedian(kpi_12)))
+
+
+
+
+                                print(Y+'downlink_cell_throghput(kbit/s)'+W, f'= {kpi_13}'+G,
+                                    f'Median : {float(np.nanmedian(kpi_13))}'+W)
+
+                                if np.isnan(float(np.nanmedian(kpi_13))) == True:
+                                    outSheet.write(
+                                    z + 1, 16, 'null')        
+                                else:
+                                    outSheet.write(
+                                    z + 1, 16, float(np.nanmedian(kpi_13)))
+
+
+
+
+
+                                print(Y+'uplink_cell_throghput(kbit/s)'+W, f'= {kpi_14}'+G,
+                                    f'Median : {float(np.nanmedian(kpi_14))}'+W)
+
+                                if np.isnan(float(np.nanmedian(kpi_14))) == True:
+                                    outSheet.write(
+                                    z + 1, 17, 'null')        
+                                else:
+                                    outSheet.write(
+                                    z + 1, 17, float(np.nanmedian(kpi_14)))
+
+
+
+
+                                print(Y+'Average_UL_Packet_Loss_%(Huawei_LTE_UCell)'+W, f'= {kpi_15}'+G,
+                                    f'Median : {float(np.nanmedian(kpi_15))}'+W)
+
+                                if np.isnan(float(np.nanmedian(kpi_15))) == True:
+                                    outSheet.write(
+                                    z + 1, 18, 'null')        
+                                else:
+                                    outSheet.write(
+                                    z + 1, 18, float(np.nanmedian(kpi_15)))
+
+
+
+                                print(Y+'CSSR(ALL)'+W, f'= {kpi_16}'+G,
+                                    f'Median : {float(np.nanmedian(kpi_16))}'+W)
+
+                                if np.isnan(float(np.nanmedian(kpi_16))) == True:
+                                    outSheet.write(
+                                    z + 1, 19, 'null')        
+                                else:
+                                    outSheet.write(
+                                    z + 1, 19, float(np.nanmedian(kpi_16)))
+                                
+                                
+                                
+                            except(TypeError):
+
+                                continue
+
+
+                        print(R+splitter+W)
+
+                        outWorkbook.close()
+
+                        userfdec = input(
+                            C+'RD4-BH calculation Done! continue? [y/n] : '+W)
+
+                        userfdec = userfdec.lower()
+
+                        match userfdec:
+
+                            case 'y':
+
+                                continue
+
+                            case 'n':
+
+                                sys.exit()
 
                     case 6:
 
