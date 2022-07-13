@@ -76,6 +76,9 @@ if __name__ == '__main__':
 
             case 'd':
 
+                beg_calc = input('Enter Calculation start date : ')
+                end_calc = input('Enter Calculation end date : ')
+
                 userCh = int(input('Select tech : '))
 
                         
@@ -185,6 +188,19 @@ if __name__ == '__main__':
 
                                 outSheet.write(
                                     z + 1, 4, main_cell_source_index_2[z])
+
+
+
+                                outSheet.write(
+                                    z + 1, 0, f"From : {beg_calc} To {end_calc}")
+
+
+
+                                outSheet.write(
+                                    z + 1, 2, str(main_cell_source_index_2[z][0:2]))
+
+
+
 
                                 print(Y+'tch_traffic'+W, f'= {kpi_1}'+G,
                                     f'Average : {float(np.nanmean(kpi_1))}'+W)
