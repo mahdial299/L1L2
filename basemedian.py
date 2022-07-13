@@ -86,7 +86,7 @@ if __name__ == '__main__':
 
                         outWorkbook = xlsxwriter.Workbook(f"CC2_Daily_BL.xlsx")
 
-                        outSheet = outWorkbook.add_worksheet(name='Median_bl')
+                        outSheet = outWorkbook.add_worksheet(name='2G_VOICE_DLY')
 
                         # ================= data
                         df_CC2 = pd.read_excel('CC2_Daily_data.xlsx', sheet_name='Sheet0')
