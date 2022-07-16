@@ -1661,6 +1661,9 @@ if __name__ == '__main__':
 
             case 'b':
 
+                beg_calc = input('Enter Calculation start date : ')
+                end_calc = input('Enter Calculation end date : ')
+
                 userCh = int(input('Select tech : '))
 
                 match userCh:
