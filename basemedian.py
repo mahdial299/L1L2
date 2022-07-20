@@ -15,7 +15,7 @@ W = '\033[0m'
 
 splitter = '='*50
 
-user = 'Mehdi Alebrahim'
+user = 'm.alebrahim'
 
 gitdir = fr'C:\Users\{user}\Desktop\L12'
 
@@ -1393,7 +1393,7 @@ if __name__ == '__main__':
 
 
                                 outSheet.write(
-                                    z + 1, 0, f"From : {beg_calc} To {end_calc}")
+                                    z + 1, 0, f"From: {beg_calc} To {end_calc}")
 
 
 
