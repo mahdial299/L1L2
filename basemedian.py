@@ -1303,7 +1303,7 @@ if __name__ == '__main__':
                             'RRC_Connection_Setup_Success_Rate_service',
                             'E-RAB_Setup_Success_Rate',
                             'E-RAB_Setup_Success_Rate(Hu_Cell)',
-                            'intra_rat_handover_sr_intra+inter_frequency(huawei_lte_cell',
+                            'intra_rat_handover_sr_intra+inter_frequency(huawei_lte_cell)',
                             'CSFB_Rate',
                             'S1Signal_E-RAB_Setup_SR(Hu_Cell)',
                             'InterF_HOOut_SR',
