@@ -1353,7 +1353,7 @@ if __name__ == '__main__':
                                     kpi_7.append(
                                         astro_RD4[i]['e-rab_setup_success_rate(hu_cell)'])
                                     kpi_8.append(
-                                        astro_RD4[i]['intra_rat_handover_sr_intra+inter_frequency(huawei_lte_cell)'])
+                                        astro_RD4[i]['intra_rat_handover_sr_intra+inter_frequency(huawei_lte_cell'])
                                     kpi_9.append(
                                         astro_RD4[i]['csfb_rate'])
                                     kpi_10.append(
