@@ -1734,7 +1734,7 @@ if __name__ == '__main__':
 
 
 
-                                if astro_CC2[i]['CELL'] == main_cell_source_index_2[z]:
+                                if astro_CC2[i]['cell'] == main_cell_source_index_2[z]:
 
                                     kpi_1.append(astro_CC2[i]['TCH_Traffic_BH'])
                                     kpi_2.append(astro_CC2[i]['CSSR3'])
@@ -2041,7 +2041,7 @@ if __name__ == '__main__':
 
                             for i in range(len(astro_RD2)):
 
-                                if astro_RD2[i]['CELL'] == main_cell_source_index_2[z]:
+                                if astro_RD2[i]['cell'] == main_cell_source_index_2[z]:
 
                                     kpi_1.append(
                                         astro_RD2[i]['Payload_Total(CELL_HU)'])
@@ -2302,7 +2302,7 @@ if __name__ == '__main__':
 
                             for i in range(len(astro_CC3)):
 
-                                if astro_CC3[i]['CELL'] == main_cell_source_index_3[z]:
+                                if astro_CC3[i]['cell'] == main_cell_source_index_3[z]:
 
                                     kpi_1.append(astro_CC3[i]['CS_TrafficBH'])
                                     kpi_2.append(
@@ -2553,7 +2553,7 @@ if __name__ == '__main__':
                 
                             for i in range(len(astro_RD3)):
 
-                                if astro_RD3[i]['CELL'] == main_cell_source_index_3[z]:
+                                if astro_RD3[i]['cell'] == main_cell_source_index_3[z]:
 
                                     kpi_1.append(astro_RD3[i]['Payload_Total_BH'])
                                     kpi_2.append(astro_RD3[i]['AVERAGE_HSDPA_USER_THROUGHPUT_DC+SC(Mbit/s)(CELL_HUAWEI)'])
@@ -2926,7 +2926,7 @@ if __name__ == '__main__':
 
                             for i in range(len(astro_RD4)):
 
-                                if astro_RD4[i]['CELL'] == main_cell_source_index_4[z]:
+                                if astro_RD4[i]['cell'] == main_cell_source_index_4[z]:
 
                                     kpi_1.append(
                                         astro_RD4[i]['Total_Traffic_Volume(GB)'])
