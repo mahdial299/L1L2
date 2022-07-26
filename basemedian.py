@@ -92,7 +92,7 @@ if __name__ == '__main__':
                         outSheet = outWorkbook.add_worksheet(name='2G_VOICE_DLY')
 
                         # ================= data
-                        df_CC2 = pd.read_excel('CC2_Daily_data.xlsx', sheet_name='Sheet1')
+                        df_CC2 = pd.read_excel('CC2_Daily_data.xlsx', sheet_name='CC2_Daily_CELL')
                         astro_CC2 = df_CC2.to_dict('records')
                         # ========================
 
@@ -411,7 +411,7 @@ if __name__ == '__main__':
                         outSheet = outWorkbook.add_worksheet(name='2G_DATA_DLY')
 
                         # ================= data
-                        df_RD2 = pd.read_excel('RD2_Daily_data.xlsx', sheet_name='Sheet1')
+                        df_RD2 = pd.read_excel('RD2_Daily_data.xlsx', sheet_name='RD2_Daily_CELL')
                         astro_RD2 = df_RD2.to_dict('records')
                         # ========================
 
@@ -670,7 +670,7 @@ if __name__ == '__main__':
                         outSheet = outWorkbook.add_worksheet(name='3G_VOICE_DLY')
 
                         # ==================== data
-                        df_CC3 = pd.read_excel('CC3_Daily_data.xlsx', sheet_name='Sheet1')
+                        df_CC3 = pd.read_excel('CC3_Daily_data.xlsx', sheet_name='CC3_Daily_CELL')
                         astro_CC3 = df_CC3.to_dict('records')
                         # ====================
 
@@ -909,7 +909,7 @@ if __name__ == '__main__':
                         outSheet = outWorkbook.add_worksheet(name='3G_DATA_DLY')
 
                         # ==================== data
-                        df_RD3 = pd.read_excel('RD3_Daily_data.xlsx', sheet_name='Sheet1')
+                        df_RD3 = pd.read_excel('RD3_Daily_data.xlsx', sheet_name='RD3_Daily_CELL')
                         astro_RD3 = df_RD3.to_dict('records')
                         # ====================
 
@@ -1279,7 +1279,7 @@ if __name__ == '__main__':
                         outSheet = outWorkbook.add_worksheet(name='4G_DATA_DLY')
 
                         # ==================== data
-                        df_RD4 = pd.read_excel('RD4_Daily_data.xlsx', sheet_name='Sheet1')
+                        df_RD4 = pd.read_excel('RD4_Daily_data.xlsx', sheet_name='RD4_Daily_CELL')
                         astro_RD4 = df_RD4.to_dict('records')
                         # ====================
 
@@ -1677,7 +1677,7 @@ if __name__ == '__main__':
                         outSheet = outWorkbook.add_worksheet(name='2G_VOICE_BH')
 
                         # ================= data
-                        df_CC2 = pd.read_excel('CC2_BH_data.xlsx', sheet_name='Sheet1')
+                        df_CC2 = pd.read_excel('CC2_BH_data.xlsx', sheet_name='CC2_Cell_BH')
                         astro_CC2 = df_CC2.to_dict('records')
                         # ========================
 
@@ -1996,7 +1996,7 @@ if __name__ == '__main__':
                         outSheet = outWorkbook.add_worksheet(name='2G_DATA_BH')
 
                         # ================= data
-                        df_RD2 = pd.read_excel('RD2_BH_data.xlsx', sheet_name='Sheet1')
+                        df_RD2 = pd.read_excel('RD2_BH_data.xlsx', sheet_name='RD2_Cell_BH')
                         astro_RD2 = df_RD2.to_dict('records')
                         # ========================
 
@@ -2257,7 +2257,7 @@ if __name__ == '__main__':
                         outSheet = outWorkbook.add_worksheet(name='3G_VOICE_BH')
 
                         # ==================== data
-                        df_CC3 = pd.read_excel('CC3_BH_data.xlsx', sheet_name='Sheet1')
+                        df_CC3 = pd.read_excel('CC3_BH_data.xlsx', sheet_name='CC3_Cell_BH')
                         astro_CC3 = df_CC3.to_dict('records')
                         # ====================
 
@@ -2494,7 +2494,7 @@ if __name__ == '__main__':
                         outSheet = outWorkbook.add_worksheet(name='3G_DATA_BH')
 
                         # ==================== data
-                        df_RD3 = pd.read_excel('RD3_BH_data.xlsx', sheet_name='Sheet1')
+                        df_RD3 = pd.read_excel('RD3_BH_data.xlsx', sheet_name='RD3_Cell_BH')
                         astro_RD3 = df_RD3.to_dict('records')
                         # ====================
 
@@ -2867,7 +2867,7 @@ if __name__ == '__main__':
                         outSheet = outWorkbook.add_worksheet(name='4G_DATA_BH')
 
                         # ==================== data
-                        df_RD4 = pd.read_excel('RD4_BH_data.xlsx', sheet_name='Sheet1')
+                        df_RD4 = pd.read_excel('RD4_BH_data.xlsx', sheet_name='RD4_Cell_BH')
                         astro_RD4 = df_RD4.to_dict('records')
                         # ====================
 
